@@ -1,0 +1,397 @@
+---
+title: "<span style='font-size: 40px'> .hi-grey[Factionalism and the Red Guards under the Cultural Revolution]</style>"
+subtitle: "<span style='font-size: 28px'>.hi-slate[Ideal Point Estimation Using Text-as-Data Scaling Method]</style>"
+author: "<span style='font-size: 20px'> Yi-Nung Tsa (NCCU),Dechun Zhang (Leiden), and David, Yen-Chieh Liao (Essex) </style>"
+#date: "`r format(Sys.time(), '%d %B %Y')`"
+output:
+  xaringan::moon_reader:
+    css: ['default', 'metropolis', 'metropolis-fonts', 'my-css.css']     
+    lib_dir: libs
+    includes:
+      after_body: insert-logo.html
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: true
+      countdown: 30000
+---
+
+exclude: true
+
+
+
+
+
+```{r, include = F}
+# install.packages("pacman")
+library(pacman)
+p_load(
+  kableExtra, snakecase, janitor, huxtable, pagedown, # Formating 
+  ggplot2, ggthemes, ggeffects, ggridges, igraph, network, ggpubr, ggformula, gridExtra, RColorBrewer, # Visualization
+  tidyverse, lubridate, stringr, dplyr, purrr, tibble, tidyr, lubridate, knitr, # General tidyverse toolkit 
+  readxl,reshape2, 
+  parallel, future, furrr, future.apply, doParallel, # Paralleling
+  emIRT, MCMCpack, wnominate, pscl, rgenoud, basicspace,  # for scaling   
+  devtools, reticulate, usethis # programming
+)
+
+
+p_load_gh("kosukeimai/emIRT", # for scaling from Github
+          "tzuliu/ooc",
+          "cran/oc",
+          "uniofessex/asmcjr",
+          "wmay/dwnominate", dependencies = TRUE)
+
+
+# Define colors
+red_pink   = "#e64173"
+turquoise  = "#20B2AA"
+orange     = "#FFA500"
+red        = "#fb6107"
+blue       = "#3b3b9a"
+green      = "#8bb174"
+grey_light = "grey70"
+grey_mid   = "grey50"
+grey_dark  = "grey20"
+purple     = "#6A5ACD"
+brown      = "#9b684d"
+black      = "#000000"
+# Tetradic Color
+magenta_red = "#9b4d80"
+magenta_green = "#4d9b68"
+red_green = "#9b4d59"
+blue_green = "#4d599b"
+magenta_yellow = "#9b8f4d"
+
+
+# Knitr options
+opts_chunk$set(
+  comment = "#>",
+  fig.align = "center",
+  fig.height = 7,
+  fig.width = 10.5,
+  warning = F,
+  message = F
+)
+opts_chunk$set(dev = "svg")
+options(device = function(file, width, height) {
+  svg(tempfile(), width = width, height = height)
+})
+options(knitr.table.format = "html")
+
+# pagedown::chrome_print("file:///Users/yenchiehliao/Dropbox/redgaurds/slides/slides.html#1", verbose = FALSE)
+```
+
+---
+layout: true
+# Research Questions
+---
+name:research_questions
+
+&nbsp;
+
+-  The main question of our interest is the overall .hi-slate[ideological dissimilarity] between the political elite and the Red Guards: if overall, the political elite placed themselves differently vis-à-vis the Red Guards along the spectrum of ideological positions. 
+
+--
+
+- The literature has well explained how activists of the mass movement (the Red Guards) were divided into multiple factions that fought for controls for ruling power, political resources and other interests, such as educational institutes, workplaces, and local governments, etc. (e.g.Walder and Su 2003; Walder 2009).
+
+---
+
+&nbsp;
+
+- The scarcity of the corresponding literature (or literature on factionalism in general) is mainly attributed to .hi-slate[the lack of appropriate numerical data sources] and effective measures.
+
+--
+
+- However, how different factions among the Red Guards .hi-slate[selected positions of their own, or stances towards allies and against rivalries, or attitudes towards the political elite], during the mass movement remains relatively untouched.
+
+---
+layout: true
+# Why Textual Data?
+---
+name:data
+
+&nbsp;
+
+- One of the best alternatives to the numerical data is the textual data, when the actual numerical data becomes unavailable. 
+
+--
+
+- Representative textual data include .hi-slate[tabloids (Xiaobao 小报)], .hi-slate[big-character posters (Dazibao 大字报)] and .hi-slate[party-related office documents]. Existing literature typically look topics regarding the Cultural Revolution through the lens of interpreting participants' memoirs and historical bibliography, such as official publications, attempting to gather complete events. 
+
+---
+layout: true
+# Backgroud
+---
+name:background
+
+### Historical Backgroud
+
+- The mass movement initiated by commoners during the Cultural Revolution set off as a comprehensive attack on the system of bureaucracy, where the major political power was firmly grasped by the elite. 
+
+--
+
+- For a period, Mao Zedong (毛澤東) and his central leadership were .hi-slate[dis-supportive] to plans that involved forming associations and groups independent from the Party and condemned any unauthorized action by the mass to remove politicians from their office.
+
+--
+
+- However, later on, Mao's attitude became so shifted that he .hi-slate[openly endorsed] and authorized the mass movement and .hi-slate[even encouraged students into participation], without legal or political restriction imposed.
+
+---
+
+### The Origin of Red Guards:
+
+- First of all, aims and scopes of “the Red Guards”, for Mao and the Central Cultural Revolution Group (CCRG), could be shaped accordingly to fulfill their needs along with the evolvement of the movement.
+
+--
+
+- Narrowly speaking, the Red Guards refer to .hi-slate[active high school student groups] that were based in different provinces in China from May to late 1966. Particularly, the Red Guards from colleges and were active at the late stage of the movement is labelled as “the rebels”.
+
+--
+
+- The Red Guards include all active from high school to college student groups in 1966, as well as a proportion of newly joined high school students after September 1966. .hi-slate[The widely-defined Red Guards population matches participating student groups at various stages of the Cultural Revolution].
+
+---
+layout: true
+# Data
+---
+name:data
+
+&nbsp;
+
+### The Source:
+- This paper draws on the archive from Chinese Cultural Revolution Database (1966-1976) managed by the Chinese University of Hong Kong under the database named Databases for **the History of Contemporary Chinese Political Movements**. 
+
+--
+
+### Selected Documents:
+- In particular, these types of texts take forms of different formality: some are .hi-slate[formal statements], such as then classified documents, and some are recorded on informal occasions, such as in mass gatherings.
+
+---
+
+### Big-character Posters (Dazibao 大字报): 
+```{r echo = F, out.width = "80%"}
+knitr::include_graphics("./images/dazibao.png")
+```
+
+
+---
+
+### Tabloids (Xiaobao 小报):
+```{r echo = F, out.width = "70%"}
+knitr::include_graphics("./images/xiabao.png")
+```
+
+---
+
+### Documents from the central officiasls:
+```{r echo = F, out.width = "45%"}
+knitr::include_graphics("./images/offical_doc.png")
+```
+
+---
+&nbsp;
+&nbsp;
+
+- On the one hand, the official speeches made by the elite (central officials) include .hi-slate[meeting minutes], .hi-slate[internal comments] and decisions about issues related to Cultural Revolutions and circulated within the Chinese Communist Party (CCP). 
+
+--
+
+- The mass (the Red Guards) typically uses .hi-slate[columns], .hi-slate[self-print tabloids (Xiaobao)] and .hi-slate[big-characters posters (Dazibao)] to express political stances and opinions of their own. 
+
+--
+
+- This drastic difference in the means of expressing opinion between the two groups (the elite and the mass) allows us to analyze their speeches and textual records accordingly based on the sources of publication.
+
+---
+&nbsp;
+&nbsp;
+&nbsp;
+
+### Table 2 describes the document records used in this paper
+```{r echo = F, out.width = "100%"}
+knitr::include_graphics("./images/table2.png")
+```
+
+---
+layout: true
+# Estimation Strategy
+---
+&nbsp;
+
+### The rationale of the methodolgy we use
+
+-  We seek to find an algorithm that serves two main functions: i) .hi-slate[extract key Chinese words and phrases (slogans)]; ii) .hi-slate[estimate the differences of spatial positions] using the extracted textual data. 
+
+--
+
+- To this end, we develop a new strain of Wordfish algorithm that takes advantage of the facilitation of TextRank algorithm to extract Chinese characters and phrases.
+
+--
+
+- The consideration of semantic structures of our proposed algorithm mitigates the biasedness and errors that are often found in the original Wordfish caused by counting sole words and neglecting the linguistic contexts. 
+
+---
+layout: true
+# Keyword Extraction 
+---
+
+### The Concept of TextRank
+
+- The first stage applies the TextRank algorithm that is commonly used in .hi-slate[automated keywords extraction techniques] of Natural Language Processing (NLP) to create a subset of words and phrases that represents the most important or relevant information by calculating the weight for each token within the document.
+
+--
+
+- In particular, .hi-slate[the tagging of linguistic features] can be utilized to extract important phrases and pair n-grams as noun phrases via keyword extraction techniques. 
+
+---
+
+&nbsp;
+
+
+- TextRank is .hi-slate[an unsupervised graph-based algorithm] for automated summarization of text containing keywords and initially introduced by Mihalcea and Tarau (2004) by converting Google's PageRank algorithms (Brin and Page 1998) into feature selection to extract certain phrases. 
+
+--
+
+- The ultimate goal of a keyword extraction is to effectively select a set of .hi-slate[representative terms] from the text that best describe and summarize the original document. 
+
+--
+
+- Therefore, these representative terms are the near-minimum information set that can be utilized for text classification, document collection and information summarization, from which domain-specific dictionaries are constructed. 
+
+---
+
+### The Rationale and Concept of TextRank
+
+- TextRank reads original text as input and ranks a sequence of single or multiple lexical units extracted from the input, and these are stored as vertices in the text graph. 
+
+--
+
+- We particularly define the property of .hi-slate[co-occurrence] as such relation between two .hi-slate[vertices]: a pair of lexical units are regarded as potentially linked if they co-occur within a window of maximum n-grams (n is set to be 5 in our study), and their representative vertices are linked in the text graph. 
+
+```{r echo = F, out.width = "35%"}
+knitr::include_graphics("./images/cooccurence.png")
+```
+
+---
+
+### Top 15 Keywords Identified by TextRank at Each Major Incident
+```{r echo = F, out.width = "55%"}
+knitr::include_graphics("./images/keywords_p.png")
+```
+
+
+---
+
+- The importance of a vertex is determined by two factors, .hi-slate[the number of (undirected) links] it has and the weight of connected vertices. Mathematically, we can calculate the value of importance of a vertex i by
+
+$$\mathbf{V(i)=(1-d)+d\sum_{V(j)\in Link(i)}\frac{p_{ji}}{\sum_{V(l)\in Link(i)}p_{jl}}V(j)}.$$
+
+--
+
+- where $V(i)$ is the value of importance of vertex $i$ in the text, $d$ represents the dampening factor, $Link(i)$ is the sample of vertices that share links with vertex $i$, $p_{ji}$ measures the (absolute) weight vertex $j$ carries with respect to vertex $i$ and therefore, $\frac{p_{ji}}{\sum_{V(l)\in Link(i)}p_{jl}}$ is the relative weight of vertex $j$ with respect to $i$. 
+
+
+---
+layout: true
+# Wordfish Scaling Model
+---
+
+### The Concept of Wordfish
+
+- In the second stage, the algorithm estimates positions of each faction based on the .hi-slate[Poisson scaling model] proposed by Slapin and Proksch (2008). 
+
+--
+
+- The model produces the estimated positions by analyzing frequencies of extracted keywords and phrases from dictionaries constructed in the first stage. 
+
+--
+
+- The model takes the following functional form:
+
+$$y_{jm}\sim	Poisson(\theta_{jm}) \theta_{jm}=	exp(a_{m}+b_{j}+\beta_{j}*w_{i}^{m}),$$
+
+---
+layout: true
+# Analytical Findings
+---
+&nbsp;
+&nbsp;
+
+#### Figure 2: Smoothed Density Distribution of Estimated Positions for the Political Elite and the Red Gaurds
+```{r echo = F, out.width = "90%"}
+knitr::include_graphics("./images/figure2.png")
+```
+
+
+---
+&nbsp;
+
+#### Figure 3: Estimated Positions for Invidiual Member and Organizations in the Red Gaurds
+```{r echo = F, out.width = "50%"}
+knitr::include_graphics("./images/rg_unique.png")
+```
+
+
+---
+&nbsp;
+
+#### Figure 4: Estimated Positions for Zhou Enlai's Declation
+```{r echo = F, out.width = "50%"}
+knitr::include_graphics("./images/first_incident.png")
+```
+
+
+---
+&nbsp;
+#### Figure 4: Estimated Positions for the Announcement of New Public Security Regulations
+
+```{r echo = F, out.width = "50%"}
+knitr::include_graphics("./images/second_incident.png")
+```
+
+---
+&nbsp;
+#### Figure 4: Estimated Positions for February Countercurrent
+```{r echo = F, out.width = "50%"}
+knitr::include_graphics("./images/third_incident.png")
+```
+
+
+---
+layout: true
+# Conclusion
+---
+
+&nbsp;
+&nbsp;
+
+
+- First, we augment TextRank so that we only care about keywords and phrase in each document and noisy terms have been filtered out before ideological position estimation. This is likely to mitigate estimation error due to less presence of the noise. 
+
+--
+
+- Second, different from many languages, Chinese speeches are frequently phrase-based, rather than single word- (character-) based.
+
+--
+
+- TextRank is a graph-based algorithm that serves our purpose to interpret Chinese by extracting key phrases from texts. 
+
+---
+
+- Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016).
+
+--
+
+- However, the position of these individual factions dynamically varied according to the development of incidents and the shift of the political atmosphere.
+
+--
+
+- This generally in alignment with Walder (2004), Walder (2006), Walder (2006), and Walder (2009). Moreover, when the Conservative Red Guards were deemed as counterrevolutionaries and under arrest, we indeed record less factions from the Conservative. 
+
+---
+layout: false
+class: inverse, center, middle
+
+# Thank You

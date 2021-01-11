@@ -1,5 +1,5 @@
 
-## Factionalism and the Red Guards under the Cultural Revolution: <br>Ideal Point Estimation Using Text-as-Data Scaling Method by Yi-Nung Tsai (NCCU), Dechun Zhang (Leiden), and David, [Yen-Chieh Liao](https://yl17124.github.io) (Essex)<img src="https://avatars3.githubusercontent.com/u/77121644?s=400&u=49ca6038b83b629a86d391bb2e4d19f8995918a5&v=4" width="100" height= 100 align="right" /> <br />  
+## Factionalism and the Red Guards under the Cultural Revolution: <br>Ideal Point Estimation Using Text-as-Data Scaling Method <img src="https://avatars3.githubusercontent.com/u/77121644?s=400&u=49ca6038b83b629a86d391bb2e4d19f8995918a5&v=4" width="100" height= 100 align="right" /> <br />  
 
 - This repository stores [code]() and [replication data]() of preliminary results for this paper. 
 - The working draft ( [pdf](https://rawcdn.githack.com/yl17124/redgaurds/30e06860281ddbb8de2c99e929502744def8cf3a/paper/Factionalism_and_the_Red_Guards.pdf) ) will be presented at [the AsianPolmeth VIII & ASQPS IX Virtual Meeting](https://sites.google.com/view/asian-polmeth-2021/home#h.civf96630pei), January 14, 2021.

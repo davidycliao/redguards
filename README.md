@@ -10,7 +10,7 @@
 
 
 <p align="center">
-  <img width="530" height="400" src="https://rawcdn.githack.com/yl17124/redgaurds/df35e6c2bd7d98b33286c9766d35b7f23ecc259e/paper/poster.pdf" >
+  <img width="550" height="400" src="https://github.com/yl17124/redgaurds/blob/master/paper/poster.pdf" >
 </p>
 
 

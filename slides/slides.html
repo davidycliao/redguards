@@ -43,7 +43,7 @@ name:research_questions
 
 --
 
-- The literature has well explained how activists of the mass movement (the Red Guards) were divided into multiple factions that fought for controls for ruling power, political resources and other interests, such as educational institutes, workplaces, and local governments, etc. (e.g.Walder and Su 2003; Walder 2009).
+- The literature has well explained how activists of the mass movement (the Red Guards) .hi-slate[were divided into multiple factions] that fought for controls for ruling power, political resources and other interests, such as educational institutes, workplaces, and local governments, etc. (e.g.Walder and Su 2003; Walder 2009).
 
 ---
 
@@ -107,10 +107,10 @@ layout: true
 ---
 name:data
 
-&amp;nbsp;
-
 ### The Source:
-- This paper draws on the archive from Chinese Cultural Revolution Database (1966-1976) managed by the Chinese University of Hong Kong under the database named Databases for **the History of Contemporary Chinese Political Movements**. 
+- This paper draws on the archive from Chinese Cultural Revolution Database (1966-1976) managed by the Chinese University of Hong Kong under the database named Databases for .hi-slate[the History of Contemporary Chinese Political Movements]. 
+### 
+&lt;img src="./images/database.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 --
 
@@ -178,6 +178,29 @@ layout: true
 # Keyword Extraction 
 ---
 
+### UDpipe and UDpipe 2.5 Language Model
+
+- UDPipe is capable of performing excellent parts of speech tagging such as Universal POS tags and XPOS, morphological features, and syntactic dependencies, and syntactic analysis of CoNLL-U input based on Universal Dependencies (UD) framework.
+
+&lt;img src="./images/udpipe1.png" width="70%" style="display: block; margin: auto;" /&gt;
+
+---
+
+- we apply a pre-trained model from UDpipe, with parts of speech (POS) tagging and linguistic dependencies, to tokenize the collected textual data(Straka, Hajič, and Straková 2016; Straka and Straková 2017), see https://ufal.mff.cuni.cz/udpipe/2.
+
+&lt;img src="./images/udpipe2.png" width="60%" style="display: block; margin: auto;" /&gt;
+
+---
+
+### UD Chinese-GSDSimp Model
+
+- The pre-trained model for NLP task in this paper is UD Chinese-GSDSimp (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at [https://github.com/yl17124/UD_Chinese-GSDSimp]. 
+
+&lt;img src="./images/udpipe3.png" width="55%" style="display: block; margin: auto;" /&gt;
+
+
+---
+
 ### The Concept of TextRank
 
 - The first stage applies the TextRank algorithm that is commonly used in .hi-slate[automated keywords extraction techniques] of Natural Language Processing (NLP) to create a subset of words and phrases that represents the most important or relevant information by calculating the weight for each token within the document.
@@ -207,17 +230,16 @@ layout: true
 
 - TextRank reads original text as input and ranks a sequence of single or multiple lexical units extracted from the input, and these are stored as vertices in the text graph. 
 
+&lt;img src="./images/cooccurence.png" width="35%" style="display: block; margin: auto;" /&gt;
+
 --
 
 - We particularly define the property of .hi-slate[co-occurrence] as such relation between two .hi-slate[vertices]: a pair of lexical units are regarded as potentially linked if they co-occur within a window of maximum n-grams (n is set to be 5 in our study), and their representative vertices are linked in the text graph. 
 
-&lt;img src="./images/cooccurence.png" width="35%" style="display: block; margin: auto;" /&gt;
-
 ---
 
-### Top 15 Keywords Identified by TextRank at Each Major Incident
+#### Top 15 Keywords Identified by TextRank at Each Major Incident
 &lt;img src="./images/keywords_p.png" width="55%" style="display: block; margin: auto;" /&gt;
-
 
 ---
 
@@ -228,7 +250,6 @@ layout: true
 --
 
 - where `\(V(i)\)` is the value of importance of vertex `\(i\)` in the text, `\(d\)` represents the dampening factor, `\(Link(i)\)` is the sample of vertices that share links with vertex `\(i\)`, `\(p_{ji}\)` measures the (absolute) weight vertex `\(j\)` carries with respect to vertex `\(i\)` and therefore, `\(\frac{p_{ji}}{\sum_{V(l)\in Link(i)}p_{jl}}\)` is the relative weight of vertex `\(j\)` with respect to `\(i\)`. 
-
 
 ---
 layout: true
@@ -242,13 +263,11 @@ layout: true
 --
 
 - The model produces the estimated positions by analyzing frequencies of extracted keywords and phrases from dictionaries constructed in the first stage. 
-
 --
 
 - The model takes the following functional form:
 
 `$$y_{jm}\sim	Poisson(\theta_{jm}) \theta_{jm}=	exp(a_{m}+b_{j}+\beta_{j}*w_{i}^{m}),$$`
-
 ---
 layout: true
 # Analytical Findings
@@ -257,32 +276,33 @@ layout: true
 &amp;nbsp;
 
 #### Figure 2: Smoothed Density Distribution of Estimated Positions for the Political Elite and the Red Gaurds
+
 &lt;img src="./images/figure2.png" width="90%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 &amp;nbsp;
 
-#### Figure 3: Estimated Positions for Invidiual Member and Organizations in the Red Gaurds
+### Figure 3: Estimated Positions for Invidiual Member and Organizations in the Red Gaurds
+
 &lt;img src="./images/rg_unique.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-
 ---
 &amp;nbsp;
 
-#### Figure 4: Estimated Positions for Zhou Enlai's Declation
+### Figure 4: Estimated Positions for Zhou Enlai's Declation
 &lt;img src="./images/first_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
-
 ---
 &amp;nbsp;
-#### Figure 4: Estimated Positions for the Announcement of New Public Security Regulations
+
+### Figure 5: Estimated Positions for the Announcement of New Public Security Regulations
 
 &lt;img src="./images/second_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 &amp;nbsp;
-#### Figure 4: Estimated Positions for February Countercurrent
+### Figure 6: Estimated Positions for February Countercurrent
 &lt;img src="./images/third_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
@@ -293,7 +313,6 @@ layout: true
 
 &amp;nbsp;
 &amp;nbsp;
-
 
 - First, we augment TextRank so that we only care about keywords and phrase in each document and noisy terms have been filtered out before ideological position estimation. This is likely to mitigate estimation error due to less presence of the noise. 
 
@@ -306,6 +325,8 @@ layout: true
 - TextRank is a graph-based algorithm that serves our purpose to interpret Chinese by extracting key phrases from texts. 
 
 ---
+
+&amp;nbsp;
 
 - Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016).
 

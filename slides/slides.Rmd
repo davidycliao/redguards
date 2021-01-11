@@ -259,7 +259,7 @@ knitr::include_graphics("./images/udpipe2.png")
 
 ### UD Chinese-GSDSimp Model
 
-- The pre-trained model for NLP task in this paper is UD Chinese-GSDSimp (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at [https://github.com/yl17124/UD_Chinese-GSDSimp]. 
+- The pre-trained model for NLP task in this paper is UD Chinese-GSDSimp (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
 
 ```{r echo = F, out.width = "55%"}
 knitr::include_graphics("./images/udpipe3.png")
@@ -410,10 +410,6 @@ layout: true
 &nbsp;
 
 - Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016).
-
---
-
-- However, the position of these individual factions dynamically varied according to the development of incidents and the shift of the political atmosphere.
 
 --
 

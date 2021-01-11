@@ -9,10 +9,10 @@
 <br />
 
 
-<object data="https://rawcdn.githack.com/yl17124/redgaurds/440c28a921a53b8ba7dba4bd9fb153bf0bcb66b5/paper/poster.pdf" type="application/pdf" width="700px" height="700px">
-    <embed src="https://rawcdn.githack.com/yl17124/redgaurds/440c28a921a53b8ba7dba4bd9fb153bf0bcb66b5/paper/poster.pdf">
-    </embed>
-</object>
+<p align="center">
+  <img width="530" height="400" src="https://rawcdn.githack.com/yl17124/redgaurds/df35e6c2bd7d98b33286c9766d35b7f23ecc259e/paper/poster.pdf" >
+</p>
+
 
 
 

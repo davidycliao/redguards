@@ -3,7 +3,7 @@
 
 - This repository stores [code]() and [replication data]() of preliminary results for this paper. 
 - The working draft ( [pdf](https://rawcdn.githack.com/yl17124/redgaurds/15dff6b307dbd6e2ecfaf06b719463cf1d85da6a/paper/Factionalism_and_the_Red_Guards.pdf) ) will be presented at [the AsianPolmeth VIII & ASQPS IX Virtual Meeting](https://sites.google.com/view/asian-polmeth-2021/home#h.civf96630pei), January 14, 2021.
-- Slides can be found here ( [html](https://rawcdn.githack.com/yl17124/redgaurds/15dff6b307dbd6e2ecfaf06b719463cf1d85da6a/slides/slides.html) | [pdf](https://rawcdn.githack.com/yl17124/redgaurds/15dff6b307dbd6e2ecfaf06b719463cf1d85da6a/slides/slides.pdf).
+- Slides can be found here ( [html](https://rawcdn.githack.com/yl17124/redgaurds/15dff6b307dbd6e2ecfaf06b719463cf1d85da6a/slides/slides.html) | [pdf](https://rawcdn.githack.com/yl17124/redgaurds/15dff6b307dbd6e2ecfaf06b719463cf1d85da6a/slides/slides.pdf) ).
 - Feel free to drop me a message by [email](https://github.com/yl17124) or [create an issue](https://github.com/yl17124/redgaurds/issues) on here. 
 
 <br />

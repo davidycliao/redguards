@@ -94,7 +94,7 @@ name:research_questions
 
 --
 
-- Secondly, we study, at the time interval of each major incident, the degree of disagreement among different factions in the Red Guards and investigate its spatial positioning in correspond to the political elite.
+- Secondly, we study, at .hi-slate[the time interval of each major incident], the degree of disagreement among different factions in the Red Guards and investigate its spatial positioning in correspond to the political elite.
 
 ---
 layout: true
@@ -206,11 +206,11 @@ layout: true
 
 --
 
-- To this end, we develop a new strain of Wordfish algorithm that takes advantage of the facilitation of TextRank algorithm to extract Chinese characters and phrases.
+- To this end, we develop a new strain of .hi-slate[Wordfish algorithm] that takes advantage of the facilitation of TextRank algorithm to extract Chinese characters and phrases.
 
 --
 
-- The consideration of semantic structures of our proposed algorithm mitigates the biasedness and errors that are often found in the original Wordfish caused by counting sole words and neglecting the linguistic contexts. 
+- The consideration of semantic structures of our proposed algorithm .hi-slate[mitigates the biasedness and errors] that are often found in the original Wordfish caused by .hi-slate[counting sole words] and .hi-slate[neglecting the linguistic contexts]. 
 
 ---
 layout: true
@@ -219,7 +219,7 @@ layout: true
 
 ### UDpipe 
 
-- UDPipe is capable of performing excellent parts of speech tagging such as Universal POS tags and XPOS, morphological features, and syntactic dependencies, and syntactic analysis of CoNLL-U input based on Universal Dependencies (UD) framework.
+- UDPipe is capable of performing excellent parts of speech tagging such as .hi-slate[Universal POS tags] and .hi-slate[XPOS], .hi-slate[morphological features], and .hi-slate[syntactic dependencies], and syntactic analysis of CoNLL-U input based on .hi-slate[Universal Dependencies (UD) framework].
 
 ```{r echo = F, out.width = "70%"}
 knitr::include_graphics("./images/udpipe1.png")
@@ -228,7 +228,7 @@ knitr::include_graphics("./images/udpipe1.png")
 ---
 
 ### UDpipe and UDpipe 2.5 Language Model
-- we apply a pre-trained model from UDpipe, with parts of speech (POS) tagging and linguistic dependencies, to tokenize the collected textual data(Straka, Hajič, and Straková 2016; Straka and Straková 2017), see https://ufal.mff.cuni.cz/udpipe/2.
+- we apply a pre-trained model from UDpipe, with .hi-slate[parts of speech (POS) tagging] and .hi-slate[linguistic dependencies], to tokenize the collected textual data(Straka, Hajič, and Straková 2016; Straka and Straková 2017), see https://ufal.mff.cuni.cz/udpipe/2.
 
 ```{r echo = F, out.width = "60%"}
 knitr::include_graphics("./images/udpipe2.png")
@@ -238,7 +238,7 @@ knitr::include_graphics("./images/udpipe2.png")
 
 ### UD Chinese-GSDSimp Model
 
-- The pre-trained model for NLP task is .hi-slat[UD Chinese-GSDSimp] (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
+- The pre-trained model for NLP task is .hi-slate[UD Chinese-GSDSimp] (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
 
 ```{r echo = F, out.width = "65%"}
 knitr::include_graphics("./images/udpipe3.png")
@@ -285,7 +285,7 @@ knitr::include_graphics("./images/textrank.png")
 
 ### The Rationale and Concept of TextRank:
 
-- TextRank reads original text as input and ranks a sequence of single or multiple lexical units extracted from the input, and these are stored as vertices in the text graph. 
+- TextRank reads original text as input and .hi-slate[ranks a sequence of single or multiple lexical units] extracted from the input, and these are hi-slate[stored as vertices] in the text graph. 
 
 ```{r echo = F, out.width = "35%"}
 knitr::include_graphics("./images/cooccurence.png")
@@ -293,7 +293,7 @@ knitr::include_graphics("./images/cooccurence.png")
 
 --
 
-- We particularly define the property of .hi-slate[co-occurrence] as such relation between two .hi-slate[vertices]: a pair of lexical units are regarded as potentially linked if they co-occur within a window of maximum n-grams (n is set to be 5 in our study), and their representative vertices are linked in the text graph. 
+- We particularly define the property of .hi-slate[co-occurrence] as such relation between two .hi-slate[vertices]: a pair of lexical units are regarded as potentially linked .hi-slate[if they co-occur within a window of maximum n-grams (n is set to be 5 in our study)], and their representative vertices are linked in the text graph. 
 
 ---
 
@@ -313,7 +313,7 @@ layout: true
 
 --
 
-- The model produces the estimated positions by analyzing frequencies of extracted keywords and phrases from dictionaries constructed in the first stage. 
+- The model produces the estimated positions by .hi-slate[analyzing frequencies of extracted keywords and phrases] from dictionaries constructed in the first stage. 
 --
 
 - The model takes the following functional form:
@@ -377,11 +377,11 @@ layout: true
 
 #### Conclusion
 
-- Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. 
+- Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are .hi-slate[contrasting groups for most of time]. 
 
 --
 
-- This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016). However, the position of these individual factions dynamically varied according to the development of incidents and the shift of the political atmosphere. 
+- This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016). However, .hi-slate[the position of these individual factions dynamically varied according to the development of incidents] and the shift of the political atmosphere. 
 
 ---
 
@@ -389,11 +389,11 @@ layout: true
 
 #### Contribution
 
-- First, we augment TextRank so that we only care about keywords and phrase in each document and noisy terms have been filtered out before ideological position estimation. This is likely to mitigate estimation error due to less presence of the noise. 
+- First, we augment TextRank so that we only care about .hi-slate[keywords and phrase] in each document and noisy terms have been filtered out before ideological position estimation. This is likely to .hi-slate[mitigate estimation error] due to less presence of the noise. 
 
 --
 
-- Second, different from many languages, Chinese speeches are frequently phrase-based, rather than single word- (character-) based.
+- Second, different from many languages, Chinese speeches are .hi-slate[frequently phrase-based], rather than single word- (character-) based.
 
 --
 

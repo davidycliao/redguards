@@ -24,6 +24,6 @@
 Matthias Burgert (European Commission)
 provided us with potential and actual output data of all vintages.
 
-- An earlier version of this paper was presented at the 2020 Annual Conference of the Taiwanese Political Science Association (台灣政治學年會). We thank Kuei-min Chang (張貴閔老師), Jason Kuo (郭銘傑老師) and participants for their comments and suggestions. We gratefully acknowledge [Joint Library of Humanities and Social Sciences, Academia Sinica.](https://hslib.sinica.edu.tw/eng/frontpage) (台灣中央研究院人文社會科學聯合圖書館) provided us with access to the database.
+- An earlier version of this paper was presented at the 2020 Annual Conference of the Taiwanese Political Science Association (台灣政治學年會). We thank Kuei-min Chang (張貴閔老師), Jason Kuo (郭銘傑老師) and participants for their comments and suggestions. We gratefully acknowledge [Joint Library of Humanities and Social Sciences, Academia Sinica](https://hslib.sinica.edu.tw/eng/frontpage) (台灣中央研究院人文社會科學聯合圖書館) provided us with access to the database.
 
 

@@ -43,31 +43,21 @@ name:research_questions
 
 --
 
-- The literature has well explained how activists of the mass movement (the Red Guards) .hi-slate[were divided into multiple factions] that fought for controls for ruling power, political resources and other interests, such as educational institutes, workplaces, and local governments, etc. (e.g.Walder and Su 2003; Walder 2009).
+- Secondly, we study, at the time interval of each major incident, the degree of disagreement among different factions in the Red Guards and investigate its spatial positioning in correspond to the political elite.
 
+---
+layout: true
+# The Puzzles
 ---
 
 &amp;nbsp;
 
-- The scarcity of the corresponding literature (or literature on factionalism in general) is mainly attributed to .hi-slate[the lack of appropriate numerical data sources] and effective measures.
+- The literature has well explained how activists of the mass movement (the Red Guards) .hi-slate[were divided into multiple factions] that fought for controls for ruling power, political resources and other interests, such as educational institutes, workplaces, and local governments, etc. (e.g.Walder and Su 2003; Walder 2009).
+
 
 --
 
 - However, how different factions among the Red Guards .hi-slate[selected positions of their own, or stances towards allies and against rivalries, or attitudes towards the political elite], during the mass movement remains relatively untouched.
-
----
-layout: true
-# Why Textual Data?
----
-name:data
-
-&amp;nbsp;
-
-- One of the best alternatives to the numerical data is the textual data, when the actual numerical data becomes unavailable. 
-
---
-
-- Representative textual data include .hi-slate[tabloids (Xiaobao 小报)], .hi-slate[big-character posters (Dazibao 大字报)] and .hi-slate[party-related office documents]. Existing literature typically look topics regarding the Cultural Revolution through the lens of interpreting participants' memoirs and historical bibliography, such as official publications, attempting to gather complete events. 
 
 ---
 layout: true
@@ -91,7 +81,7 @@ name:background
 
 ### The Origin of Red Guards:
 
-- First of all, aims and scopes of “the Red Guards”, for Mao and the Central Cultural Revolution Group (CCRG), could be shaped accordingly to fulfill their needs along with the evolvement of the movement.
+- First of all, .hi-slate[aims and scopes of “the Red Guards”], for Mao and the Central Cultural Revolution Group (CCRG), could be shaped accordingly to fulfill their needs along with the evolvement of the movement.
 
 --
 
@@ -107,15 +97,16 @@ layout: true
 ---
 name:data
 
+
 ### The Source:
 - This paper draws on the archive from Chinese Cultural Revolution Database (1966-1976) managed by the Chinese University of Hong Kong under the database named Databases for .hi-slate[the History of Contemporary Chinese Political Movements]. 
 ### 
-&lt;img src="./images/database.png" width="50%" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/database.png" width="52%" style="display: block; margin: auto;" /&gt;
 
 --
 
 ### Selected Documents:
-- In particular, these types of texts take forms of different formality: some are .hi-slate[formal statements], such as then classified documents, and some are recorded on informal occasions, such as in mass gatherings.
+- Representative textual data include .hi-slate[tabloids (Xiaobao 小报)], .hi-slate[big-character posters (Dazibao 大字报)] and .hi-slate[party-related office documents]. 
 
 ---
 
@@ -130,22 +121,9 @@ name:data
 
 ---
 
-### Documents from the central officiasls:
+### Documents from the central officials:
 &lt;img src="./images/offical_doc.png" width="45%" style="display: block; margin: auto;" /&gt;
 
----
-&amp;nbsp;
-&amp;nbsp;
-
-- On the one hand, the official speeches made by the elite (central officials) include .hi-slate[meeting minutes], .hi-slate[internal comments] and decisions about issues related to Cultural Revolutions and circulated within the Chinese Communist Party (CCP). 
-
---
-
-- The mass (the Red Guards) typically uses .hi-slate[columns], .hi-slate[self-print tabloids (Xiaobao)] and .hi-slate[big-characters posters (Dazibao)] to express political stances and opinions of their own. 
-
---
-
-- This drastic difference in the means of expressing opinion between the two groups (the elite and the mass) allows us to analyze their speeches and textual records accordingly based on the sources of publication.
 
 ---
 &amp;nbsp;
@@ -161,7 +139,7 @@ layout: true
 ---
 &amp;nbsp;
 
-### The rationale of the methodolgy we use
+### The Rationale of the Methodolgy:
 
 -  We seek to find an algorithm that serves two main functions: i) .hi-slate[extract key Chinese words and phrases (slogans)]; ii) .hi-slate[estimate the differences of spatial positions] using the extracted textual data. 
 
@@ -178,7 +156,7 @@ layout: true
 # Keyword Extraction 
 ---
 
-### UDpipe and UDpipe 2.5 Language Model
+### UDpipe 
 
 - UDPipe is capable of performing excellent parts of speech tagging such as Universal POS tags and XPOS, morphological features, and syntactic dependencies, and syntactic analysis of CoNLL-U input based on Universal Dependencies (UD) framework.
 
@@ -186,6 +164,7 @@ layout: true
 
 ---
 
+### UDpipe and UDpipe 2.5 Language Model
 - we apply a pre-trained model from UDpipe, with parts of speech (POS) tagging and linguistic dependencies, to tokenize the collected textual data(Straka, Hajič, and Straková 2016; Straka and Straková 2017), see https://ufal.mff.cuni.cz/udpipe/2.
 
 &lt;img src="./images/udpipe2.png" width="60%" style="display: block; margin: auto;" /&gt;
@@ -194,9 +173,9 @@ layout: true
 
 ### UD Chinese-GSDSimp Model
 
-- The pre-trained model for NLP task in this paper is UD Chinese-GSDSimp (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
+- The pre-trained model for NLP task is .hi-slat[UD Chinese-GSDSimp] (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
 
-&lt;img src="./images/udpipe3.png" width="55%" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/udpipe3.png" width="65%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -222,11 +201,20 @@ layout: true
 
 --
 
-- Therefore, these representative terms are the near-minimum information set that can be utilized for text classification, document collection and information summarization, from which domain-specific dictionaries are constructed. 
+- Therefore, these representative terms are the near-minimum information set that can be utilized for text classification, document collection and information summarization, from which .hi-slate[domain-specific dictionaries]are constructed. 
+
+---
+&amp;nbsp;
+&amp;nbsp;
+
+### The Flow of the TextRank
+
+&lt;img src="./images/textrank.png" width="70%" style="display: block; margin: auto;" /&gt;
+###### Source: https://www.analyticsvidhya.com/blog/2018/11/introduction-text-summarization-textrank-python/
 
 ---
 
-### The Rationale and Concept of TextRank
+### The Rationale and Concept of TextRank:
 
 - TextRank reads original text as input and ranks a sequence of single or multiple lexical units extracted from the input, and these are stored as vertices in the text graph. 
 
@@ -240,16 +228,6 @@ layout: true
 
 #### Top 15 Keywords Identified by TextRank at Each Major Incident
 &lt;img src="./images/keywords_p.png" width="55%" style="display: block; margin: auto;" /&gt;
-
----
-
-- The importance of a vertex is determined by two factors, .hi-slate[the number of (undirected) links] it has and the weight of connected vertices. Mathematically, we can calculate the value of importance of a vertex i by
-
-`$$\mathbf{V(i)=(1-d)+d\sum_{V(j)\in Link(i)}\frac{p_{ji}}{\sum_{V(l)\in Link(i)}p_{jl}}V(j)}.$$`
-
---
-
-- where `\(V(i)\)` is the value of importance of vertex `\(i\)` in the text, `\(d\)` represents the dampening factor, `\(Link(i)\)` is the sample of vertices that share links with vertex `\(i\)`, `\(p_{ji}\)` measures the (absolute) weight vertex `\(j\)` carries with respect to vertex `\(i\)` and therefore, `\(\frac{p_{ji}}{\sum_{V(l)\in Link(i)}p_{jl}}\)` is the relative weight of vertex `\(j\)` with respect to `\(i\)`. 
 
 ---
 layout: true
@@ -308,11 +286,25 @@ layout: true
 
 ---
 layout: true
-# Conclusion
+# Takeways
 ---
 
 &amp;nbsp;
 &amp;nbsp;
+
+#### Conclusion
+
+- Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. 
+
+--
+
+- This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016). However, the position of these individual factions dynamically varied according to the development of incidents and the shift of the political atmosphere. 
+
+---
+
+&amp;nbsp;
+
+#### Contribution
 
 - First, we augment TextRank so that we only care about keywords and phrase in each document and noisy terms have been filtered out before ideological position estimation. This is likely to mitigate estimation error due to less presence of the noise. 
 
@@ -323,16 +315,6 @@ layout: true
 --
 
 - TextRank is a graph-based algorithm that serves our purpose to interpret Chinese by extracting key phrases from texts. 
-
----
-
-&amp;nbsp;
-
-- Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are contrasting groups for most of time. This seems sensible and matches many evidences from previous literature (Walder and Su 2003; Wang 2019; Su 2006; Walder and Lu 2017; Walder 2016).
-
---
-
-- This generally in alignment with Walder (2004), Walder (2006), Walder (2006), and Walder (2009). Moreover, when the Conservative Red Guards were deemed as counterrevolutionaries and under arrest, we indeed record less factions from the Conservative. 
 
 ---
 layout: false

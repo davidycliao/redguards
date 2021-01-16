@@ -11,7 +11,7 @@
 
 
 <p align="center">
-  <img width="700" height="500" src="https://rawcdn.githack.com/yl17124/redgaurds/cd6416bded5e48cfff9f706f8f6126c9c62fdd6a/paper/poster.png" >
+  <img width="700" height="500" src="https://raw.githack.com/yl17124/redgaurds/master/paper/poster.png" >
 </p>
 
 

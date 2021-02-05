@@ -3,6 +3,7 @@
   <head>
     <title>slides.utf8</title>
     <meta charset="utf-8" />
+    <meta name="date" content="2021-02-05" />
     <script src="libs/header-attrs-2.6/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link href="libs/remark-css-0.0.1/metropolis.css" rel="stylesheet" />
@@ -13,12 +14,13 @@
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# <span style='font-size: 40px'> .hi-grey[Factionalism and the Red Guards under the Cultural Revolution]
+# <span style='font-size: 40px'> .hi-grey[Factionalism and the Red Guards under Mao’s China]
 </style>
-## <span style='font-size: 28px'>.hi-slate[Ideal Point Estimation Using Text-as-Data Scaling Method]
+## <span style='font-size: 28px'>.hi-slate[Ideal Point Estimation Using Text Data]
 </style>
-### <span style='font-size: 20px'> Yi-Nung Tsai (NCCU),Dechun Zhang (Leiden), and David, Yen-Chieh Liao (Essex)
+### <span style='font-size: 20px'> Yi-Nung Tsai (NCCU), Dechun Zhang (Leiden), and .hi-slate[David, Yen-Chieh Liao] (Essex)
 </style>
+### 05 February 2021
 
 ---
 
@@ -39,7 +41,7 @@ name:research_questions
 
 &amp;nbsp;
 
--  The main question of our interest is the overall .hi-slate[ideological dissimilarity] between the political elite and the Red Guards: if overall, the political elite placed themselves differently vis-à-vis the Red Guards along the spectrum of ideological positions. 
+-  The main question of our interest is the overall .hi-slate[ideological dissimilarity] between &lt;u&gt;the political elite&lt;/u&gt; and &lt;u&gt;the Red Guards&lt;/u&gt;: if overall, the political elite placed themselves differently vis-à-vis the Red Guards along the spectrum of ideological positions. 
 
 --
 
@@ -47,7 +49,7 @@ name:research_questions
 
 ---
 layout: true
-# The Puzzles
+# Puzzles
 ---
 
 &amp;nbsp;
@@ -79,17 +81,17 @@ name:background
 
 ---
 
-### The Origin of Red Guards:
+### The Origin of Red Guards
 
 - First of all, .hi-slate[aims and scopes of “the Red Guards”], for Mao and the Central Cultural Revolution Group (CCRG), could be shaped accordingly to fulfill their needs along with the evolvement of the movement.
 
 --
 
-- Narrowly speaking, the Red Guards refer to .hi-slate[active high school student groups] that were based in different provinces in China from May to late 1966. Particularly, the Red Guards from colleges and were active at the late stage of the movement is labelled as “the rebels”.
+- Narrowly speaking, the Red Guards refer to active high school student groups that were based in different provinces in China .hi-slate[from May to late 1966]. Particularly, the Red Guards from colleges and were active at the late stage of the movement is labelled as “the Rebels”.
 
 --
 
-- The Red Guards include all active from high school to college student groups in 1966, as well as a proportion of newly joined high school students after September 1966. .hi-slate[The widely-defined Red Guards population matches participating student groups at various stages of the Cultural Revolution].
+- Widely speaking, the Red Guards include all active from high school to college student groups, as well as a proportion of newly joined high school students after September 1966. .hi-slate[The widely-defined Red Guards population matches participating student groups at various stages of the Cultural Revolution].
 
 ---
 layout: true
@@ -98,39 +100,37 @@ layout: true
 name:data
 
 
-### The Source:
+### The Source
 - This paper draws on the archive from Chinese Cultural Revolution Database (1966-1976) managed by the Chinese University of Hong Kong under the database named Databases for .hi-slate[the History of Contemporary Chinese Political Movements]. 
 ### 
 &lt;img src="./images/database.png" width="52%" style="display: block; margin: auto;" /&gt;
 
 --
 
-### Selected Documents:
+### Selected Documents
 - Representative textual data include .hi-slate[tabloids (Xiaobao 小报)], .hi-slate[big-character posters (Dazibao 大字报)] and .hi-slate[party-related office documents]. 
 
 ---
 
-### Big-character Posters (Dazibao 大字报): 
+### Big-character Posters (Dazibao 大字报)
 &lt;img src="./images/dazibao.png" width="80%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 
-### Tabloids (Xiaobao 小报):
+### Tabloids (Xiaobao 小报)
 &lt;img src="./images/xiabao.png" width="70%" style="display: block; margin: auto;" /&gt;
 
 ---
 
-### Documents from the central officials:
+### Documents from the Central Officials
 &lt;img src="./images/offical_doc.png" width="45%" style="display: block; margin: auto;" /&gt;
 
 
 ---
 &amp;nbsp;
-&amp;nbsp;
-&amp;nbsp;
 
-### Table 2 describes the document records used in this paper
+### The Document Types:
 &lt;img src="./images/table2.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
@@ -139,7 +139,7 @@ layout: true
 ---
 &amp;nbsp;
 
-### The Rationale of the Methodolgy:
+### The Rationale of the Methodolgy
 
 -  We seek to find an algorithm that serves two main functions: i) .hi-slate[extract key Chinese words and phrases (slogans)]; ii) .hi-slate[estimate the differences of spatial positions] using the extracted textual data. 
 
@@ -147,16 +147,12 @@ layout: true
 
 - To this end, we develop a new strain of .hi-slate[Wordfish algorithm] that takes advantage of the facilitation of TextRank algorithm to extract Chinese characters and phrases.
 
---
-
-- The consideration of semantic structures of our proposed algorithm .hi-slate[mitigates the biasedness and errors] that are often found in the original Wordfish caused by .hi-slate[counting sole words] and .hi-slate[neglecting the linguistic contexts]. 
-
 ---
 layout: true
 # Keyword Extraction 
 ---
 
-### UDpipe 
+### NLP Toolkit: UDpipe 
 
 - UDPipe is capable of performing excellent parts of speech tagging such as .hi-slate[Universal POS tags] and .hi-slate[XPOS], .hi-slate[morphological features], and .hi-slate[syntactic dependencies], and syntactic analysis of CoNLL-U input based on .hi-slate[Universal Dependencies (UD) framework].
 
@@ -164,7 +160,7 @@ layout: true
 
 ---
 
-### UDpipe and UDpipe 2.5 Language Model
+### UDpipe 2.5 Language Model
 - we apply a pre-trained model from UDpipe, with .hi-slate[parts of speech (POS) tagging] and .hi-slate[linguistic dependencies], to tokenize the collected textual data(Straka, Hajič, and Straková 2016; Straka and Straková 2017), see https://ufal.mff.cuni.cz/udpipe/2.
 
 &lt;img src="./images/udpipe2.png" width="60%" style="display: block; margin: auto;" /&gt;
@@ -175,7 +171,8 @@ layout: true
 
 - The pre-trained model for NLP task is .hi-slate[UD Chinese-GSDSimp] (trained and contributed by Qi and Yasuoka 2020) and can be found at the authors' Github repository, at https://github.com/yl17124/UD_Chinese-GSDSimp. 
 
-&lt;img src="./images/udpipe3.png" width="65%" style="display: block; margin: auto;" /&gt;
+- Human encoding: manually  augment a set of corpus following  the structure of CONLL-U format by adding related documents. 
+&lt;img src="./images/udpipe3.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -204,17 +201,15 @@ layout: true
 - Therefore, these representative terms are the near-minimum information set that can be utilized for text classification, document collection and information summarization, from which .hi-slate[domain-specific dictionaries]are constructed. 
 
 ---
-&amp;nbsp;
-&amp;nbsp;
 
 ### The Flow of the TextRank
 
 &lt;img src="./images/textrank.png" width="70%" style="display: block; margin: auto;" /&gt;
-###### Source: https://www.analyticsvidhya.com/blog/2018/11/introduction-text-summarization-textrank-python/
+
 
 ---
 
-### The Rationale and Concept of TextRank:
+### The Rationale and Concept
 
 - TextRank reads original text as input and .hi-slate[ranks a sequence of single or multiple lexical units] extracted from the input, and these are hi-slate[stored as vertices] in the text graph. 
 
@@ -251,11 +246,10 @@ layout: true
 # Analytical Findings
 ---
 &amp;nbsp;
-&amp;nbsp;
 
-#### Figure 2: Smoothed Density Distribution of Estimated Positions for the Political Elite and the Red Gaurds
+### Figure 2: Smoothed Density Distribution of Estimated Positions for the Political Elite and the Red Gaurds
 
-&lt;img src="./images/figure2.png" width="90%" style="display: block; margin: auto;" /&gt;
+&lt;img src="./images/figure2.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 
 ---
@@ -267,20 +261,31 @@ layout: true
 
 ---
 &amp;nbsp;
+### Competing Claims
 
-### Figure 4: Estimated Positions for Zhou Enlai's Declation
+- One explanation for these divisions classifies factions based on their orientation toward .hi-slate[the sociopolitical status quo] or from different social background (Chan 1982; Chan, Rosen, and Unger 1980; Lee 1978; Rosen 1982; Unger 1982).
+
+--
+
+- Another explanation points the underlying conflicts and disputes evolving rapidly over time between factions, was emerged when the Red Guards in similar positions made conflicting choices in .hi-slate[ambiguous contexts] in the status quo (Walder 2006, 712-713)
+
+
+---
+&amp;nbsp;
+
+### Figure 4: Estimated Positions for Zhou Enlai's Declation:
 &lt;img src="./images/first_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 &amp;nbsp;
 
-### Figure 5: Estimated Positions for the Announcement of New Public Security Regulations
+### Figure 5: Estimated Positions for the Announcement of New Public Security Regulations:
 
 &lt;img src="./images/second_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 ---
 &amp;nbsp;
-### Figure 6: Estimated Positions for February Countercurrent
+### Figure 6: Estimated Positions for February Countercurrent:
 &lt;img src="./images/third_incident.png" width="50%" style="display: block; margin: auto;" /&gt;
 
 
@@ -290,9 +295,8 @@ layout: true
 ---
 
 &amp;nbsp;
-&amp;nbsp;
 
-#### Conclusion
+### Conclusion
 
 - Estimation outcomes of ideological positions demonstrate that the majority of the Red Guards factions and the elite factions are .hi-slate[contrasting groups for most of time]. 
 
@@ -304,7 +308,7 @@ layout: true
 
 &amp;nbsp;
 
-#### Contribution
+### Contribution
 
 - First, we augment TextRank so that we only care about .hi-slate[keywords and phrase] in each document and noisy terms have been filtered out before ideological position estimation. This is likely to .hi-slate[mitigate estimation error] due to less presence of the noise. 
 
@@ -458,15 +462,15 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
 })(document);</script>
 <style>
   .logo {
-    background-image: url(images/LY_logo.svg);
+    background-image: url(images/);
     background-size: contain;
     background-repeat: no-repeat;
     position: absolute;
-    top: 0.7em;
-    right: 1em;
-    width: 100px;
-    height: 110px;
-    z-index: 0;
+    top: 0.20em;
+    right: 1.5em;
+    width: 85px;
+    height: 70px;
+    z-index: 5;
   }
 </style>
   

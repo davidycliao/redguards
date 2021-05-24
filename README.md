@@ -2,16 +2,16 @@
 ## Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data <img src="https://avatars3.githubusercontent.com/u/77121644?s=400&u=49ca6038b83b629a86d391bb2e4d19f8995918a5&v=4" width="130" height= 145 align="right" /> <br />  
 
 
-- The working draft ( [pdf](https://raw.githack.com/yl17124/redgaurds/master/paper/Factionalism_and_the_Red_Guards.pdf) ) will be presented at [the AsianPolmeth VIII & ASQPS IX Virtual Meeting](https://sites.google.com/view/asian-polmeth-2021/home#h.civf96630pei), January 14, 2021.
-- Slides can be found here ( [html](https://raw.githack.com/yl17124/redgaurds/master/slides/slides.html) | [pdf](https://raw.githack.com/yl17124/redgaurds/master/slides/slides.pdf) ).
-- The [codes]() and [data]() that replicate this paper's findings will be openly available soon in the repo once receiving permission from the rights holder.
-- Feel free to drop me a message by [email](https://github.com/yl17124) or [create an issue](https://github.com/yl17124/redgaurds/issues) on here. 
+- The working draft ( [pdf](https://raw.githack.com/davidycliao/redgaurds/master/paper/Factionalism_and_the_Red_Guards.pdf) ) will be presented at [the AsianPolmeth VIII & ASQPS IX Virtual Meeting](https://sites.google.com/view/asian-polmeth-2021/home#h.civf96630pei), January 14, 2021.
+- Slides can be found here ( [html](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.html) | [pdf](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.pdf) ).
+- The [codes]() and [data]() that replicate this paper's findings will be openly available soon in the repo once receiving permission from The Chinese University of Hong Kong University Library.
+- Feel free to drop me a message by [email](https://github.com/davidycliao) or [create an issue](https://github.com/davidycliao/redgaurds/issues) on here. 
 
 <br />
 
 
 <p align="center">
-  <img width="700" height="500" src="https://raw.githack.com/yl17124/redgaurds/master/paper/poster.png" >
+  <img width="700" height="500" src="https://raw.githack.com/davidycliao/redgaurds/master/paper/poster.png" >
 </p>
 
 

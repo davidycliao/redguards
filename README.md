@@ -8,12 +8,6 @@
 <br />
 
 
-<p align="center">
-  <img width="700" height="500" src="https://raw.githack.com/davidycliao/redgaurds/master/paper/poster.png" >
-</p>
-
-
-
 
 
 ## Acknowledge 

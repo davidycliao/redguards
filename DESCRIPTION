@@ -1,0 +1,33 @@
+Package: redgaurds
+Type: Package
+Title: This is a replication package for the project of "Factionalism and the 
+            Red Guards under Mao’s China: Ideal Point Estimation Using Text Data." 
+Version: 0.0.1
+Authors@R: person("David", "Liao", email = "davidycliao@gmail.com", role = c("aut", "cre"))
+Maintainer: David Liao <davidycliao@gmail.com>
+Description: This is a replication package for the project of "Factionalism and the 
+            Red Guards under Mao’s China: Ideal Point Estimation Using Text Data."
+URL: https://github.com/davidycliao/redgaurds
+BugReports: https://github.com/davidycliao/redgaurds/issues
+Depends:
+    dplyr,
+    udpipe,
+    parallel,
+    doFuture,
+    future,
+    data.table,
+    textrank,
+    emIRT
+Imports:
+    stringr
+Suggests: 
+    covr,
+    ggplot2,
+    knitr,
+    rmarkdoxwn
+VignetteBuilder: 
+    knitr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1

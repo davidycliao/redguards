@@ -4,7 +4,7 @@
 
 - The working draft ( [pdf](https://raw.githack.com/davidycliao/redgaurds/master/paper/Factionalism_and_the_Red_Guards.pdf) ) will be presented at [EPSA VIRTUAL 2021](https://coms.events/epsa2021/data/sessions/en/session_131.html), June 25, 2021.
 - Slides can be found here ( [html](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.html) | [pdf](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.pdf) ).
-- The [codes]() and [pared textual data]() that replicate the findings is available. 
+- The [codes]() and [parsed textual data]() that replicate the findings is available. 
 <br />
 
 

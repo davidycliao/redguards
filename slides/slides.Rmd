@@ -1,7 +1,7 @@
 ---
 title: "<span style='font-size: 40px'> .hi-grey[Factionalism and the Red Guards under Mao’s China]</style>"
 subtitle: "<span style='font-size: 28px'>.hi-slate[Ideal Point Estimation Using Text Data]</style>"
-author: "<span style='font-size: 20px'> Yi-Nung Tsai (NCCU), Dechun Zhang (Leiden), and .hi-slate[David, Yen-Chieh Liao] (Essex) </style>"
+author: "<span style='font-size: 20px'> .hi-slate[Yi-Nung Tsai (NCCU)], Dechun Zhang (Leiden), and David, Yen-Chieh Liao(Essex) </style>"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   xaringan::moon_reader:
@@ -79,7 +79,7 @@ options(device = function(file, width, height) {
 })
 options(knitr.table.format = "html")
 
-# pagedown::chrome_print("file:///Users/yenchiehliao/Dropbox/redgaurds/slides/slides.html#1", verbose = FALSE)
+# pagedown::chrome_print("file:///Users/yenchiehliao/Dropbox/redgaurds/redgaurds/slides/slides.html#1", verbose = FALSE)
 ```
 
 ---

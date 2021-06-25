@@ -22,11 +22,11 @@
 ## Cite:
 For citing this work, you can refer to the present GitHub project. For example, with BibTeX:
 ```
-@misc{PorkCNN,
-    howpublished = {\url{https://github.com/davidycliao/PorkCNN}},
-    title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
-    author = {Yi-Nung Tsai†, Dechun Zhang, and David Yen-Chieh Liao},
-    publisher = {GitHub},
-    year = {2021}
+@misc{redgaurds,
+      howpublished = {\url{https://github.com/davidycliao/PorkCNN}},
+      title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
+      author = {Yi-Nung Tsai†, Dechun Zhang, and David Yen-Chieh Liao},
+      publisher = {GitHub},
+      year = {2021}
 }
 ```

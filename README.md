@@ -23,7 +23,7 @@
 For citing this work, you can refer to the present GitHub project. For example, with BibTeX:
 ```
 @misc{redgaurds,
-      howpublished = {\url{https://github.com/davidycliao/PorkCNN}},
+      howpublished = {\url{https://github.com/davidycliao/redgaurds}},
       title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
       author = {Yi-Nung Tsai†, Dechun Zhang, and David Yen-Chieh Liao},
       publisher = {GitHub},

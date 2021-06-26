@@ -18,3 +18,15 @@
 
 
 - An earlier version of this paper was presented at 2020 Taiwanese Political Science Association Annual Meeting, 2021 AsianPolmeth VIII Virtual Meeting and ESSEX-HEROEs Seminar. The authors thank Kentaro Fukumoto, Charles Crabtree, Etienne Gagono, Kuei-min Chang (張貴閔老師), Jason Kuo (郭銘傑老師), Howard Liu and Ju Yeon Park for valuable comments and feedback.
+
+## Cite:
+For citing this work, you can refer to the present GitHub project. For example, with BibTeX:
+```
+@misc{redgaurds,
+      howpublished = {\url{https://github.com/davidycliao/redgaurds}},
+      title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
+      author = {Yi-Nung Tsai†, Dechun Zhang, and David Yen-Chieh Liao},
+      publisher = {GitHub},
+      year = {2021}
+}
+```

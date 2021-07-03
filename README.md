@@ -4,7 +4,7 @@
 
 - The working draft ( [`.pdf`](https://raw.githack.com/davidycliao/redgaurds/master/paper/epsa.pdf) ) will be presented at [EPSA VIRTUAL 2021](https://coms.events/epsa2021/data/sessions/en/session_131.html), June 25, 2021.
 - Slides can be found here ([`.html`](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.html) | [`.pdf`](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.pdf) ).
-- The codes and supporting materials that replicate the findings are available on [this page](https://raw.githack.com/davidycliao/redgaurds/master/code_replication.html#Requirement). 
+- The codes and supporting materials that replicate the numerical results are available on [this page](https://raw.githack.com/davidycliao/redgaurds/master/code_replication.html#Requirement). 
 <br />
 
 

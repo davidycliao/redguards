@@ -12,7 +12,7 @@
 
 ## Acknowledge 
 
-- The documents analyzed in this paper were archived and managed by The Chinese University of Hong Kong under the database named Databases for [The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫).
+- The documents analyzed in this paper are archived in [The Databases for  The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong.
 
 -  The authors gratefully acknowledge [Joint Library of Humanities and Social Sciences, Academia Sinica in Taiwan](https://hslib.sinica.edu.tw/eng/frontpage) (台灣中央研究院人文社會科學聯合圖書館) provided us with access to the database and the use of the High Performance Computing Facility (CERES) and its associated support services at [The University of Essex](https://www.essex.ac.uk/student/it-services/high-performance-computing-(hpc)) in the completion of this work.
 

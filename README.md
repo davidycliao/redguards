@@ -3,7 +3,7 @@
 
 
 
-<span style="color:red"> *We are currently revising this paper. If you have any questions, please email us. Please do not cite without the permission of the authors.* text</span>
+<span style="color:red"> *We are currently revising this paper. If you have any questions, please email us. Please do not cite without the permission of the authors.*</span>
 
 
 - The working draft ( [`.pdf`](https://raw.githack.com/davidycliao/redgaurds/master/paper/epsa.pdf) ) will be presented at [EPSA VIRTUAL 2021](https://coms.events/epsa2021/data/sessions/en/session_131.html), June 25, 2021.

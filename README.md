@@ -14,7 +14,7 @@ The source code for replicating the estimates for this paper includes three stag
 
 <br /> 
 
-## Installation *redguard*
+## Installation *[redguard]()*
 You will need lastest installation of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above) and [RStudio](https://rstudio.com/products/rstudio/download/#download).  Visit [Installation](articles/installation.html) for further instructions.
 
 ```

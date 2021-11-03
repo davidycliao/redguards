@@ -3,7 +3,18 @@
 
 This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redgaurds/master/paper/epsa.pdf). In this paper, we design a new strain of text scaling method called (SWORDFISH, $S\_{logan}$ Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (as known as noun collocation phrases) and scale those extracted text variable via  Wordfish developed by Slapin and Proksch (2008).
 
+<<<<<<< HEAD
 The Red Guard documents analyzed in the paper are archived in [The Databases for The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong. We, as authors, do not fully have the copyright of the sources analyzed in the paper. Please note that replicating the analyses requires access to the original corpus of the textual data. We cannot share publicly to comply with the terms of service regulated by The Chinese University of Hong Kong. We encourage you to purchase original textual data from them if interested. However, we are providing preprocessed textual files parsed on CoNLL-U format and document-term-matrix to replicate the analyses of the last stage in this paper. The preprocessed textual materials can be found [here]().
+=======
+
+<span style="color:red"> *We are currently revising this paper. If you have any questions, please email us. Please do not cite without the permission of the authors.*</span>
+
+
+- The working draft ( [`.pdf`](https://raw.githack.com/davidycliao/redgaurds/master/paper/epsa.pdf) ) will be presented at [EPSA VIRTUAL 2021](https://coms.events/epsa2021/data/sessions/en/session_131.html), June 25, 2021.
+- Slides can be found here ([`.html`](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.html) | [`.pdf`](https://raw.githack.com/davidycliao/redgaurds/master/slides/slides.pdf) ).
+- The codes and supporting materials that replicate the numerical results are available on [this page](https://raw.githack.com/davidycliao/redgaurds/master/code_replication.html#Requirement). 
+<br />
+>>>>>>> 315f8ef9ea75c320b59487fba79a501b3893ef19
 
 The source code for replicating the estimates for this paper includes three stages: i) tokenization and part-of-speech tagging on Universal Dependencies; ii) keyword extractions; and last iii) scaling the text feature using Wordfish. Replicating the comparable estimates for this paper is easy. Simply run the command below if **redguard** package is installed. Please see the [replication reference]().
 

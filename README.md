@@ -36,7 +36,8 @@ run_replication()
 
 - The authors gratefully acknowledge [Joint Library of Humanities and Social Sciences, Academia Sinica in Taiwan](https://hslib.sinica.edu.tw/eng/frontpage) (台灣中央研究院人文社會科學聯合圖書館) provided us with access to the database and the use of the High Performance Computing Facility (CERES) and its associated support services at [The University of Essex](https://www.essex.ac.uk/student/it-services/high-performance-computing-(hpc)) in the completion of this work.
 
-## Cite:
+
+## Cite
 For citing this work, you can refer to the present GitHub project. For example, with BibTeX:
 ```
 @misc{redgaurds,

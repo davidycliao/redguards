@@ -10,6 +10,8 @@ The Red Guard documents analyzed in the paper are archived in [The Databases for
 
 ###### The application of this estimation will be written independently as ___SWORDFISH (Slogan Wordfish)___ and released soon. 
 
+<br />
+
 
 ## Replication
 

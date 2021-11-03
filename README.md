@@ -22,14 +22,14 @@ devtools::install_github("davidycliao/redguards")
 library(devtools)
 ```
 
-Replicating the comparable estimates for this paper is easy. Simply run ***run_replication()*** below if **redguard** package is installed. Please see the [replication reference](). Please note that replicating the figures to present Chinese characters requires installing ***STHeiti font*** in the computer beforehand.
+Replicating the comparable estimates for this paper is easy. Simply follow the description of [the reference]() and 
+run ***run_replication()*** in the Rstudio command prompt below if **redguard** package is installed.  Please note that replicating the figures to present Chinese characters requires installing ***STHeiti font*** in the computer beforehand.
 
 
 ```
 library(redguards)
 run_replication()
-```
-
+### Replication reference can be found from [here]().
 
 ## Acknowledge
 

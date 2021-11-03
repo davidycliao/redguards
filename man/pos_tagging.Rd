@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{pos_tagging}
 \alias{pos_tagging}
-\title{part-of-speech at individual level or incident level}
+\title{Part-of-speech at individual level or incident level}
 \usage{
 pos_tagging(df, individuals = TRUE)
 }
@@ -10,13 +10,13 @@ pos_tagging(df, individuals = TRUE)
 \item{df}{text document object}
 }
 \description{
-part-of-speech at individual level or incident level
+Part-of-speech at individual level or incident level
 }
 \details{
 This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) which can be downloaded at Pre-trained models: chinese-gsdsimp-ud-2.5-191206.udpipe.
 }
 \note{
-This is limited to used for specific data frame from replicaiton dataset
+This is limited to use for specific data frame from replication dataset
 }
 \examples{
 pos_tagging(incindent)

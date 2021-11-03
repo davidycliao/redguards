@@ -1,3 +1,4 @@
+#' @export annotate_splits
 #' @rdname annotate_splits
 #' @param x  text variable
 #' @param file provide the directory path to udpipe model
@@ -17,6 +18,7 @@ annotate_splits <- function(x, file, individuals = TRUE) {
 } 
 
 
+#' @export pos_tagging
 #' @rdname pos_tagging
 #' @param df text document object
 #' @examples pos_tagging(incindent)
@@ -58,6 +60,7 @@ pos_tagging <- function(df, individuals = TRUE) {
 }
 
 
+#' @export get_dictionary
 #' @rdname get_dictionary
 #' @param folder a data frame or matrix
 #' @examples get_dictionary(mat)
@@ -70,6 +73,7 @@ get_dictionary <- function(df) {
   }
 
 
+#' @export dtm_wfm
 #' @rdname dtm_wfm
 #' @param dtm_object input requires dtm object from Quanteda
 #' @examples dtm_wfm(dtm)
@@ -90,7 +94,7 @@ dtm_wfm <- function(dtm_object){
 }
 
 
-
+#' @export create_start
 #' @rdname create_start
 #' @param wfm_matrix wfm object
 #' @examples create_start(wfm)
@@ -104,7 +108,7 @@ create_start <- function(wfm_matrix){
 }
 
 
-
+#' @export get_estimates
 #' @rdname get_estimates
 #' @param df the estimate object from poisIR 
 #' @examples get_estimates(poisIRT_object)
@@ -122,7 +126,7 @@ get_estimates <- function(df){
   cat("Estimation from", class(df)[2])
 }
 
-
+#' @export to_integer
 #' @rdname to_integer
 #' @examples scale_y_continuous(breaks = function(x) to_integer(x, n = 10)) 
 #' @title  make float breakpoints to integer

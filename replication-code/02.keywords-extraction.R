@@ -125,5 +125,6 @@ cat(" ====================\n",
     "\n Time spent \n", 
     names(timer_task02[1]), ":", timer_task02[[1]], "\n",
     names(timer_task02[2]), " :", timer_task02[[2]], "\n",
-    names(timer_task02[3]), "  :", timer_task02[[3]])
+    names(timer_task02[3]), "  :", timer_task02[[3]], "\n",
+  "====================\n")
 

@@ -112,7 +112,7 @@ create_start <- function(wfm_matrix){
 
 
 #' @rdname get_estimates
-#' @param folder A table of weather variables with PWS created by hist_data function
+#' @param df the estimate object from poisIR 
 #' @examples get_estimates(poisIRT_object)
 #' @title  retrieve estimates from poisIRT class
 get_estimates <- function(df){

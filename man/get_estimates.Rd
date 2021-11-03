@@ -7,7 +7,7 @@
 get_estimates(df)
 }
 \arguments{
-\item{folder}{A table of weather variables with PWS created by hist_data function}
+\item{df}{the estimate object from poisIR}
 }
 \description{
 retrieve estimates from poisIRT class

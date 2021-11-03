@@ -2,7 +2,7 @@
 % Please edit documentation in R/start-replication.R
 \name{run_replication}
 \alias{run_replication}
-\title{Run Repl}
+\title{Run replication}
 \usage{
 run_replication(folder = "replication-code")
 }
@@ -10,7 +10,7 @@ run_replication(folder = "replication-code")
 \item{folder}{the folder name for restoring the relication r scrips}
 }
 \description{
-Run Repl
+Run replication
 }
 \examples{
 run_replication()

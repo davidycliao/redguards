@@ -15,7 +15,7 @@ The Red Guard documents analyzed in the paper are archived in [The Databases for
 
 ## Replication
 
-You will need lastest installation of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above) and [RStudio](https://rstudio.com/products/rstudio/download/#download). Visit [Installation](articles/installation.html) for further instructions.
+Install the release version of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above),  [RStudio](https://rstudio.com/products/rstudio/download/#download) and  `devtools` from CRAN with `install.packages("devtools") `.
 
 ```
 install.packages("devtools", dependencies=TRUE)

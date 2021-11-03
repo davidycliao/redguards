@@ -9,12 +9,12 @@ This is a designed package for replicating the estimates and findings in the art
 
 The Red Guard documents analyzed in the paper are archived in [The Databases for The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong. We, as authors, do not fully have the copyright of the sources analyzed in the paper. Please note that replicating the analyses requires access to the original corpus of the textual data. We cannot share publicly to comply with the terms of service regulated by The Chinese University of Hong Kong. However, we are providing preprocessed textual files parsed on CoNLL-U format and document-term-matrix to replicate the analyses of the last stage in this paper. The preprocessed textual materials can be found [here](). We encourage you to purchase original textual data from them if interested.
 
-<br /> 
 
 The source code for replicating the estimates for this paper includes three stages: i) tokenization and part-of-speech tagging on Universal Dependencies; ii) keyword extractions; and last iii) scaling the text feature using Wordfish. Replicating the comparable estimates for this paper is easy. Simply run ***run_replication()*** below if **redguard** package is installed. Please see the [replication reference]().
 
+<br /> 
 
-## Installation Replication Package
+## Installation *redguard*
 You will need lastest installation of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above) and [RStudio](https://rstudio.com/products/rstudio/download/#download).  Visit [Installation](articles/installation.html) for further instructions.
 
 ```

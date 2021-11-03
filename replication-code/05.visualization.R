@@ -837,8 +837,14 @@ ggsave("images/incident_full.png", width = 10, height = 6,
 
 })
 
-
-print("Task 05 is done !")
-cat("Time spent \n :" )
-print(timer_task05)
+cat(" ====================\n",
+    "=",
+    "Task 05 Is Done!", "=", "\n",
+    "====================",
+    "\n Core used :",  detectCores(), 
+    "\n Time spent \n", 
+    names(timer_task05[1]), ":",   timer_task05[[1]], "\n",
+    names(timer_task05[2]), " :",  timer_task05[[2]], "\n",
+    names(timer_task05[3]), "  :", timer_task05[[3]], "\n",
+    "====================\n")
 

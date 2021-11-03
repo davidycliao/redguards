@@ -52,7 +52,7 @@ for (i in 1:length(incident_list)){
 # number of incidents
 num = length(unique(conll$keyword_doc_id))
 
-# instantiate a list to store the dataframe from the output of each incidents
+# instantiate a list to store the data frame from the output of each incidents
 kyw_object <- NULL
 for (i in 1:num){
   # kyw_object: extract and pair the keywords based on each historical incidnet
@@ -101,8 +101,8 @@ parallel::stopCluster(parallel::makeCluster(detectCores()-1))
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
-rm(list = setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
-                          "conll", "incident", "incident_list", "dict")))
+# rm(list = setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
+#                          "conll", "incident", "incident_list", "dict")))
 
 
 # SAVE OUTPUTS
@@ -123,8 +123,8 @@ cat(" ====================\n",
     "====================",
   "\n Core used :",  detectCores(), 
     "\n Time spent \n", 
-    names(timer_task02[1]), ":", timer_task02[[1]], "\n",
-    names(timer_task02[2]), " :", timer_task02[[2]], "\n",
+    names(timer_task02[1]), ":",   timer_task02[[1]], "\n",
+    names(timer_task02[2]), " :",  timer_task02[[2]], "\n",
     names(timer_task02[3]), "  :", timer_task02[[3]], "\n",
   "====================\n")
 

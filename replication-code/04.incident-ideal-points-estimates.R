@@ -171,7 +171,7 @@ cat(" ====================\n",
     "====================",
     "\n Core used :",  detectCores(), 
     "\n Time spent \n", 
-    names(timer_task04[1]), ":"  , timer_task04[[1]], "\n",
-    names(timer_task04[2]), " :" , timer_task04[[2]], "\n",
-    names(timer_task04[3]), "  :", timer_task04[[3]])
-
+    names(timer_task04[1]), ":",   timer_task04[[1]], "\n",
+    names(timer_task04[2]), " :",  timer_task04[[2]], "\n",
+    names(timer_task04[3]), "  :", timer_task04[[3]], "\n",
+    "====================\n")

@@ -46,12 +46,14 @@ timer_task01 <- system.time({
   
 })
 
+
 cat(" ====================\n",
     "=",
     "Task 01 Is Done!", "=", "\n",
     "====================",
     "\n Core used :",  detectCores(), 
     "\n Time spent \n", 
-    names(timer_task01[1]), ":"  , timer_task01[[1]], "\n",
-    names(timer_task01[2]), " :" , timer_task01[[2]], "\n",
-    names(timer_task01[3]), "  :", timer_task01[[3]])
+    names(timer_task01[1]), ":",   timer_task01[[1]], "\n",
+    names(timer_task01[2]), " :",  timer_task01[[2]], "\n",
+    names(timer_task01[3]), "  :", timer_task01[[3]], "\n",
+    "====================\n")

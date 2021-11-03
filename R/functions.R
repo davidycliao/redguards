@@ -3,8 +3,6 @@
 #' @param file provide the directory path to udpipe model
 #' @examples future_lapply(X = corpus_splitted, FUN = annotate_splits, file = ud_model$file, future.seed = TRUE) %
 #' @title  split the text document to run the model parallelly 
-
-
 annotate_splits <- function(x, file, individuals = TRUE) {
   ud_model <- udpipe_load_model(file)
   if (isTRUE(individuals)) {
@@ -22,11 +20,9 @@ annotate_splits <- function(x, file, individuals = TRUE) {
 #' @rdname pos_tagging
 #' @param df text document object
 #' @examples pos_tagging(incindent)
-#' @title  part-of-speech at individual level or incident level
+#' @title  Part-of-speech at individual level or incident level
 #' @details This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) which can be downloaded at Pre-trained models: chinese-gsdsimp-ud-2.5-191206.udpipe. 
-#' @note This is limited to used for specific data frame from replicaiton dataset
-
-
+#' @note This is limited to use for specific data frame from replication dataset
 pos_tagging <- function(df, individuals = TRUE) {
   # to evaluate whether the data frame is correct
   if (any(sum(colnames(df) %in% c("id_doc","content", "incident_index"))>2)){ 
@@ -62,7 +58,6 @@ pos_tagging <- function(df, individuals = TRUE) {
 }
 
 
-
 #' @rdname get_dictionary
 #' @param folder a data frame or matrix
 #' @examples get_dictionary(mat)
@@ -72,8 +67,7 @@ get_dictionary <- function(df) {
   colnames(dic) = colnames(df)
   dic  = dictionary(as.list(dic))
   return(dic)
-}
-
+  }
 
 
 #' @rdname dtm_wfm
@@ -96,6 +90,7 @@ dtm_wfm <- function(dtm_object){
 }
 
 
+
 #' @rdname create_start
 #' @param wfm_matrix wfm object
 #' @examples create_start(wfm)
@@ -107,7 +102,6 @@ create_start <- function(wfm_matrix){
            beta = {matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow = nrow(wfm_matrix), ncol = 1)})
   return(s)
 }
-
 
 
 

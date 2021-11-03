@@ -8,7 +8,7 @@ This is a designed package for replicating the estimates and findings in the art
 
 The Red Guard documents analyzed in the paper are archived in [The Databases for The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong. We, as authors, do not fully have the copyright of the sources analyzed in the paper. Please note that replicating the analyses requires access to the original corpus of the textual data. We cannot share publicly to comply with the terms of service regulated by The Chinese University of Hong Kong. However, we are providing preprocessed textual files parsed on CoNLL-U format and document-term-matrix to replicate the analyses of the last stage in this paper. The preprocessed textual materials can be found [here](https://github.com/davidycliao/redguards/tree/master/data). We encourage you to purchase original textual data from them if interested.
 
-#### The application of this estimation will be written independently as a package called __SWORDFISH (Slogan Wordfish) and released soon__. 
+###### The application of this estimation will be written independently as a package called __SWORDFISH (Slogan Wordfish) and released soon__. 
 
 <br /> 
 
@@ -32,7 +32,7 @@ run_replication()
 
 
 
-##### Note: Please note that replicating the figures requires installing ***STHeiti font*** in the computer beforehand to present Chinese characters.
+###### Note: Please note that replicating the figures requires installing ***STHeiti font*** in the computer beforehand to present Chinese characters.
 
 
 

@@ -107,7 +107,7 @@ redguard_estimates <- get_estimates(pooled_outcome) %>%
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
 rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
-                        "redguard_estimates", "pooled_outcome")))
+                        "redguard_estimates", "pooled_outcome", "conll")))
 
 
 # SAVE OUTPUTS

@@ -37,9 +37,10 @@ load("data/incident_list.RData")
 
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
-# Tokenize the document based on each political incidents
-# incident_list <- split(incident, incident$incident_index)
-# 
+# Tokenize the document based on individual participant
+# Note : split the data by each incident and save them into list object re-index 
+# the incident index in to numeric number in order 
+
 # dfm_list <- incident_list %>%
 #   map("content") %>%
 #   map(corpus)

@@ -97,17 +97,6 @@ ggsave("replication-figures/relationship-b.png",
 #           co-occurring nouns and adjectives from documents within each major 
 #           historical incidents
 #===============================================================================
-
-# split the data by each incident and save them into list object
-# re-index the incident index in to numeric number in order 
-
-incident_list <- split(incident , incident$incident_index)
-names(incident_list) <- seq(1, length(names(incident_list))) 
-conll$keyword_doc_id <- conll$doc_id
-for (i in 1:length(incident_list)){
-  conll$keyword_doc_id[ifelse(conll$keyword_doc_id %in% incident_list[[i]]$incident_index, TRUE, FALSE)]  <- i  
-}
-
 #  Figure 6. (a) The First Marxist-Leninist Wallposter
 
 first_incident <- cooccurrence(x = subset(conll[conll$keyword_doc_id ==1,], upos %in% c("NOUN", "ADJ")), 
@@ -719,7 +708,7 @@ estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = featu
   theme(text = element_text(family="STHeiti")) +  
   xlab("Estimates Positions for Red Guard Participants") +
   ylab("Each Word Pharase \n Frequency Parameter") +
-  theme(axis.text=element_text(size=7))
+  theme(axis.text.y = element_text(size = 14), axis.text.x = element_text(size = 14))
 
 
 ggsave("replication-figures/estimated_x.png", width = 5, height = 3, 
@@ -910,4 +899,10 @@ cat(" ====================\n",
     names(timer_task05[2]), " :",  timer_task05[[2]], "\n",
     names(timer_task05[3]), "  :", timer_task05[[3]], "\n",
     "====================\n")
+
+
+# CLEAN UNUSED OBJECTS TO SAVE MEMORIES
+#===============================================================================
+rm(list=ls())
+
 

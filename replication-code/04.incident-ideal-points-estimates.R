@@ -37,6 +37,9 @@ load("data/dict.RData")
 # BUILDING A DICTIONARY OBJECT IN QUANTEDA
 #===============================================================================
 # Tokenize the document based on individual participant
+# Note : split the data by each incident and save them into list object re-index 
+# the incident index in to numeric number in order 
+
 # individual_list <- split(individuals, individuals$incident_index)
 # dfm_individual_list <- individual_list %>%
 #   map("content") %>%
@@ -162,7 +165,7 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 # save(individual_idea_point, file="data/pooled_outcome.RData")
 # save(poisIRT_dataframe, file="data/poisIRT_dataframe.RData")
 # save(individual_idea_point, file="data/individual_idea_point.RData")
-# 
+
 
 
 

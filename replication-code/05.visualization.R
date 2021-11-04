@@ -693,14 +693,16 @@ x_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$beta) - 1
 
 theme_set(theme_bw(16))
 estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
-  geom_text(colour = "grey70",family = "STHeiti", alpha = 0.4, size = 1.5) +
+  geom_text(colour = "grey70",family = "STHeiti", alpha = 0.6, size = 1.5) +
   geom_text(aes(beta, psi, label = keyword_bi, fontface = "bold"), 
             data = word_point[word_point$feature %in% top_keywords,],
-            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.6) +
+            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +
   geom_text(aes(beta, psi, label = phrases_bi, fontface = "bold"), 
             data = word_point[word_point$feature %in% top_keywords_phrases,],
-            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.6) +  theme_bw() +
+            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +  
+  theme_bw() +
   facet_zoom(xlim = c(x_max, x_min), ylim = c(y_min,y_max)) +
+  annotate("text", x = 25, y = 60, label="zoom only") + 
   theme_cowplot(12) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
@@ -708,8 +710,12 @@ estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = featu
   theme(text = element_text(family="STHeiti")) +  
   xlab("Estimates Positions for Red Guard Participants") +
   ylab("Each Word Pharase \n Frequency Parameter") +
-  theme(axis.text.y = element_text(size = 14), axis.text.x = element_text(size = 14))
-
+  theme(axis.title.x = element_text(size = 12),
+        axis.text.x = element_text(size = 12),
+        axis.title.y = element_text(size = 12)) +
+  theme(axis.title.y = element_text(size = 12),
+        axis.text.y = element_text(size = 12),
+        axis.title.x = element_text(size = 12))  
 
 ggsave("replication-figures/estimated_x.png", width = 5, height = 3, 
        units = "in", dpi = 150)

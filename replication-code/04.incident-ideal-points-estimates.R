@@ -162,9 +162,9 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 
 # SAVE OUTPUTS
 #===============================================================================
-# save(individual_idea_point, file="data/pooled_outcome.RData")
-# save(poisIRT_dataframe, file="data/poisIRT_dataframe.RData")
-# save(individual_idea_point, file="data/individual_idea_point.RData")
+# save(individual_idea_point, file = "data/pooled_outcome.RData")
+# save(poisIRT_dataframe, file = "data/poisIRT_dataframe.RData")
+# save(individual_idea_point, fil e = "data/individual_idea_point.RData")
 
 
 

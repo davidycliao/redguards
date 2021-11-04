@@ -32,7 +32,7 @@ timer_task03 <- system.time({
 #===============================================================================
 load("data/dfm_list.RData")
 load("data/incident_list.RData")
-# load("data/dict.Rdata")
+load("data/dict.Rdata")
 
 
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN

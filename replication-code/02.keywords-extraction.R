@@ -30,9 +30,9 @@ timer_task02 <- system.time({
 
 # REQUIRED DATASET 
 #===============================================================================
-# A tibble: 831,639 × 13
-conll <- read_csv("data/CoNLL-U-Redgaurds.csv")
-incident <- read_csv("data/incident-index.csv", show_col_types = FALSE)
+load("data/incident.RData")
+load("data/conll.RData")
+
 
 # EXTRACTIGN KEYWORD FEATURES
 #===============================================================================
@@ -96,17 +96,18 @@ dict <- foreach::foreach(i = 1:length(keyword), .combine =  list,
 parallel::stopCluster(parallel::makeCluster(detectCores()-1))                  
 
 
-# CLEAN UNUSED OBJECTS TO SAVE MEMORIES
-#===============================================================================
-# rm(list = setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
-#                          "conll", "incident", "incident_list", "dict")))
-
-
 # SAVE OUTPUTS
 #===============================================================================
-# save(kyw_object, file="data/kyw_object.RData")
-# save(dict, file="data/dict.RData")
-# save(dict, file="data/dict.RData")
+save(kyw_object, file="data/kyw_object.RData")
+save(keyw_list, file="data/keyw_list.RData")
+save(keyword, file="data/keyword.RData")
+save(dict, file="data/dict.RData")
+
+
+# CLEAN UNUSED OBJECTS TO SAVE MEMORIES
+#===============================================================================
+rm(list = setdiff(ls(), c("kyw_object","conll", "incident", "incident_list",
+                          "dict", "keyword", "keyw_list" )))
 
 
 #====================================END========================================

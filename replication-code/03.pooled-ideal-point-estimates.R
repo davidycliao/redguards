@@ -30,27 +30,32 @@ timer_task03 <- system.time({
 
 # REQUIRED DATASET 
 #===============================================================================
-# load("data/kyw_object.RData")
-# load("data/dict.RData")
-# incident <- read_csv("data/incident.csv", show_col_types = FALSE)
-# incident <- read_csv("~/Dropbox/redgaurds/data/incident-group.csv")
+load("data/dfm_list.RData")
+load("data/incident_list.RData")
+# load("data/dict.Rdata")
 
 
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
-doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))
-# Tokenize the document based on each political incidents 
-dfm_list <- incident_list %>%
-  map("content") %>%
-  map(corpus)
+# Tokenize the document based on each political incidents
+# incident_list <- split(incident, incident$incident_index)
+# 
+# dfm_list <- incident_list %>%
+#   map("content") %>%
+#   map(corpus)
+# 
+# for (i in 1:length(dfm_list)) {
+#   docnames(dfm_list[[i]])  <- incident_list[[i]][["id_doc"]]}
 
+doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))
 for (i in names(dfm_list)){docnames(dfm_list[[i]]) <- incident_list[[i]]$id_doc}
 
 # Create DTM objects from each incident, and bind them by row into DTMs
-  redgaurds_dfm <- foreach::foreach(i = 1:length(dfm_list), .combine= rbind,
+  redgaurds_dfm <- foreach::foreach(i = 1:length(dfm_list), 
+                                    .combine= rbind,
                                     .multicombine=TRUE) %dopar%
     {quanteda::dfm(dfm_list[[i]], dictionary = dict[[i]])}
-parallel::stopCluster(parallel::makeCluster(detectCores()-1))                   
+parallel::stopCluster(parallel::makeCluster(detectCores()-1))
 
 
 # TURNING DOCUNEBTS-TERM-MATRIX INTO WORD-FREQUENCY MATRIX
@@ -100,7 +105,8 @@ redguard_estimates <- get_estimates(pooled_outcome) %>%
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
-#rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object")))
+rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
+                        "redguard_estimates", "pooled_outcome")))
 
 
 # SAVE OUTPUTS
@@ -108,8 +114,7 @@ redguard_estimates <- get_estimates(pooled_outcome) %>%
 # save(pooled_outcome, file="data/pooled_outcome.RData")
 # save(redgaurds_wfm, file="data/redgaurds_wfm.RData")
 # save(redgaurds_dfm, file="data/redgaurds_dfm.RData")
-# write.csv(redguard_estimates,"data/redguard_estimates.csv", row.names = FALSE)
-
+# save(redguard_estimates, file="data/redguard_estimates.RData")
 
 #====================================END========================================
 

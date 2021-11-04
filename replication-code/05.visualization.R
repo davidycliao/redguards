@@ -35,14 +35,20 @@ timer_task05 <- system.time({
   
 # REQUIRED DATASET 
 #===============================================================================
-# redguard_estimates <- read_csv("data/redguard_estimates.csv", show_col_types = FALSE)
-# individual_idea_point <- ead_csv("data/individual_idea_point.csv", show_col_types = FALSE)
-# incident <- read_csv("data/incident-group.csv", show_col_types = FALSE)
-# load("data/kyw_object.RData")
-# load("data/pooled_outcome.RData")
-# load("data/redgaurds_dfm.RData")
+
+  
+  
+  
+
+  
+  
 
 
+# CREATE REPLICATION FOLDER
+#===============================================================================  
+dir.create(file.path(getwd(), "replication-figures"), showWarnings = FALSE)
+
+  
 # Figure 4. An examples of grammar annotation reduced to noun, adjective and 
 #           verb on Universal Dependencies.
 #===============================================================================
@@ -80,7 +86,7 @@ relationshiptwo <- igraph::graph_from_data_frame(edges,
   labs(title = "", subtitle = subtitle, caption = "")+
   theme_graph()
 
-ggsave("images/relationship-b.png", 
+ggsave("replication-figures/relationship-b.png", 
        width = 7, height = 4.5, 
        units = "in", # other options c("in", "cm", "mm"), 
        dpi = 200)
@@ -314,7 +320,7 @@ for (i in 1:length(major_incidents)) {
 
 plot_names <- c("first_incident_p.png", "third_incident_p.png", "fourth_incident_p.png", "fifth_incident_p.png")
 for (i in 1:4) {
-  file_name <- paste("images/" ,plot_names[i] , ".png", sep="")
+  file_name <- paste("replication-figures/", plot_names[i] , ".png", sep="")
   print(incidents_cooc[[i]])
   ggsave(file_name, 
          width = 30, 
@@ -324,7 +330,6 @@ for (i in 1:4) {
   
   dev.off()
 }
-
 
 
 # Figure 7. Four examples of the top 10 keyword phrases identified by TextRank 
@@ -422,7 +427,7 @@ for (i in  1:length(major_incidents)) {
 
 plot_names <- c("incident_1st", "incident_3rd", "incident_4th", "incident_5th")
 for (i in 1:4) {
-  file_name <- paste("images/" ,plot_names[i] , ".png", sep="")
+  file_name <- paste("replication-figures/", plot_names[i] , ".png", sep="")
   print(key_major_incidents[[i]])
   ggsave(file_name, 
          width = 16,
@@ -463,7 +468,7 @@ density <-ggplot(redguard_estimates,
         axis.ticks.y = element_blank()) +
   xlab("Smoothed Density Distributions of Estimated Ideal Positions")
 
-ggsave("images/density.png", width = 8, height = 4, 
+ggsave("replication-figures/density.png", width = 8, height = 4, 
        units = "in", dpi = 150)
 
 
@@ -562,7 +567,7 @@ ideal_point <- ggplot(redguard_estimates, aes(x = english_unit, y = x, colour = 
         legend.margin = margin(6, 6, 6, 6)) +
   ylim(c(-1,1))
 
-ggsave("images/ideal_point.png", width = 8.5, height = 7, 
+ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7, 
        units = "in", dpi = 200)
 
 
@@ -593,7 +598,7 @@ incident_selects <- ggplot(individual_idea_point[individual_idea_point$incidents
   xlim(-2,2) +
   theme(strip.text.y.right = element_text(angle = 0))
 
-ggsave("images/incident_selects.png", width = 10, height = 6, 
+ggsave("replication-figures/incident_selects.png", width = 10, height = 6, 
        units = "in", dpi = 200)
 
 
@@ -714,10 +719,10 @@ estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = featu
   theme(text = element_text(family="STHeiti")) +  
   xlab("Estimates Positions for Red Guard Participants") +
   ylab("Each Word Pharase \n Frequency Parameter") +
-  theme(axis.text=element_text(size=8))
+  theme(axis.text=element_text(size=7))
 
 
-ggsave("images/estimated_x.png", width = 5, height = 3, 
+ggsave("replication-figures/estimated_x.png", width = 5, height = 3, 
        units = "in", dpi = 150)
 
 
@@ -737,7 +742,7 @@ pos_vis <- ggplot(data=stats, aes(x=key, y=freq_pct)) +
   coord_flip() +
   scale_y_continuous(expand = c(0,0)) 
 
-ggsave("images/pos_vis.png", width = 10, height = 6, 
+ggsave("replication-figures/pos_vis.png", width = 10, height = 6, 
        units = "in", dpi = 150)
 
 
@@ -777,7 +782,7 @@ relationshipone <- igraph::graph_from_data_frame(edges,
   labs(title = "", subtitle = subtitle, caption = "")+
   theme_graph()
 
-ggsave("images/relationship-a.png", width = 10, height = 8, 
+ggsave("replication-figures/relationship-a.png", width = 10, height = 8, 
        units = "in", dpi = 160)
 
 
@@ -854,7 +859,7 @@ keywords <- annotate_figure(
                   face = "bold", size = 18)
 )
 
-ggsave("images/keywords.png", width = 27, height = 20, 
+ggsave("replication-figures/keywords.png", width = 27, height = 20, 
        units = "in", dpi = 200)
 
 
@@ -886,7 +891,7 @@ incident_full <- ggplot(individual_idea_point,
   xlim(-2,2) +
   theme(strip.text.y.right = element_text(angle = 0))
 
-ggsave("images/incident_full.png", width = 10, height = 6, 
+ggsave("replication-figures/incident_full.png", width = 10, height = 6, 
        units = "in", 
        dpi = 200)
 

@@ -29,27 +29,30 @@ timer_task04 <- system.time({
 
 # REQUIRED DATASET 
 #===============================================================================
-# load("data/dict.RData")
-individuals <- read_csv("data/individuals.csv", show_col_types = FALSE)
+load("data/individual_list.RData")
+load("data/dfm_individual_list.RData")
+load("data/dict.RData")
 
 
 # BUILDING A DICTIONARY OBJECT IN QUANTEDA
 #===============================================================================
+# Tokenize the document based on individual participant
+# individual_list <- split(individuals, individuals$incident_index)
+# dfm_individual_list <- individual_list %>%
+#   map("content") %>%
+#   map(corpus)
+# for (i in 1:length(dfm_individual_list)){
+#   docnames(dfm_individual_list[[i]]) <- individual_list[[i]]$id_doc}
+# 
+# save(dfm_individual_list, file= "data/dfm_individual_list.RData")
+# save(individual_list, file= "data/individual_list.RData")
 
 
 doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))   
 
-individual_list <- split(individuals, individuals$incident_index)
-
-dfm_list <- individual_list %>%
-  map("content") %>%
-  map(corpus)
-
-for (i in 1:length(dfm_list)){
-  docnames(dfm_list[[i]]) <- individual_list[[i]]$id_doc}
-redgaurds_dfm_individual <- foreach::foreach(i = 1:length(dfm_list),
+redgaurds_dfm_individual <- foreach::foreach(i = 1:length(dfm_individual_list),
                              .combine= list, .multicombine=TRUE) %dopar% 
-  {quanteda::dfm(dfm_list[[i]], dictionary = dict[[i]])}
+  {quanteda::dfm(dfm_individual_list[[i]], dictionary = dict[[i]])}
 
 parallel::stopCluster(parallel::makeCluster(detectCores()-1))                  
 
@@ -85,7 +88,6 @@ for (i in 1:length(redgaurds_wfm_individual)){
 
 # RUN GENERALIZED WORDFISH 
 #===============================================================================
-
 em_poisIRT <- list()
 for (i in 1:length(redgaurds_wfm_individual)) {
   em_poisIRT[[i]] <- poisIRT(.rc = redgaurds_wfm_individual[[i]],
@@ -100,17 +102,16 @@ for (i in 1:length(redgaurds_wfm_individual)) {
 
 # CREATE A TIDY DATAFRAME FOR VISUALIZATION
 #===============================================================================
-
-poisIRT_dataframe <- list()
-for (i in 1:length(em_poisIRT)){
-  poisIRT_dataframe[[i]]  <- data.frame(x = em_poisIRT[[i]]$means$x,
-                                        sd = sqrt(em_poisIRT[[i]]$vars$x),
-                                        lower = em_poisIRT[[i]]$means$x - 1.96*sqrt(em_poisIRT[[i]]$vars$x),
-                                        upper = em_poisIRT[[i]]$means$x + 1.96*sqrt(em_poisIRT[[i]]$vars$x),
-                                        id_doc = as.double(rownames(em_poisIRT[[i]]$means$psi))) %>%
-    left_join(individual_list[[i]][,c("id_doc", "unit_id", "fact_eng")], by = "id_doc")
-}
-
+# poisIRT_dataframe <- list()
+# for (i in 1:length(em_poisIRT)){
+#   poisIRT_dataframe[[i]]  <- data.frame(x = em_poisIRT[[i]]$means$x,
+#                                         sd = sqrt(em_poisIRT[[i]]$vars$x),
+#                                         lower = em_poisIRT[[i]]$means$x - 1.96*sqrt(em_poisIRT[[i]]$vars$x),
+#                                         upper = em_poisIRT[[i]]$means$x + 1.96*sqrt(em_poisIRT[[i]]$vars$x),
+#                                         id_doc = as.double(rownames(em_poisIRT[[i]]$means$psi))) %>%
+#     left_join(individual_list[[i]][,c("id_doc", "unit_id", "fact_eng")], by = "id_doc")
+# }
+# 
 
 poisIRT_dataframe <- NULL
 poisIRT_dataframe <- map(em_poisIRT, get_estimates)
@@ -134,7 +135,6 @@ incidents <- list("The First Marxist-Leninist \n  Wall Poster",
                   "Shanghai January Storm")
 
 incidents_index <- NULL
-
 for (i in 1:length(poisIRT_dataframe)){
   poisIRT_dataframe[[i]]["incidents"] <- incidents[[i]]
   poisIRT_dataframe[[i]]["incidents_index"] <- i
@@ -159,8 +159,13 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 
 # SAVE OUTPUTS
 #===============================================================================
-# save(pooled_outcome, file="data/pooled_outcome.RData")
-# write.csv(individual_idea_point,"data/individual_idea_point.csv", row.names = FALSE)
+# save(individual_idea_point, file="data/pooled_outcome.RData")
+# save(poisIRT_dataframe, file="data/poisIRT_dataframe.RData")
+# save(individual_idea_point, file="data/individual_idea_point.RData")
+# 
+
+
+
 
 })
 

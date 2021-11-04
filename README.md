@@ -11,7 +11,7 @@ The Red Guard documents analyzed in the paper are archived in [The Databases for
 
 
 <p align="center">
-  <img width="700" height="500" src="https://raw.githack.com/davidycliao/redguards/master/images/incident_selects.png" >
+  <img width="700" height="440" src="https://raw.githack.com/davidycliao/redguards/master/images/incident_selects.png" >
 </p>
 
 
@@ -25,7 +25,7 @@ Replicating the comparable estimates for this paper is easy. Simply follow the d
 
 
 <p align="center">
-  <img width="700" height="500" src="https://raw.githack.com/davidycliao/redguards/master/images/estimated_x.png" >
+  <img width="400" height="300" src="https://raw.githack.com/davidycliao/redguards/master/images/estimated_x.png" >
 </p>
 
 

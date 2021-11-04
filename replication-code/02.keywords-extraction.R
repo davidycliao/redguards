@@ -32,8 +32,7 @@ timer_task02 <- system.time({
 #===============================================================================
 # A tibble: 831,639 × 13
 conll <- read_csv("data/CoNLL-U-Redgaurds.csv")
-incident <- read_csv("data/incident-group.csv", show_col_types = FALSE)
-
+incident <- read_csv("data/incident-index.csv", show_col_types = FALSE)
 
 # EXTRACTIGN KEYWORD FEATURES
 #===============================================================================
@@ -48,6 +47,7 @@ conll$keyword_doc_id <- conll$doc_id
 for (i in 1:length(incident_list)){
   conll$keyword_doc_id[ifelse(conll$keyword_doc_id %in% incident_list[[i]]$incident_index, TRUE, FALSE)]  <- i  
 }
+
 
 # number of incidents
 num = length(unique(conll$keyword_doc_id))

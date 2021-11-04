@@ -602,7 +602,8 @@ ggsave("images/incident_selects.png", width = 10, height = 6,
 #===============================================================================
 word_point <- data.frame(feature = rownames(pooled_outcome$means$beta), 
                          psi = pooled_outcome$means$alpha,
-                         beta = pooled_outcome$means$beta)
+                         beta = pooled_outcome$means$beta,
+                         alpha = pooled_outcome$means$alpha)
 
 top_keywords <- redgaurds_dfm %>%
   colSums() %>%
@@ -654,63 +655,66 @@ word_point$keyword_bi <-paste(word_point$feature, word_point$top_keywords, sep =
 # word_point[word_point$feature %in% top_keywords_phrases, ]$feature
 
 word_point[word_point$feature %in% top_keywords_phrases, "top_keywords_phrases"] <- c("Chairman Mao",
-                                                                 "The Cultural Revolution",
-                                                                 "The Red Guards",
-                                                                 "Proletariat",
-                                                                 "Counter-revolution",
-                                                                 "the monsters and freaks",
-                                                                 "Vigorous",
-                                                                 "Together",
-                                                                 "Rightists",
-                                                                 "Is it right?",
-                                                                 "petite bourgeoisie" ,
-                                                                 "some people",
-                                                                 "Big-character poster",
-                                                                 "under conditions",
-                                                                 "in the world",
-                                                                 "mainly",
-                                                                 "increasing vigilance",
-                                                                 "mostly",
-                                                                 "headquarters",
-                                                                 "Mao Zedong",
-                                                                 "Royalists",
-                                                                 "douchepants",
-                                                                 "Accidentalist",
-                                                                 "Can't",
-                                                                 "Call",
-                                                                 "Can't see",
-                                                                 "The State Council of PRC",
-                                                                 "denunciations and purges",
-                                                                 "Old man",
-                                                                 "Guest house")
+                                                                                     "The Cultural Revolution",
+                                                                                     "The Red Guards",
+                                                                                     "Proletariat",
+                                                                                     "counterrevolutionary",
+                                                                                     "the monsters and freaks",
+                                                                                     "Vigorous",
+                                                                                     "Together",
+                                                                                     "Rightists",
+                                                                                     "Is it right?",
+                                                                                     "petite bourgeoisie" ,
+                                                                                     "some people",
+                                                                                     "Big-character poster",
+                                                                                     "under conditions",
+                                                                                     "in the world",
+                                                                                     "mainly",
+                                                                                     "increasing vigilance",
+                                                                                     "mostly",
+                                                                                     "headquarters",
+                                                                                     "Mao Zedong",
+                                                                                     "Royalists",
+                                                                                     "Turtle Egg",
+                                                                                     "Careerist",
+                                                                                     "Can't",
+                                                                                     "Call",
+                                                                                     "Can't see",
+                                                                                     "The State Council of PRC",
+                                                                                     "struggle-criticism-transformation",
+                                                                                     "Old man",
+                                                                                     "Guest house")
 
 
 word_point$phrases_bi <-paste(word_point$feature, word_point$top_keywords_phrases, sep = "\n")
 
 
-y_max <- max(word_point[word_point$feature %in% top_keywords,]$psi) + 1 
-y_min <- min(word_point[word_point$feature %in% top_keywords,]$psi) - 1
+y_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$psi) + 1 
+y_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$psi) - 1
 
+x_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$beta) + 1 
+x_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$beta) - 1
 
 
 
 theme_set(theme_bw(16))
-estimated_x <-  ggplot(data = word_point, aes(x = beta, y = psi, label = feature)) + 
+estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
   geom_text(colour = "grey70",family = "STHeiti", alpha = 0.4, size = 1.5) +
   geom_text(aes(beta, psi, label = keyword_bi, fontface = "bold"), 
             data = word_point[word_point$feature %in% top_keywords,],
-            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.9) +
+            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.6) +
   geom_text(aes(beta, psi, label = phrases_bi, fontface = "bold"), 
             data = word_point[word_point$feature %in% top_keywords_phrases,],
-            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.9) +  theme_bw() +
-  facet_zoom(xlim = c(-2, 2), ylim = c(y_min,y_max)) +
+            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.6) +  theme_bw() +
+  facet_zoom(xlim = c(x_max, x_min), ylim = c(y_min,y_max)) +
   theme_cowplot(12) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         plot.title = element_text(hjust = 0.5)) +
   theme(text = element_text(family="STHeiti")) +  
-  xlab("Estimated x") +
-  ylab("Estimates Ψ") 
+  xlab("Estimates Positions for Red Guard Participants") +
+  ylab("Each Word Pharase \n Frequency Parameter") +
+  theme(axis.text=element_text(size=8))
 
 
 ggsave("images/estimated_x.png", width = 5, height = 3, 

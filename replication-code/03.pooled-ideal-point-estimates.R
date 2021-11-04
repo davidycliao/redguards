@@ -38,8 +38,6 @@ timer_task03 <- system.time({
 
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
-
-
 doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))
 # Tokenize the document based on each political incidents 
 dfm_list <- incident_list %>%
@@ -65,16 +63,16 @@ redgaurds_wfm <- dtm_wfm(redgaurds_dfm)
 p <- list(
   # x$mu numeric, prior mean for actor ideal points x_i.; 
   # x$sigma2 numeric, prior variance for actor ideal points x_i.
-  psi = list(mu = 0,  sigma2 = 1000000),         
+  psi = list(mu = 0,  sigma2 = 10000),         
   # beta$mu numeric, prior mean for β_j
   # beta$sigma2 numeric, prior variance for β_j.        
-  alpha = list(mu = 0, sigma2 = 1000000),    
+  alpha = list(mu = 0, sigma2 = 10000),    
   # alpha$mu numeric, prior mean for α_j
   # alpha$sigma2 numeric, prior variance for α_j        
-  beta = list(mu = 0, sigma2 = 1000000),
+  beta = list(mu = 0, sigma2 = 10000),
   # psi$mu numeric, prior mean for ψ_k
   # psi$sigma2 numeric, prior variance for ψ_k.
-  x = list(mu = 0, sigma2 = 1000000)
+  x = list(mu = 0, sigma2 = 10000)
 )   
 
 set.seed(1234)

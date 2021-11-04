@@ -612,30 +612,82 @@ top_keywords <- redgaurds_dfm %>%
   rownames() 
 
 
+top_keywords_list <- redgaurds_dfm %>%
+  colSums() %>%
+  as.data.frame() %>%
+  arrange(desc(.)) 
 
-word_point[word_point$feature %in% top_keywords, "english"] <- c("Revolution",
-                                                                 "ism",
-                                                                 "Chairman Mao",
-                                                                 "Class",
+top_keywords_phrases <- rownames_to_column(top_keywords_list)[nchar(rownames(top_keywords_list))>2,] %>%
+  head(30) %>%
+  select(rowname) %>%
+  pull()
+
+
+
+
+# word_point[word_point$feature %in% top_keywords, ]$feature
+
+word_point[word_point$feature %in% top_keywords, "top_keywords"] <- c("Revolution",
+                                                                      "Chairman Mao",
+                                                                      "Class",
+                                                                      "ism",
+                                                                      "Battles",
+                                                                      "Masses",
+                                                                      "The Cultural Revolution",
+                                                                      "Thoughts",
+                                                                      "Lines",
+                                                                      "Red Guards",
+                                                                      "Comrades",
+                                                                      "Work",
+                                                                      "Elements",
+                                                                      "Rebellion",
+                                                                      "People",
+                                                                      "Great",
+                                                                      "Proletariat",
+                                                                      "Counter-revolution",
+                                                                      "Reaction",
+                                                                      "Capital")
+
+word_point$keyword_bi <-paste(word_point$feature, word_point$top_keywords, sep = "\n")
+
+
+# word_point[word_point$feature %in% top_keywords_phrases, ]$feature
+
+word_point[word_point$feature %in% top_keywords_phrases, "top_keywords_phrases"] <- c("Chairman Mao",
+                                                                 "The Cultural Revolution",
+                                                                 "The Red Guards",
                                                                  "Proletariat",
-                                                                 "Thought", 
-                                                                 "Masses",
-                                                                 "Lines",
-                                                                 "Struggle",
-                                                                 "Reactionary",
-                                                                 "Comrades",
-                                                                 "Rebellion",
-                                                                 "Work",
                                                                  "Counter-revolution",
-                                                                 "Great",
-                                                                 "People",
-                                                                 "Cultural Revolution",
-                                                                 "Elements",
-                                                                 "Capital" ,
-                                                                 "The Red Guards")
+                                                                 "the monsters and freaks",
+                                                                 "Vigorous",
+                                                                 "Together",
+                                                                 "Rightists",
+                                                                 "Is it right?",
+                                                                 "petite bourgeoisie" ,
+                                                                 "some people",
+                                                                 "Big-character poster",
+                                                                 "under conditions",
+                                                                 "in the world",
+                                                                 "mainly",
+                                                                 "increasing vigilance",
+                                                                 "mostly",
+                                                                 "headquarters",
+                                                                 "Mao Zedong",
+                                                                 "Royalists",
+                                                                 "douchepants",
+                                                                 "Accidentalist",
+                                                                 "Can't",
+                                                                 "Call",
+                                                                 "Can't see",
+                                                                 "The State Council of PRC",
+                                                                 "denunciations and purges",
+                                                                 "Old man",
+                                                                 "Guest house")
 
 
-word_point$english <-paste(word_point$feature, word_point$english, sep = "\n")
+word_point$phrases_bi <-paste(word_point$feature, word_point$top_keywords_phrases, sep = "\n")
+
+
 y_max <- max(word_point[word_point$feature %in% top_keywords,]$psi) + 1 
 y_min <- min(word_point[word_point$feature %in% top_keywords,]$psi) - 1
 
@@ -645,11 +697,13 @@ y_min <- min(word_point[word_point$feature %in% top_keywords,]$psi) - 1
 theme_set(theme_bw(16))
 estimated_x <-  ggplot(data = word_point, aes(x = beta, y = psi, label = feature)) + 
   geom_text(colour = "grey70",family = "STHeiti", alpha = 0.4, size = 1.5) +
-  geom_text(aes(beta, psi, label = english, fontface = "bold"), 
+  geom_text(aes(beta, psi, label = keyword_bi, fontface = "bold"), 
             data = word_point[word_point$feature %in% top_keywords,],
-            color = "red", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.9) +
-  theme_bw() +
-  facet_zoom(xlim = c(-1.8, 1.8), ylim = c(y_min,y_max)) +
+            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.9) +
+  geom_text(aes(beta, psi, label = phrases_bi, fontface = "bold"), 
+            data = word_point[word_point$feature %in% top_keywords_phrases,],
+            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.9) +  theme_bw() +
+  facet_zoom(xlim = c(-2, 2), ylim = c(y_min,y_max)) +
   theme_cowplot(12) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
@@ -660,7 +714,7 @@ estimated_x <-  ggplot(data = word_point, aes(x = beta, y = psi, label = feature
 
 
 ggsave("images/estimated_x.png", width = 5, height = 3, 
-       units = "in", dpi = 250)
+       units = "in", dpi = 150)
 
 
 

@@ -90,12 +90,9 @@ for (i in 1:num){
 #===============================================================================
 
 doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))   
-timer_dict <- system.time({ 
-  dict <- foreach::foreach(i = 1:length(keyword), .combine =  list, 
-                           .multicombine = TRUE) %dopar% 
-    {quanteda::dictionary(keyword[[i]])}
-})   
-print(timer_dict)
+dict <- foreach::foreach(i = 1:length(keyword), .combine =  list, 
+                         .multicombine = TRUE) %dopar% 
+  {quanteda::dictionary(keyword[[i]])}
 parallel::stopCluster(parallel::makeCluster(detectCores()-1))                  
 
 

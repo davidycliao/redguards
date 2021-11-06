@@ -7,7 +7,7 @@
 This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redgaurds/master/paper/epsa.pdf). In this paper, we design a new strain of text scaling method as we called `SWORDFISH`  (Slogan-based Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (as known as noun collocation phrases) and scale those extracted text variables with Bayesian IRT Generalized Wordfish Model implanted by [Imai, Lo, and Olmsted (2016)](https://imai.fas.harvard.edu/research/files/fastideal.pdf) based on the  Slapin and Proksch’s  “Wordfish”(2008).
 
 <p align="center">
-  <img width="700" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/ideal_point.png" >
+  <img width="650" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/ideal_point.png" >
 </p>
 
 

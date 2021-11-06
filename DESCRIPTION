@@ -39,7 +39,7 @@ Depends:
     igraph, 
     ggforce,
     Rcpp
-Remotes: github::conjugateprior/austin
+Remotes: conjugateprior/austin
 Imports:
     stringr
 Suggests: 

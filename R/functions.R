@@ -31,7 +31,7 @@ pos_tagging <- function(df, individuals = TRUE) {
     if (isTRUE(individuals)) { 
       msg = "Tokenization is done at individual level"
       annotate_splits <- function(x, file){ 
-        ud_model = udpipe_load_model(file)
+        ud_model =  udpipe::udpipe_load_model(file)
         x = as.data.table(udpipe_annotate(ud_model, 
                                           x = x$content,
                                           doc_id = x$id_doc))}
@@ -89,7 +89,7 @@ dtm_wfm <- function(dtm_object){
   # transform WTM-formated dataframe from character to numeric form 
   transposed_df[colnames(transposed_df)] = sapply(transposed_df[colnames(transposed_df)], as.numeric)
   # transform into word-frequency-matrix
-  output = wfm(transposed_df)
+  output = austin::wfm(transposed_df)
   return(output)
 }
 

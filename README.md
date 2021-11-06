@@ -9,9 +9,14 @@ This is a designed package for replicating the estimates and findings in the art
 The Red Guard documents analyzed in the paper are archived in [The Databases for The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong. Please note that replicating the analyses initially requires the access to the original corpus of the textual data. We, as authors and data users, do not fully have the copyright of the sources analyzed in the paper. To comply with the terms of service, we cannot share the textual files publicly.  However, we are providing pre-processed textual files parsed on CoNLL-U format and document-term-matrix to replicate the analyses of the last stage. The pre-processed textual materials can be found at [data](https://github.com/davidycliao/redguards/tree/master/data). 
 
 
+<p align="center">
+  <img width="700" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/ideal_point.png" >
+</p>
+
+
 
 <p align="center">
-  <img width="700" height="440" src="https://raw.githack.com/davidycliao/redguards/master/images/incident_selects.png" >
+  <img width="700" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/incident_full.png" >
 </p>
 
 

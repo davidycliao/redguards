@@ -15,5 +15,5 @@ annotate_splits(x, file, individuals = TRUE)
 split the text document to run the model parallelly
 }
 \examples{
-future_lapply(X = corpus_splitted, FUN = annotate_splits, file = ud_model$file, future.seed = TRUE) \%
+annotate_splits()
 }

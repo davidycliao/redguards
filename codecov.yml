@@ -1,25 +1,14 @@
-language: r
+comment: false
 
-r_packages:
-  - covr
-
-after_success:
-  - Rscript -e 'library(covr); codecov()'
-
-
-
-language: r
-
-sudo: required
-
-env: _R_CHECK_CRAN_INCOMING_=FALSE
-
-r_packages:
-  - covr
-  - devtools
-
-r_github_packages:
-
-  - codecov/redguard
-after_success:
-  - Rscript -e 'library(covr);codecov()s
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        threshold: 1%
+        informational: true
+    patch:
+      default:
+        target: auto
+        threshold: 1%
+        informational: true

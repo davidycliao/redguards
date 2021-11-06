@@ -103,7 +103,6 @@ save(keyw_list, file="data/keyw_list.RData")
 save(keyword, file="data/keyword.RData")
 save(dict, file="data/dict.RData")
 
-
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
 rm(list = setdiff(ls(), c("kyw_object","conll", "incident", "incident_list",

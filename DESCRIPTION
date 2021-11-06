@@ -37,7 +37,8 @@ Depends:
     lattice, 
     ggraph, 
     igraph, 
-    ggforce
+    ggforce,
+    Rcpp
 Imports:
     stringr
 Suggests: 

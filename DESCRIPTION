@@ -25,7 +25,6 @@ Depends:
     data.table,
     udpipe,
     tmcn,
-    austin,
     textrank,
     quanteda,
     emIRT,

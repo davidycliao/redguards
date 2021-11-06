@@ -8,8 +8,6 @@ Maintainer: David Liao <davidycliao@gmail.com>
 Description: This is a replication package for the paper of "Factionalism and the 
             Red Guards under Mao’s China: Ideal Point Estimation Using Text Data."
 URL: https://github.com/davidycliao/redguards
-Depends:
-    R (>= 3.5.0)
 BugReports: https://github.com/davidycliao/redguards/issues
 Depends:
     dplyr,

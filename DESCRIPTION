@@ -39,7 +39,6 @@ Depends:
     igraph, 
     ggforce,
     Rcpp
-Remotes: conjugateprior/austin
 Imports:
     stringr
 Suggests: 

@@ -89,7 +89,7 @@ dtm_wfm <- function(dtm_object){
   # transform WTM-formated dataframe from character to numeric form 
   transposed_df[colnames(transposed_df)] = sapply(transposed_df[colnames(transposed_df)], as.numeric)
   # transform into word-frequency-matrix
-  output = austin::wfm(transposed_df)
+  output = wfm(transposed_df)
   return(output)
 }
 

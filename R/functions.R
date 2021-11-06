@@ -2,7 +2,7 @@
 #' @rdname annotate_splits
 #' @param x  text variable
 #' @param file provide the directory path to udpipe model
-#' @examples future_lapply(X = corpus_splitted, FUN = annotate_splits, file = ud_model$file, future.seed = TRUE) %
+#' @examples annotate_splits()
 #' @title  split the text document to run the model parallelly 
 annotate_splits <- function(x, file, individuals = TRUE) {
   ud_model <- udpipe_load_model(file)

@@ -38,8 +38,6 @@ Depends:
     igraph, 
     ggforce,
     Rcpp
-Imports:
-    stringr
 Remotes: conjugateprior/austin
 Suggests: 
     covr,

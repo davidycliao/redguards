@@ -10,8 +10,10 @@ Description: This is a replication package for the paper of "Factionalism and th
 URL: https://github.com/davidycliao/redguards
 BugReports: https://github.com/davidycliao/redguards/issues
 Depends:
+    R (>= 3.6.0),
+    pacman
+Imports:
     dplyr,
-    readxl,
     future.apply,
     parallelMap,
     parallel,
@@ -32,8 +34,8 @@ Depends:
     ggpubr, 
     ggrepel, 
     ggraph,
+    grid,
     cowplot,
-    lattice, 
     ggraph, 
     igraph, 
     ggforce,
@@ -41,7 +43,6 @@ Depends:
 Remotes: conjugateprior/austin
 Suggests: 
     covr,
-    ggplot2,
     knitr
 VignetteBuilder: 
     knitr

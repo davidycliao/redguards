@@ -15,17 +15,16 @@ timer_task03 <- system.time({
   
   
 # REQUIRED PACKAGES
-# (No need to load the packages if replication is running in the pacakge )
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse  
-#   tidyr, tidyr, readxl, data.table,                     # Data Pre-processings
-#   parallel, future, furrr, future.apply,                # Parallel Computing
-#   doParallel, foreach, doFuture, 
-#   quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
-#   emIRT                                                 # Generalized Wordfish
-# )
+pacman::p_load(
+  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
+  tidyr, tidyr, readxl, data.table,                     # Data Pre-processings
+  parallel, future, furrr, future.apply,                # Parallel Computing
+  doParallel, foreach, doFuture,
+  quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
+  emIRT                                                 # Generalized Wordfish
+)
 
 
 # REQUIRED DATASET 
@@ -89,12 +88,12 @@ s <- create_start(redgaurds_wfm)
 # RUN GENERALIZED WORDFISH & CREATE A TIDY DATAFRAME
 #===============================================================================
 control <- {list(threads = 1, verbose = TRUE, thresh = 1e-6, maxit = 1000)}
-pooled_outcome <- poisIRT(.rc = redgaurds_wfm, 
-                          i = 0:(ncol(redgaurds_wfm)-1), 
-                          NI = ncol(redgaurds_wfm), 
-                          .starts = s,
-                          .priors = p,
-                          .control = control)
+pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm, 
+                                 i = 0:(ncol(redgaurds_wfm)-1), 
+                                 NI = ncol(redgaurds_wfm), 
+                                 .starts = s,
+                                 .priors = p,
+                                 .control = control)
 
 redguard_estimates <- get_estimates(pooled_outcome) %>%
   left_join(incident[,c("id_doc", "activist", "fact_eng")], by = "id_doc")  
@@ -127,7 +126,7 @@ cat(" ====================\n",
     "=",
     "Task 03 Is Done!", "=", "\n",
     "====================",
-    "\n Core used :",  detectCores(), 
+    "\n Core used :",  parallel::detectCores(), 
     "\n Time spent \n", 
     names(timer_task03[1]), ":",   timer_task03[[1]], "\n",
     names(timer_task03[2]), " :",  timer_task03[[2]], "\n",

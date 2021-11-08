@@ -19,23 +19,23 @@
 timer_task05 <- system.time({
 
 # REQUIRED PACKAGES
-# (No need to load the packages if replication is running in the pacakge )
 #===============================================================================
-
 # if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
-#   cowplot, lattice, ggraph, igraph, ggforce,
-#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit 
-#   tidyr, tidyr, readxl, data.table,                     
-#   quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
-# )
-# 
+pacman::p_load(
+  ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
+  cowplot, lattice, ggraph, igraph, ggforce,
+  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
+  tidyr, tidyr, readxl, data.table,
+  quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
+)
+
 
   
 # REQUIRED DATASET 
 #===============================================================================
 
+  
+  
   
   
   
@@ -84,7 +84,7 @@ relationshiptwo <- igraph::graph_from_data_frame(edges,
   ggraph::geom_node_label(ggplot2::aes(label = token), col = vertex_color, size = 3, fontface = "bold", family = "STHeiti" ) +
   ggraph::geom_node_text(aes(label = upos), nudge_y = -0.45, size = 2.5, repel = FALSE, family = "STHeiti", col = "#0c343d", fontface = "bold") +
   labs(title = "", subtitle = subtitle, caption = "")+
-  theme_graph()
+  ggraph::theme_graph()
 
 ggsave("replication-figures/relationship-b.png", 
        width = 7, height = 4.5, 
@@ -290,21 +290,21 @@ incidents_cooc <- NULL
 
 for (i in 1:length(major_incidents)) {
   incidents_cooc[[i]] <-  major_incidents[[i]] %>%
-    graph_from_data_frame()  %>%
-    ggraph( layout = "kk") +
-    geom_edge_link(aes(width = `Co-Occurrence Windows`, edge_alpha = `Co-Occurrence Windows`), edge_colour = edge_colour_set[[i]]) +
-    geom_node_point(size = 75, shape =15, color = color_palette_set[[i]] , alpha = 0.95) +
-    geom_node_point(size = 84, shape =22, color = "black") +
-    geom_node_text(aes(label = name), size = 12, repel = FALSE, family = "STHeiti", col = "black", fontface = "bold") +
-    theme_graph(base_family = "Arial Narrow") +
-    labs(title = "", subtitle = "") +
-    theme(text = element_text(family="STHeiti")) +
-    theme_void() +
-    theme(legend.key.size = unit(4.5, "cm"),  
-          legend.key.height = unit(4.5, "cm"),  
-          legend.key.width = unit(4.5, "cm"),  
-          legend.title = element_text(size=30), 
-          legend.text = element_text(size=28)) }
+    igraph::graph_from_data_frame()  %>%
+    ggraph::ggraph( layout = "kk") +
+    ggraph::geom_edge_link(aes(width = `Co-Occurrence Windows`, edge_alpha = `Co-Occurrence Windows`), edge_colour = edge_colour_set[[i]]) +
+    ggraph::geom_node_point(size = 75, shape =15, color = color_palette_set[[i]] , alpha = 0.95) +
+    ggraph::geom_node_point(size = 84, shape =22, color = "black") +
+    ggraph::geom_node_text(aes(label = name), size = 12, repel = FALSE, family = "STHeiti", col = "black", fontface = "bold") +
+    ggraph::theme_graph(base_family = "Arial Narrow") +
+    ggplot2::labs(title = "", subtitle = "") +
+    ggplot2::theme(text = element_text(family="STHeiti")) +
+    ggplot2::theme_void() +
+    ggplot2::theme(legend.key.size = unit(4.5, "cm"),  
+             legend.key.height = unit(4.5, "cm"),  
+             legend.key.width = unit(4.5, "cm"),  
+             legend.title = element_text(size=30), 
+             legend.text = element_text(size=28)) }
 
 
 plot_names <- c("first_incident_p.png", "third_incident_p.png", "fourth_incident_p.png", "fifth_incident_p.png")
@@ -899,7 +899,7 @@ cat(" ====================\n",
     "=",
     "Task 05 Is Done!", "=", "\n",
     "====================",
-    "\n Core used :",  detectCores(), 
+    "\n Core used :",  parallel::detectCores(), 
     "\n Time spent \n", 
     names(timer_task05[1]), ":",   timer_task05[[1]], "\n",
     names(timer_task05[2]), " :",  timer_task05[[2]], "\n",

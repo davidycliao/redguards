@@ -14,17 +14,16 @@
 timer_task04 <- system.time({
   
 # REQUIRED PACKAGES
-# (No need to load the packages if replication is running in the pacakge )
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse  
-#   tidyr, tidyr, readxl, data.table,                     # Data Pre-processings
-#   parallel, future, furrr, future.apply,                # Parallel Computing
-#   doParallel, foreach, doFuture, 
-#   quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
-#   emIRT                                                 # Generalized Wordfish
-# )
+pacman::p_load(
+  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
+  tidyr, tidyr, readxl, data.table,                     # Data Pre-processings
+  parallel, future, furrr, future.apply,                # Parallel Computing
+  doParallel, foreach, doFuture,
+  quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
+  emIRT                                                 # Generalized Wordfish
+)
 
 
 # REQUIRED DATASET 
@@ -175,7 +174,7 @@ cat(" ====================\n",
     "=",
     "Task 04 Is Done!", "=", "\n",
     "====================",
-    "\n Core used :",  detectCores(), 
+    "\n Core used :",  parallel::detectCores(), 
     "\n Time spent \n", 
     names(timer_task04[1]), ":",   timer_task04[[1]], "\n",
     names(timer_task04[2]), " :",  timer_task04[[2]], "\n",

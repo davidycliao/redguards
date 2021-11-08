@@ -14,17 +14,16 @@
 timer_task01 <- system.time({
   
 # PACKAGES 
-# (No need to load the packages if replication is running in tbe pacakge )
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
 # pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble, stringr, # Tidyverse  
+#   tidyverse, lubridate, dplyr, purrr, tibble,          # Tidyverse
 #   data.table,
 #   parallel, future, furrr, future.apply, parallelMap,  # Parallel Computing
-#   doParallel, foreach, doFuture, 
-#   quanteda, tmcn, austin, udpipe, textrank,            # NLP toolkit
+#   doParallel, foreach, doFuture,
+#   quanteda, tmcn, austin, udpipe, textrank             # NLP toolkit
 # )
-  
+#   
   
 # REQUIRED DATASET 
 #===============================================================================
@@ -38,9 +37,10 @@ timer_task01 <- system.time({
 
 # SAVE OUTPUTS
 #===============================================================================
-# write.csv(conll, file = "data/conll.csv", row.names = FALSE )
-
-
+# save(conll, file = "data/conll.RData")
+  
+  
+  
 #====================================END========================================
   
   
@@ -51,7 +51,7 @@ cat(" ====================\n",
     "=",
     "Task 01 Is Done!", "=", "\n",
     "====================",
-    "\n Core used :",  detectCores(), 
+    "\n Core used :",  parallel::detectCores(), 
     "\n Time spent \n", 
     names(timer_task01[1]), ":",   timer_task01[[1]], "\n",
     names(timer_task01[2]), " :",  timer_task01[[2]], "\n",

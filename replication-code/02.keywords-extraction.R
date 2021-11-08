@@ -15,17 +15,16 @@
 timer_task02 <- system.time({
   
 # REQUIRED PACKAGES
-# (No need to load the packages if replication is running in tbe pacakge )
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse  
-#   tidyr, readxl, data.table,                            # Data Pre-processings
-#   parallel, future, furrr, future.apply,                # Parallel Toolkit
-#   doParallel, foreach, doFuture, 
-#   quanteda, tmcn, austin, udpipe, textrank,tmcn,        # NLP toolkit
-#   emIRT                                                 # Generalized Wordfish
-# )
+pacman::p_load(
+  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
+  tidyr, readxl, data.table,                            # Data Pre-processings
+  parallel, future, furrr, future.apply,                # Parallel Toolkit
+  doParallel, foreach, doFuture,
+  quanteda, tmcn, austin, udpipe, textrank,tmcn,        # NLP toolkit
+  emIRT                                                 # Generalized Wordfish
+)
 
 
 # REQUIRED DATASET 
@@ -56,7 +55,7 @@ num = length(unique(conll$keyword_doc_id))
 kyw_object <- NULL
 for (i in 1:num){
   # kyw_object: extract and pair the keywords based on each historical incidnet
-  kyw_object[[i]] <- textrank_keywords(conll[conll$keyword_doc_id==i,]$token,
+  kyw_object[[i]] <- textrank::textrank_keywords(conll[conll$keyword_doc_id==i,]$token,
                                        relevant = conll[conll$keyword_doc_id==i,]$upos %in% c("NOUN", "ADJ","VERB"), 
                                        p = 0.2,
                                        ngram_max = 3,
@@ -80,7 +79,7 @@ for (i in 1:num){
     # keyword: turn integer attributes into string 
     keyword <- NULL  
     for (p in 1:length(dict_list)){
-      keyword[[p]] <-  map(dict_list[[p]], as.character) 
+      keyword[[p]] <-  purrr::map(dict_list[[p]], as.character) 
     }
   }
 } 
@@ -89,11 +88,11 @@ for (i in 1:num){
 # BUILDING  DICTIONARY OBJECT IN QUANTEDA
 #===============================================================================
 
-doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))   
+doParallel::registerDoParallel(parallel::makeCluster(parallel::detectCores()-1))   
 dict <- foreach::foreach(i = 1:length(keyword), .combine =  list, 
                          .multicombine = TRUE) %dopar% 
   {quanteda::dictionary(keyword[[i]])}
-parallel::stopCluster(parallel::makeCluster(detectCores()-1))                  
+parallel::stopCluster(parallel::makeCluster(parallel::detectCores()-1))                  
 
 
 # SAVE OUTPUTS
@@ -118,7 +117,7 @@ cat(" ====================\n",
     "=",
     "Task 02 Is Done!", "=", "\n",
     "====================",
-  "\n Core used :",  detectCores(), 
+  "\n Core used :",  parallel::detectCores(), 
     "\n Time spent \n", 
     names(timer_task02[1]), ":",   timer_task02[[1]], "\n",
     names(timer_task02[2]), " :",  timer_task02[[2]], "\n",

@@ -1,8 +1,29 @@
+#' redgaurds: A package for replicating  estimates and findings in the article of Factionalism and the 
+#' Red Guards under Mao's China: Ideal Point Estimation Using Text Data.
+#' 
+#' @docType package
+#' @name redgaurds
+
+#' @export .onAttach 
+.onAttach <- function(...) {
+  crearted_date <- date()
+  x <- regexpr("[0-9]{4}", crearted_date)
+  this.year <- substr(crearted_date, x[1], x[1] + attr(x, "match.length") - 1)
+  packageStartupMessage("## Authors  : David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai")
+  packageStartupMessage("## GitHub   : https://github.com/davidycliao/redguards")
+  packageStartupMessage("## 2020 - ", this.year)
+  packageStartupMessage("## redgaurds: A package for replicating  estimates and findings in the article of")
+  packageStartupMessage("##            “Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data.”")
+}
+
+
 #' @export annotate_splits
 #' @rdname annotate_splits
 #' @param x  text variable
 #' @param file provide the directory path to udpipe model
 #' @examples annotate_splits()
+#' @importFrom udpipe udpipe_annotate udpipe_load_model
+#' @importFrom data.table as.data.table
 #' @title  split the text document to run the model parallelly 
 annotate_splits <- function(x, file, individuals = TRUE) {
   ud_model <- udpipe_load_model(file)
@@ -21,6 +42,8 @@ annotate_splits <- function(x, file, individuals = TRUE) {
 #' @export pos_tagging
 #' @rdname pos_tagging
 #' @param df text document object
+#' @importFrom doFuture registerDoFuture
+#' @importFrom data.table rbindlist 
 #' @examples pos_tagging(incindent)
 #' @title  Part-of-speech at individual level or incident level
 #' @details This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) which can be downloaded at Pre-trained models: chinese-gsdsimp-ud-2.5-191206.udpipe. 
@@ -76,6 +99,8 @@ get_dictionary <- function(df) {
 #' @export dtm_wfm
 #' @rdname dtm_wfm
 #' @param dtm_object input requires dtm object from Quanteda
+#' @importFrom austin wfm 
+#' @importFrom quanteda convert
 #' @examples dtm_wfm(dtm)
 #' @title  Turning DTM to WFM
 dtm_wfm <- function(dtm_object){
@@ -134,4 +159,6 @@ to_integer <- function(x, n = 5) {
   l <- pretty(x, n)
   l[abs(l %% 1) < .Machine$double.eps ^ 0.5] 
 }
+
+
 

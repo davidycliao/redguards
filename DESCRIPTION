@@ -10,8 +10,7 @@ Description: This is a replication package for the paper of "Factionalism and th
 URL: https://github.com/davidycliao/redguards
 BugReports: https://github.com/davidycliao/redguards/issues
 Depends:
-    R (>= 3.6.0),
-    pacman
+    R (>= 3.6.0)
 Imports:
     dplyr,
     future.apply,

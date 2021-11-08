@@ -11,27 +11,23 @@
 #                    redgaurds_dfm.RData
 #===============================================================================
 
-
 timer_task02 <- system.time({
-  
 # REQUIRED PACKAGES
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
-  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
-  tidyr, readxl, data.table,                            # Data Pre-processings
-  parallel, future, furrr, future.apply,                # Parallel Toolkit
-  doParallel, foreach, doFuture,
-  quanteda, tmcn, austin, udpipe, textrank,tmcn,        # NLP toolkit
-  emIRT                                                 # Generalized Wordfish
-)
-
+# pacman::p_load(
+#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
+#   tidyr, readxl, data.table,                            # Data Pre-processings
+#   parallel, future, furrr, future.apply,                # Parallel Toolkit
+#   doParallel, foreach, doFuture,
+#   quanteda, tmcn, austin, udpipe, textrank,tmcn,        # NLP toolkit
+#   emIRT                                                 # Generalized Wordfish
+# )
 
 # REQUIRED DATASET 
 #===============================================================================
 load("data/incident.RData")
 load("data/conll.RData")
-
 
 # EXTRACTIGN KEYWORD FEATURES
 #===============================================================================

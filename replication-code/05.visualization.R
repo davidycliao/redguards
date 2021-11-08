@@ -15,33 +15,22 @@
 #===============================================================================
 
 
-
 timer_task05 <- system.time({
-
 # REQUIRED PACKAGES
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
-  ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
-  cowplot, lattice, ggraph, igraph, ggforce,
-  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
-  tidyr, tidyr, readxl, data.table,
-  quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
-)
-
+# pacman::p_load(
+#   ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
+#   cowplot, lattice, ggraph, igraph, ggforce,
+#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
+#   tidyr, tidyr, readxl, data.table,
+#   quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
+# )
+# 
 
   
 # REQUIRED DATASET 
 #===============================================================================
-
-  
-  
-  
-  
-  
-
-  
-  
 
 
 # CREATE REPLICATION FOLDER

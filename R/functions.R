@@ -9,11 +9,11 @@
   crearted_date <- date()
   x <- regexpr("[0-9]{4}", crearted_date)
   this.year <- substr(crearted_date, x[1], x[1] + attr(x, "match.length") - 1)
-  packageStartupMessage("## Authors  : David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai")
-  packageStartupMessage("## GitHub   : https://github.com/davidycliao/redguards")
+  packageStartupMessage("## David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai")
+  packageStartupMessage("## https://github.com/davidycliao/redguards")
   packageStartupMessage("## 2020 - ", this.year)
   packageStartupMessage("## redgaurds: A package for replicating  estimates and findings in the article of")
-  packageStartupMessage("##            “Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data.”")
+  packageStartupMessage("## “Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data.”")
 }
 
 

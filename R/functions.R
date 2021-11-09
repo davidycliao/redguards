@@ -12,7 +12,7 @@
   packageStartupMessage("## David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai")
   packageStartupMessage("## https://github.com/davidycliao/redguards")
   packageStartupMessage("## 2020 - ", this.year)
-  packageStartupMessage("## redgaurds: A package for replicating  estimates and findings in the article of")
+  packageStartupMessage("## redgaurds: A package for replicating estimates and findings in the article of")
   packageStartupMessage("## “Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data.”")
 }
 

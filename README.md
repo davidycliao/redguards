@@ -50,9 +50,13 @@ library(usethis)
 library(devtools)
 ```
 
-Then, download the redgaurds repo from GitHub and buld it locally
+Download the `redguards` repository from GitHub with `use_course` and tick `Yes` or `Definitely`, which will automatically bring you to  `redguards` project.
 ```
-usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"))
+usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"), )
+```
+
+Finally, build the project package by `install()` and load it. 
+```
 devtools::install()
 library(redguards)
 ```

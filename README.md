@@ -50,7 +50,8 @@ library(usethis)
 library(devtools)
 ```
 
-Download the `redguards` repository from GitHub with `use_course` and tick `Yes` or `Definitely`, which will automatically bring you to  `redguards` project.
+Download the `redguards` repository from GitHub with `use_course` and tick Yes or Definitely, automatically bringing you to the redguards project.
+
 ```
 usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"), )
 ```

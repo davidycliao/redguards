@@ -42,26 +42,23 @@ Replicating the comparable estimates for this paper is easy. Simply follow the d
 
 ## Getting started
 
-Install the release version of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above),  [RStudio](https://rstudio.com/products/rstudio/download/#download) and  `devtools` from CRAN with `install.packages("devtools") `.
+Install the release version of [_R_](https://cran.r-project.org/mirrors.html) (preferably version 3.6 or above),  [RStudio](https://rstudio.com/products/rstudio/download/#download) and  `usethis` and `devtools` from CRAN with `install.packages(c("usethis", "devtools")) `.
 
 ```
-install.packages("devtools", dependencies=TRUE)
+install.packages(c("usethis", "devtools"))
+library(usethis)
 library(devtools)
+```
+
+Then, download the redgaurds repo from GitHub and buld it locally
+```
+usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"))
+devtools::install()
+library(redguards)
 ```
 
 Please note that replicating the figures requires installing `STHeiti font` in local computer beforehand to present Chinese characters.
 
-```
-devtools::install_github("davidycliao/redguards")
-library(redguards)
-run_replication()
-```
-
-Once finished it, you don't want it at your computer. You can uninstall it with `uninstall.packages("redguards")`. 
-
-```
-uninstall.packages("redguards")
-```
 
 ## Cite
 

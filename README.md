@@ -53,7 +53,7 @@ library(devtools)
 Download the `redguards` repository from GitHub with `use_course` and tick Yes or Definitely, automatically bringing you to the redguards project.
 
 ```
-usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"), )
+usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"))
 ```
 
 Finally, build the project package by `install()` and load it. 

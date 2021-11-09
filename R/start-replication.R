@@ -20,7 +20,7 @@
 #' @title  Run replication
 
 
-run_replication <- function(folder = "replication-code",...){
+run_replication <- function(folder = "replication-code"){
   lapply(list.files( "replication-code", full.names = TRUE), source)}
 
 

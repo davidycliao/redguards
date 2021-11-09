@@ -34,7 +34,7 @@ annotate_splits <- function(x, file, individuals = TRUE) {
   else if (isFALSE(individuals)) {
     x = as.data.table(udpipe_annotate(ud_model, x = x$content,
                                       doc_id = x$incident_index))}
-  else{ break }
+  else{ stop("Tokenization breaks due to wrong replication data")  }
   return(x)
 } 
 
@@ -150,6 +150,7 @@ get_estimates <- function(df){
   return(df)
   cat("Estimation from", class(df)[2])
 }
+
 
 #' @export to_integer
 #' @rdname to_integer

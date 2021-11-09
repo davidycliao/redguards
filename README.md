@@ -57,6 +57,11 @@ library(redguards)
 run_replication()
 ```
 
+Once finished it, you don't want it at your computer. You can uninstall it with `uninstall.packages("redguards")`. 
+
+```
+uninstall.packages("redguards")
+```
 
 ## Cite
 

@@ -1,6 +1,6 @@
 #' @export run_replication
 #' @rdname run_replication
-#' @param folder the folder name for restoring the relication r scrips
+#' @param folder the folder name for restoring the source codes
 #' @importFrom emIRT poisIRT
 #' @importFrom udpipe cooccurrence
 #' @importFrom textrank textrank_keywords

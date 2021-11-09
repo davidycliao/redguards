@@ -7,7 +7,7 @@
 run_replication(folder = "replication-code", ...)
 }
 \arguments{
-\item{folder}{the folder name for restoring the relication r scrips}
+\item{folder}{the folder name for restoring the source codes}
 }
 \description{
 Run replication

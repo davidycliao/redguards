@@ -13,6 +13,7 @@ Depends:
     R (>= 3.6.0)
 Imports:
     dplyr,
+    tibble,
     future.apply,
     parallelMap,
     parallel,
@@ -38,7 +39,8 @@ Imports:
     ggraph, 
     igraph, 
     ggforce,
-    Rcpp
+    Rcpp,
+    austin
 Remotes: conjugateprior/austin
 Suggests: 
     covr,

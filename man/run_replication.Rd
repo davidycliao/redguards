@@ -4,7 +4,7 @@
 \alias{run_replication}
 \title{Run replication}
 \usage{
-run_replication(folder = "replication-code")
+run_replication(folder = "replication-code", ...)
 }
 \arguments{
 \item{folder}{the folder name for restoring the relication r scrips}

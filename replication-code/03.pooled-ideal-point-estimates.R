@@ -84,7 +84,7 @@ s <- create_start(redgaurds_wfm)
 
 # RUN GENERALIZED WORDFISH & CREATE A TIDY DATAFRAME
 #===============================================================================
-control <- {list(threads = 1, verbose = TRUE, thresh = 1e-6, maxit = 1000)}
+control <- {list(threads = parallel::detectCores()-1, verbose = FALSE, thresh = 1e-6, maxit = 5000)}
 pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm, 
                                  i = 0:(ncol(redgaurds_wfm)-1), 
                                  NI = ncol(redgaurds_wfm), 

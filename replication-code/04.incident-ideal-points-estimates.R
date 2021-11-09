@@ -89,13 +89,14 @@ for (i in 1:length(redgaurds_wfm_individual)){
 # RUN GENERALIZED WORDFISH 
 #===============================================================================
 em_poisIRT <- list()
+control <- {list(threads = parallel::detectCores()-1, verbose = FALSE, thresh = 1e-6, maxit = 20000)}
 for (i in 1:length(redgaurds_wfm_individual)) {
   em_poisIRT[[i]] <- poisIRT(.rc = redgaurds_wfm_individual[[i]],
                              i = 0:(ncol(redgaurds_wfm_individual[[i]])-1),
                              NI = ncol(redgaurds_wfm_individual[[i]]),
                              .starts = s_list[[i]],
                              .priors = p,
-                             .control = {list(threads = 15, verbose = TRUE, thresh = 1e-6, maxit=20000)})
+                             .control = control)
 }
 
 

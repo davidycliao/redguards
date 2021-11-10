@@ -56,10 +56,16 @@ Download the `redguards` repository from GitHub with `use_course` and tick Yes o
 usethis::use_course(create_download_url("https://github.com/davidycliao/redguards"))
 ```
 
-Finally, build the project package by `install()` and load it. 
+Then, build the project package by `install()` and load it. 
 ```
 devtools::install()
 library(redguards)
+```
+
+
+Then, start replication with `run_replication()`. 
+```
+run_replication()
 ```
 
 Please note that replicating the figures requires installing `STHeiti font` in local computer beforehand to present Chinese characters.
@@ -72,7 +78,7 @@ For citing this work, you can refer to the present GitHub project. For example, 
 @misc{redgaurds,
       howpublished = {\url{https://github.com/davidycliao/redgaurds}},
       title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
-      author = {David Yen-Chieh Liao, Yi-Nung Tsai, and Dechun Zhang},
+      author = {David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai},
       publisher = {GitHub},
       year = {2021}
 }

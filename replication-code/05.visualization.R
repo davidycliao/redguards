@@ -9,8 +9,7 @@
 #                    Figure 6 ; Figure  7; Figure 9; Figure 10; Figure 11; 
 #                    Figure 12 (Appendix 2); Figure 13 (Appendix 3);
 #                    Figure 14 (Appendix 5); Figure 16 (Appendix 6)
-# Required Dataset : redguard_estimates.csv;incident-group.csv;kyw_object.RData
-#                    CoNLL-U-redgaurds.csv
+# Required Dataset : 
 # Output Data      : 
 #===============================================================================
 
@@ -33,6 +32,8 @@ timer_task05 <- system.time({
 #===============================================================================
 
 
+  
+  
 # CREATE REPLICATION FOLDER
 #===============================================================================  
 dir.create(file.path(getwd(), "replication-figures"), showWarnings = FALSE)

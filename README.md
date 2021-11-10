@@ -63,7 +63,7 @@ library(redguards)
 ```
 
 
-Then, start replication with `run_replication()`. 
+Last, start replication with `run_replication()`. 
 ```
 run_replication()
 ```

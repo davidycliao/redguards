@@ -4,7 +4,7 @@
 #===============================================================================
 # File Names       : 05.visualization.R 
 # Date             : 31st Oct 2021
-# Authors          : David Yen-Cheih Liao
+# Authors          : David Yen-Cheih Liaos
 # Purpose          : replicate figures in the paper
 #                    Figure 6 ; Figure  7; Figure 9; Figure 10; Figure 11; 
 #                    Figure 12 (Appendix 2); Figure 13 (Appendix 3);
@@ -469,8 +469,8 @@ outlier <- c(rebel_outlier, conservative_outlier)
 # Append the factions's English name to the dataframe
 english_name <- c("Tsinghua 88 Faction",
                   "Tsinghua University 811 Combat Group",
-                  "Beijing No. 1 High School Mnority Faction", 
-                  "Beijing No. 6 High School Mnority Faction",
+                  "Beijing No. 1 High School Minority Faction", 
+                  "Beijing No. 6 High School Minority Faction",
                   "He Jiesheng",               
                   "Beijing Institute of Light Industry East Is Red Commune",
                   "Beijing Family Origin Issue No. 3 Research Group")

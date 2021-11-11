@@ -152,6 +152,49 @@ get_estimates <- function(df){
 }
 
 
+#' @export get_wordfeatures
+#' @rdname get_wordfeatures
+#' @param df the estimate object from poisIR 
+#' @examples get_wordfeatures(poisIRT_object)
+#' @title  retrieve word features from poisIRT class
+get_wordfeatures <- function(df,...){
+  if (class(df)[1] == "poisIRT"){
+    df <-  data.frame(feature = rownames(df$means$beta), 
+                      psi = df$means$alpha,
+                      beta = df$means$beta,
+                      alpha = df$means$alpha) }
+  else{
+    stop("David's reminder: This is not poisIRT object, please check it again!!!" ) 
+  }
+  return(df)
+  cat("Estimation from", class(df)[2], "via emIRT.")
+}
+
+
+#' @export get_keywords
+#' @rdname get_keywords
+#' @param df the estimate object should be textrank_keywords class from textrank  
+#' @examples get_keywords(textrank_keywords,n = 10, head = TRUE )
+#' @title  retrieve the most/less frequent keywords from textrank_keywords class
+get_keywords <- function(df, n = 10, head = TRUE, ...){
+  if (class(df)[1] == "textrank_keywords"){
+    if(isTRUE(head)) {
+      key_words = head(df$keywords[nchar(df$keywords$keyword)>2,], n = n)
+      }
+    else if (isFALSE(head)) {    
+      key_words = tail(df$keywords[nchar(df$keywords$keyword)>2,], n = n)
+      } 
+    }
+  else{
+    stop("This is not textrank_keywords object, please check it again!!!" ) 
+  }
+  return(key_words)
+  print("Estimates from", class(df)[2], "via textrank")
+}
+
+
+
+
 #' @export to_integer
 #' @rdname to_integer
 #' @examples scale_y_continuous(breaks = function(x) to_integer(x, n = 10)) 
@@ -160,6 +203,5 @@ to_integer <- function(x, n = 5) {
   l <- pretty(x, n)
   l[abs(l %% 1) < .Machine$double.eps ^ 0.5] 
 }
-
 
 

@@ -316,7 +316,8 @@ for (i in 1:4) {
 #===============================================================================
 
 # Figure 7 (a) The First Marxist-Leninist Wallposter
-incident_1st <- head(kyw_object[[1]]$keywords[nchar(kyw_object[[1]]$keywords$keyword)>2,], n = 10)
+# incident_1st <- head(kyw_object[[1]]$keywords[nchar(kyw_object[[1]]$keywords$keyword)>2,], n = 10)
+incident_1st <-  get_keywords(kyw_object[[1]])
 incident_1st["keyword_eng"] <- c("Chairman Mao",           # 毛主席
                                  "The Cultural Revolution",# 文化大革命 
                                  "The Red Guards",         # 红卫兵
@@ -331,8 +332,8 @@ incident_1st["keyword_eng"] <- c("Chairman Mao",           # 毛主席
 incident_1st["keyword_bi"] <- paste(incident_1st$keyword, "\n", incident_1st$keyword_eng)
 
 # Figure 7 (b) The Zhou Enlai’s Declaration
-incident_3rd <- head(kyw_object[[3]]$keywords[nchar(kyw_object[[3]]$keywords$keyword)>2,], n = 10)
-
+# incident_3rd <- head(kyw_object[[3]]$keywords[nchar(kyw_object[[3]]$keywords$keyword)>2,], n = 10)
+incident_3rd  <- get_keywords(kyw_object[[3]])
 incident_3rd["keyword_eng"] <- c("Chairman Mao",           # 毛主席
                                  "The Cultural Revolution",# 文化大革命 
                                  "Bourgeois Reaction",     # 资产阶级反动
@@ -346,7 +347,9 @@ incident_3rd["keyword_eng"] <- c("Chairman Mao",           # 毛主席
 incident_3rd["keyword_bi"] <- paste(incident_3rd$keyword, "\n", incident_3rd$keyword_eng)
 
 # Figure 7 (c) The February Countercurrent
-incident_4th <- head(kyw_object[[4]]$keywords[nchar(kyw_object[[4]]$keywords$keyword)>2,], n = 10)
+# incident_4th <- head(kyw_object[[4]]$keywords[nchar(kyw_object[[4]]$keywords$keyword)>2,], n = 10)
+incident_4th  <- get_keywords(kyw_object[[4]])
+
 incident_4th["keyword_eng"] <- c("Chairman Mao",           # 毛主席
                                  "The Cultural Revolution",# 文化大革命
                                  "Revolutionary Rebels",   # 革命造反派
@@ -361,8 +364,9 @@ incident_4th["keyword_bi"] <- paste(incident_4th$keyword, "\n",incident_4th$keyw
 
 
 # Figure 7 (d) The Adopt a Correct Attitude toward the Little General
+# incident_5th <- head(kyw_object[[5]]$keywords[nchar(kyw_object[[5]]$keywords$keyword)>2,], n = 10)
+incident_5th  <- get_keywords(kyw_object[[5]])
 
-incident_5th <- head(kyw_object[[5]]$keywords[nchar(kyw_object[[5]]$keywords$keyword)>2,], n = 10)
 incident_5th["keyword_eng"] <- c("Chairman Mao",          # 毛主席
                                  "Cultural Revolution",   # 文化大革命
                                  "Proletarian Revolution",# 无产阶级革命
@@ -469,8 +473,8 @@ outlier <- c(rebel_outlier, conservative_outlier)
 # Append the factions's English name to the dataframe
 english_name <- c("Tsinghua 88 Faction",
                   "Tsinghua University 811 Combat Group",
-                  "Beijing No. 1 High School Minority Faction", 
-                  "Beijing No. 6 High School Minority Faction",
+                  "Beijing No. 1 High School", 
+                  "Beijing No. 6 High School",
                   "He Jiesheng",               
                   "Beijing Institute of Light Industry East Is Red Commune",
                   "Beijing Family Origin Issue No. 3 Research Group")
@@ -565,7 +569,7 @@ incident_selects <- ggplot(individual_idea_point[individual_idea_point$incidents
   scale_fill_manual(values = colors) +
   scale_fill_manual(name = "The Red Gaurd Factions", 
                     values = c("#81A88D", "#972D15"), 
-                    labels =c("The Conservatives","The Rebels"))+
+                    labels =c("The Conservatives","The Rebels")) +
   scale_colour_manual(name = "The Red Gaurd Factions", 
                       values = c("#81A88D", "#972D15"), 
                       labels = c("The Conservatives","The Rebels" )) +
@@ -584,11 +588,8 @@ ggsave("replication-figures/incident_selects.png", width = 10, height = 6,
 # Figure 11. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
 #            model
 #===============================================================================
-word_point <- data.frame(feature = rownames(pooled_outcome$means$beta), 
-                         psi = pooled_outcome$means$alpha,
-                         beta = pooled_outcome$means$beta,
-                         alpha = pooled_outcome$means$alpha)
-
+word_point <- get_wordfeatures(pooled_outcome)
+class(pooled_outcome)[1] == "poisIRT"
 top_keywords <- redgaurds_dfm %>%
   colSums() %>%
   as.data.frame() %>%
@@ -899,6 +900,6 @@ cat(" ====================\n",
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
-rm(list=ls())
+# rm(list=ls())
 
 

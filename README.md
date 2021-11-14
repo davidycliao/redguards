@@ -30,7 +30,7 @@ Replicating the comparable estimates for this paper is easy. Simply follow the d
 
 
 <p align="center">
-  <img width="700" height="400" src="https://raw.githack.com/davidycliao/redguards/master/images/estimated_x.png" >
+  <img width="700" height="400" src="https://raw.githack.com/davidycliao/redguards/master/images/estimated_x_1.png" >
 </p>
 
 

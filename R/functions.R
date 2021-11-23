@@ -9,7 +9,7 @@
   crearted_date <- date()
   x <- regexpr("[0-9]{4}", crearted_date)
   this.year <- substr(crearted_date, x[1], x[1] + attr(x, "match.length") - 1)
-  packageStartupMessage("## David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai")
+  packageStartupMessage("## David Yen-Chieh Liao, Yi-Nung Tsai, Dechun Zhang")
   packageStartupMessage("## https://github.com/davidycliao/redguards")
   packageStartupMessage("## 2020 - ", this.year)
   packageStartupMessage("## redgaurds: A package for replicating estimates and findings in the article of")
@@ -125,12 +125,46 @@ dtm_wfm <- function(dtm_object){
 #' @examples create_start(wfm)
 #' @title  create start point for poisIRT() 
 create_start <- function(wfm_matrix){
-  s = list(alpha ={matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow = ncol(wfm_matrix), ncol = 1)}, 
-           x = {matrix(rnorm(nrow(wfm_matrix) * 1) * 1, nrow = ncol(wfm_matrix), ncol = 1)},    
-           psi = {matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow =  nrow(wfm_matrix), ncol = 1)},  
-           beta = {matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow = nrow(wfm_matrix), ncol = 1)})
+  J = nrow(wfm_matrix)
+  K = ncol(wfm_matrix)
+  s = list(alpha = matrix(runif(K, -1, 1)),
+           x =  matrix(runif(K, -1, 1)),
+           psi = matrix(runif(J, 0, 1)),
+           beta = matrix(runif(J, 0, 1)))
   return(s)
+  }
+
+# create_start <- function(wfm_matrix){
+#   s = list(alpha ={matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow = ncol(wfm_matrix), ncol = 1)}, 
+#            x = {matrix(rnorm(nrow(wfm_matrix) * 1) * 1, nrow = ncol(wfm_matrix), ncol = 1)},    
+#            psi = {matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow =  nrow(wfm_matrix), ncol = 1)},  
+#            beta = {matrix(rnorm(ncol(wfm_matrix) * 1) * 1, nrow = nrow(wfm_matrix), ncol = 1)})
+#   return(s)
+# }
+
+
+
+
+
+#' @export create_prior
+#' @rdname create_prior
+#' @param  mu prior mean for x_i, β_j, ψ_k and ψ_k. 
+#' @param sigma2 prior variance for x_i, β_j, ψ_k and ψ_k.
+#' @examples create_prior(mu = 0, sigma2 = 100)
+#' @title  create prior variance and meean  for poisIRT
+create_prior <- function(mu = 0, sigma2 = 100,...){
+  p = list(psi = list(mu = mu,  sigma2 = sigma2),      
+           psi = list(mu = mu,  sigma2 = sigma2),         
+           alpha = list(mu = mu, sigma2 = sigma2),    
+           beta = list(mu = mu, sigma2 = sigma2),
+           x = list(mu = mu, sigma2 = sigma2)  )   
+  return(p)
 }
+
+
+
+
+
 
 
 #' @export get_estimates

@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 
-
 #===============================================================================
 # File Names       : 03.pooled-redgaurds-estimates.R 
 # Date             : 31st Oct 2021
@@ -23,13 +22,11 @@ timer_task03 <- system.time({
 #   emIRT                                                 # Generalized Wordfish
 # )
 
-
 # REQUIRED DATASET 
 #===============================================================================
 load("data/dfm_list.RData")
 load("data/incident_list.RData")
 load("data/dict.Rdata")
-
 
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
@@ -54,37 +51,20 @@ for (i in names(dfm_list)){docnames(dfm_list[[i]]) <- incident_list[[i]]$id_doc}
     {quanteda::dfm(dfm_list[[i]], dictionary = dict[[i]])}
 parallel::stopCluster(parallel::makeCluster(detectCores()-1))
 
-
 # TURNING DOCUNEBTS-TERM-MATRIX INTO WORD-FREQUENCY MATRIX
 #===============================================================================
 redgaurds_wfm <- dtm_wfm(redgaurds_dfm)
 
-
 # GENERATE START & PRIOR
 #===============================================================================
-p <- list(
-  # x$mu numeric, prior mean for actor ideal points x_i.; 
-  # x$sigma2 numeric, prior variance for actor ideal points x_i.
-  psi = list(mu = 0,  sigma2 = 10000),         
-  # beta$mu numeric, prior mean for β_j
-  # beta$sigma2 numeric, prior variance for β_j.        
-  alpha = list(mu = 0, sigma2 = 10000),    
-  # alpha$mu numeric, prior mean for α_j
-  # alpha$sigma2 numeric, prior variance for α_j        
-  beta = list(mu = 0, sigma2 = 10000),
-  # psi$mu numeric, prior mean for ψ_k
-  # psi$sigma2 numeric, prior variance for ψ_k.
-  x = list(mu = 0, sigma2 = 10000)
-)   
-
 set.seed(1234)
 s <- create_start(redgaurds_wfm)
-
-
+p <- create_prior()
 
 # RUN GENERALIZED WORDFISH & CREATE A TIDY DATAFRAME
 #===============================================================================
-control <- {list(threads = parallel::detectCores()-1, verbose = FALSE, thresh = 1e-6, maxit = 5000)}
+control <- list(threads = parallel::detectCores()-1, verbose = TRUE, 
+                thresh = 1e-6, maxit = 5000)
 pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm, 
                                  i = 0:(ncol(redgaurds_wfm)-1), 
                                  NI = ncol(redgaurds_wfm), 
@@ -94,10 +74,6 @@ pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm,
 
 redguard_estimates <- get_estimates(pooled_outcome) %>%
   left_join(incident[,c("id_doc", "activist", "fact_eng")], by = "id_doc")  
-
-
-
-
 
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES

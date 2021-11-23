@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 
-
 #===============================================================================
 # File Names       : 01.pooled-redgaurds-estimates.R 
 # Date             : 31st Oct 2021
@@ -25,25 +24,20 @@ timer_task01 <- system.time({
   
 # REQUIRED DATASET 
 #===============================================================================
-# inciden <- read_csv("data/incident-group.csv", show_col_types = TRUE)
+# incident <- read_csv("data/incident-group.csv", show_col_types = TRUE)
 
-  
 # TOKENIZATION ON UNIVERSAL DEPENDENCIES
 #===============================================================================
 # conll <- pos_tagging(incident, individuals = FALSE)
-
 
 # SAVE OUTPUTS
 #===============================================================================
 # save(conll, file = "data/conll.RData")
   
-  
-  
 #====================================END========================================
   
   
 })
-
 
 cat(" ====================\n",
     "=",

@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 
-
 #===============================================================================
 # File Names       : 05.visualization.R 
 # Date             : 31st Oct 2021
@@ -13,27 +12,23 @@
 # Output Data      : 
 #===============================================================================
 
-
 timer_task05 <- system.time({
 # REQUIRED PACKAGES
 #===============================================================================
 # if (!require("pacman")) install.packages("pacman")
 # pacman::p_load(
 #   ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
-#   cowplot, lattice, ggraph, igraph, ggforce,
+#   cowplot, lattice, ggraph, igraph, ggforce, 
 #   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
 #   tidyr, tidyr, readxl, data.table,
 #   quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
 # )
 
 
-  
 # REQUIRED DATASET 
 #===============================================================================
 
 
-  
-  
 # CREATE REPLICATION FOLDER
 #===============================================================================  
 dir.create(file.path(getwd(), "replication-figures"), showWarnings = FALSE)
@@ -43,7 +38,7 @@ dir.create(file.path(getwd(), "replication-figures"), showWarnings = FALSE)
 #           verb on Universal Dependencies.
 #===============================================================================
 udmodel_chinese <- udpipe_load_model(file = "chinese-gsdsimp-ud-2.5-191206.udpipe")
-text_ch<- c("只要她反对毛主席，搞自己的一套，阳奉阴违，搞神秘化，我们就要反对她，
+text_ch<- c("只要她反对毛主席，搞自己的一套，阳奉阴违，搞神秘化，我们就要反对她，\
             揪出她！")
 x <- udpipe_annotate(udmodel_chinese, x = text_ch)
 x <- as.data.frame(x)
@@ -77,6 +72,11 @@ relationshiptwo <- igraph::graph_from_data_frame(edges,
   ggraph::theme_graph()
 
 ggsave("replication-figures/relationship-b.png", 
+       width = 7, height = 4.5, 
+       units = "in", # other options c("in", "cm", "mm"), 
+       dpi = 200)
+
+ggsave("images/relationship-b.png", 
        width = 7, height = 4.5, 
        units = "in", # other options c("in", "cm", "mm"), 
        dpi = 200)
@@ -310,6 +310,19 @@ for (i in 1:4) {
   dev.off()
 }
 
+plot_names <- c("first_incident_p.png", "third_incident_p.png", "fourth_incident_p.png", "fifth_incident_p.png")
+for (i in 1:4) {
+  file_name <- paste("images/", plot_names[i] , ".png", sep="")
+  print(incidents_cooc[[i]])
+  ggsave(file_name, 
+         width = 30, 
+         height = 28, 
+         units = "in",
+         dpi = 150)
+  
+  dev.off()
+}
+
 
 # Figure 7. Four examples of the top 10 keyword phrases identified by TextRank 
 #           within the documents of each politicalincident since 1966.
@@ -420,13 +433,24 @@ for (i in 1:4) {
   dev.off()
 }
 
+plot_names <- c("incident_1st", "incident_3rd", "incident_4th", "incident_5th")
+for (i in 1:4) {
+  file_name <- paste("images/", plot_names[i] , ".png", sep="")
+  print(key_major_incidents[[i]])
+  ggsave(file_name, 
+         width = 16,
+         height = 14, 
+         units = "in",
+         dpi = 150)
+  dev.off()
+}
 
 # Figure 8 Smoothed density distributions of estimated positions for the Red 
 #          Guard participants
 #===============================================================================
 colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
 
-density <-ggplot(redguard_estimates, 
+density <- ggplot(redguard_estimates, 
                     aes(x = x, fill = fact_eng, color = fact_eng)) +
   geom_density(alpha = 0.7) +
   scale_color_manual(values = colors) +
@@ -454,6 +478,8 @@ density <-ggplot(redguard_estimates,
 ggsave("replication-figures/density.png", width = 8, height = 4, 
        units = "in", dpi = 150)
 
+ggsave("images/density.png", width = 8, height = 4, 
+       units = "in", dpi = 150)
 
 
 
@@ -471,13 +497,13 @@ conservative_outlier <- redguard_estimates[(redguard_estimates$x< mean(redguard_
 outlier <- c(rebel_outlier, conservative_outlier)
 
 # Append the factions's English name to the dataframe
-english_name <- c("Tsinghua 88 Faction",
-                  "Tsinghua University 811 Combat Group",
-                  "Beijing No. 1 High School", 
-                  "Beijing No. 6 High School",
-                  "He Jiesheng",               
-                  "Beijing Institute of Light Industry East Is Red Commune",
-                  "Beijing Family Origin Issue No. 3 Research Group")
+english_name <- c("Tsinghua 88 Faction \n\t\t 清華八八派",
+                  "Tsinghua University 811 Combat Group \n\t\t 清华大学八一一战斗小",
+                  "Beijing No. 1 High School \n\t\t 北京一中少數派", 
+                  "Beijing No. 6 High School \n\t\t 北京六中少數派",
+                  "He Jiesheng \n\t\t 贺捷生",               
+                  "Beijing Institute of Light Industry East Is Red Commune \n\t\t 北京轻工业学院东方红公社 ",
+                  "Beijing Family Origin Issue No.3 Research Group \n\t\t 北京家庭出身问题第三研究小组")
 
 redguard_estimates$english_unit <- redguard_estimates$activist
 redguard_estimates[redguard_estimates$activist %in% outlier, "english_unit"] <- english_name
@@ -490,30 +516,25 @@ rebel <- c("清華八八派", "清华大学八一一战斗小组", "北京一中
 
 
 ideal_point <- ggplot(redguard_estimates, aes(x = english_unit, y = x, colour = factor(fact_eng))) +
-  geom_point(aes(x = reorder(english_unit, x), y = x, colour = fact_eng, fill = fact_eng), alpha = 0.5, size = 0.5) + 
+  geom_point(aes(x = reorder(english_unit, x), y = x, colour = fact_eng, fill = fact_eng), alpha = 0.7, size = 0.8) + 
   geom_pointrange(aes(ymin = lower, ymax = upper), alpha = 0.7, size = 0.6) +
   # labeling the faction
-  geom_text(aes(x = english_unit, y = x, label = english_unit), 
-            fontface = "bold",
-            hjust = 1.5,
-            data = redguard_estimates[redguard_estimates$activist %in% conservative,],
-            color = "#40776f", family = "STHeiti",
-            position=position_jitter(width = 1.05, height = -2.05), 
-            size = 3 ) +   
-  geom_text(aes(english_unit, x, label = english_unit), 
-            fontface = "bold",
-            hjust = -0.18,
-            data = redguard_estimates[redguard_estimates$activist %in% rebel[rebel %in% c("清华大学八一一战斗小组", "北京轻工业学院东方红公社")],],
-            color = "#301c35", family = "STHeiti",
-            position = position_jitter(width = -3, height = -3),
-            size = 2 ) +    
-  geom_text(aes(english_unit, x, label = english_unit), 
-            fontface = "bold",
-            hjust = -0.18,
-            data = redguard_estimates[redguard_estimates$activist %in% rebel[!rebel %in% c("清华大学八一一战斗小组", "北京轻工业学院东方红公社")],],
-            color = "#301c35", family = "STHeiti",
-            position = position_jitter(width = -5.05, height = -3),
-            size = 3 ) +  
+  geom_text_repel(aes(x = english_unit, y = x, label = english_unit), 
+                  fontface = "bold",
+                  hjust = 2.5,
+                  data = redguard_estimates[redguard_estimates$activist %in% conservative,],
+                  color = "#40776f", 
+                  family = "STHeiti",
+                  position = position_jitter(width = 3, height = -5.05), 
+                  size = 2.5 ) +   
+  geom_text_repel(aes(english_unit, x, label = english_unit), 
+                  fontface = "bold",
+                  hjust = -0.25,
+                  data = redguard_estimates[redguard_estimates$activist %in% rebel,],
+                  color = "#301c35", 
+                  max.overlaps = getOption("ggrepel.max.overlaps", default = 6),
+                  family = "STHeiti",
+                  size = 2.5 ) +
   coord_flip() + 
   ylab("") + 
   xlab("") +
@@ -550,7 +571,11 @@ ideal_point <- ggplot(redguard_estimates, aes(x = english_unit, y = x, colour = 
         legend.margin = margin(6, 6, 6, 6)) +
   ylim(c(-1,1))
 
+# ggsave("images/ideal_point.png", width = 8.5, height = 7, units = "in", dpi = 200)
 ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7, 
+       units = "in", dpi = 200)
+
+ggsave("images/ideal_point.png", width = 8.5, height = 7, 
        units = "in", dpi = 200)
 
 
@@ -558,6 +583,7 @@ ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7,
 #            political incident 
 #===============================================================================
 colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
+
 incident_selects <- ggplot(individual_idea_point[individual_idea_point$incidents_index %in% c(1,2,3,4,5),], 
                            aes(x= x, y=fact_eng, color=fact_eng, group = fact_eng, fill = fact_eng)) +
   geom_violin(alpha= 0.6)  +
@@ -578,140 +604,188 @@ incident_selects <- ggplot(individual_idea_point[individual_idea_point$incidents
   xlab("Estimated Ideal Points for Student Participants from Major Incidents") +
   ylab(NULL) +
   theme(legend.position = "none")  +
-  xlim(-2,2) +
+  xlim(-0.3,0.3) +
   theme(strip.text.y.right = element_text(angle = 0))
 
 ggsave("replication-figures/incident_selects.png", width = 10, height = 6, 
+       units = "in", dpi = 200)
+
+ggsave("images/incident_selects.png", width = 10, height = 6, 
        units = "in", dpi = 200)
 
 
 # Figure 11. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
 #            model
 #===============================================================================
+# word_point <- get_wordfeatures(pooled_outcome)
+# top_keywords <- redgaurds_dfm %>%
+#   colSums() %>%
+#   as.data.frame() %>%
+#   arrange(desc(.)) %>%
+#   head(50) %>%
+#   rownames() 
+# 
+# 
+# top_keywords_list <- redgaurds_dfm %>%
+#   colSums() %>%
+#   as.data.frame() %>%
+#   arrange(desc(.)) 
+# 
+# 
+# top_keywords_phrases <- rownames_to_column(top_keywords_list)[nchar(rownames(top_keywords_list))>2,] %>%
+#   head(30) %>%
+#   select(rowname) %>%
+#   pull()
+# 
+# # word_point[word_point$feature %in% top_keywords, ]$feature
+# 
+# word_point[word_point$feature %in% top_keywords, "top_keywords"] <- c("Revolution",
+#                                                                       "Chairman Mao",
+#                                                                       "Class",
+#                                                                       "ism",
+#                                                                       "Battles",
+#                                                                       "Masses",
+#                                                                       "The Cultural Revolution",
+#                                                                       "Thoughts",
+#                                                                       "Lines",
+#                                                                       "Red Guards",
+#                                                                       "Comrades",
+#                                                                       "Work",
+#                                                                       "Elements",
+#                                                                       "Rebellion",
+#                                                                       "People",
+#                                                                       "Great",
+#                                                                       "Proletariat",
+#                                                                       "Counter-revolution",
+#                                                                       "Reaction",
+#                                                                       "Capital")
+# 
+# word_point$keyword_bi <-paste(word_point$feature, word_point$top_keywords, sep = "\n")
+# 
+# 
+# # word_point[word_point$feature %in% top_keywords_phrases, ]$feature
+# 
+# word_point[word_point$feature %in% top_keywords_phrases, "top_keywords_phrases"] <- c("Chairman Mao",
+#                                                                                      "The Cultural Revolution",
+#                                                                                      "The Red Guards",
+#                                                                                      "Proletariat",
+#                                                                                      "counterrevolutionary",
+#                                                                                      "the monsters and freaks",
+#                                                                                      "Vigorous",
+#                                                                                      "Together",
+#                                                                                      "Rightists",
+#                                                                                      "Is it right?",
+#                                                                                      "petite bourgeoisie" ,
+#                                                                                      "some people",
+#                                                                                      "Big-character poster",
+#                                                                                      "under conditions",
+#                                                                                      "in the world",
+#                                                                                      "mainly",
+#                                                                                      "increasing vigilance",
+#                                                                                      "mostly",
+#                                                                                      "headquarters",
+#                                                                                      "Mao Zedong",
+#                                                                                      "Royalists",
+#                                                                                      "Turtle Egg",
+#                                                                                      "Careerist",
+#                                                                                      "Can't",
+#                                                                                      "Call",
+#                                                                                      "Can't see",
+#                                                                                      "The State Council of PRC",
+#                                                                                      "struggle-criticism-transformation",
+#                                                                                      "Old man",
+#                                                                                      "Guest house")
+# 
+# 
+# word_point$phrases_bi <-paste(word_point$feature, word_point$top_keywords_phrases, sep = "\n")
+# 
+# 
+# y_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$psi) + 1 
+# y_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$psi) - 1
+# 
+# x_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$beta) + 1 
+# x_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$beta) - 1
+# 
+# 
+# theme_set(theme_bw(16))
+# estimated_x <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
+#   geom_text(colour = "grey70",family = "STHeiti", alpha = 0.6, size = 1.5) +
+#   geom_text(aes(beta, psi, label = keyword_bi, fontface = "bold"), 
+#             data = word_point[word_point$feature %in% top_keywords,],
+#             color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +
+#   geom_text(aes(beta, psi, label = phrases_bi, fontface = "bold"), 
+#             data = word_point[word_point$feature %in% top_keywords_phrases,],
+#             color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +  
+#   theme_bw() +
+#   facet_zoom(xlim = c(x_max, x_min), ylim = c(y_min,y_max)) +
+#   #annotate("text", x = 25, y = 60, label="zoom only") + 
+#   theme_cowplot(12) +
+#   theme(panel.grid.major = element_blank(),
+#         panel.grid.minor = element_blank(),
+#         plot.title = element_text(hjust = 0.5)) +
+#   theme(text = element_text(family="STHeiti")) +  
+#   xlab("Discrimination Parameter") +
+#   ylab("Frequency Parameter") +
+#   theme(axis.title.x = element_text(size = 12),
+#         axis.text.x = element_text(size = 12),
+#         axis.title.y = element_text(size = 12)) +
+#   theme(axis.title.y = element_text(size = 12),
+#         axis.text.y = element_text(size = 12),
+#         axis.title.x = element_text(size = 12))  
+# 
+# ggsave("images/estimated_x.png", width = 5, height = 3, 
+#        units = "in", dpi = 150)
+
+
+
+
+
+# Figure 11. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
+#            model (V2)
+#===============================================================================
 word_point <- get_wordfeatures(pooled_outcome)
-class(pooled_outcome)[1] == "poisIRT"
-top_keywords <- redgaurds_dfm %>%
-  colSums() %>%
-  as.data.frame() %>%
-  arrange(desc(.)) %>%
-  head(20) %>%
-  rownames() 
+less_effects <- word_point[word_point$beta <3 & word_point$beta >-3 & nchar(word_point$feature)>2 & word_point$alpha >8,]$feature
+upper_phrase <- word_point[word_point$beta >= 7 & nchar(word_point$feature)>3 ,]$feature
+lower_phrase <- word_point[word_point$beta <= -7 & nchar(word_point$feature)>=3,]$feature
 
+estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
+  geom_text(colour = "grey70",family = "STHeiti", alpha = 0.8, size = 0.5) 
 
-top_keywords_list <- redgaurds_dfm %>%
-  colSums() %>%
-  as.data.frame() %>%
-  arrange(desc(.)) 
-
-top_keywords_phrases <- rownames_to_column(top_keywords_list)[nchar(rownames(top_keywords_list))>2,] %>%
-  head(30) %>%
-  select(rowname) %>%
-  pull()
-
-
-
-
-# word_point[word_point$feature %in% top_keywords, ]$feature
-
-word_point[word_point$feature %in% top_keywords, "top_keywords"] <- c("Revolution",
-                                                                      "Chairman Mao",
-                                                                      "Class",
-                                                                      "ism",
-                                                                      "Battles",
-                                                                      "Masses",
-                                                                      "The Cultural Revolution",
-                                                                      "Thoughts",
-                                                                      "Lines",
-                                                                      "Red Guards",
-                                                                      "Comrades",
-                                                                      "Work",
-                                                                      "Elements",
-                                                                      "Rebellion",
-                                                                      "People",
-                                                                      "Great",
-                                                                      "Proletariat",
-                                                                      "Counter-revolution",
-                                                                      "Reaction",
-                                                                      "Capital")
-
-word_point$keyword_bi <-paste(word_point$feature, word_point$top_keywords, sep = "\n")
-
-
-# word_point[word_point$feature %in% top_keywords_phrases, ]$feature
-
-word_point[word_point$feature %in% top_keywords_phrases, "top_keywords_phrases"] <- c("Chairman Mao",
-                                                                                     "The Cultural Revolution",
-                                                                                     "The Red Guards",
-                                                                                     "Proletariat",
-                                                                                     "counterrevolutionary",
-                                                                                     "the monsters and freaks",
-                                                                                     "Vigorous",
-                                                                                     "Together",
-                                                                                     "Rightists",
-                                                                                     "Is it right?",
-                                                                                     "petite bourgeoisie" ,
-                                                                                     "some people",
-                                                                                     "Big-character poster",
-                                                                                     "under conditions",
-                                                                                     "in the world",
-                                                                                     "mainly",
-                                                                                     "increasing vigilance",
-                                                                                     "mostly",
-                                                                                     "headquarters",
-                                                                                     "Mao Zedong",
-                                                                                     "Royalists",
-                                                                                     "Turtle Egg",
-                                                                                     "Careerist",
-                                                                                     "Can't",
-                                                                                     "Call",
-                                                                                     "Can't see",
-                                                                                     "The State Council of PRC",
-                                                                                     "struggle-criticism-transformation",
-                                                                                     "Old man",
-                                                                                     "Guest house")
-
-
-word_point$phrases_bi <-paste(word_point$feature, word_point$top_keywords_phrases, sep = "\n")
-
-
-y_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$psi) + 1 
-y_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$psi) - 1
-
-x_max <- max(word_point[word_point$feature %in% top_keywords_phrases,]$beta) + 1 
-x_min <- min(word_point[word_point$feature %in% top_keywords_phrases,]$beta) - 1
-
-
-
-theme_set(theme_bw(16))
-estimated_x <-  ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
-  geom_text(colour = "grey70",family = "STHeiti", alpha = 0.6, size = 1.5) +
-  geom_text(aes(beta, psi, label = keyword_bi, fontface = "bold"), 
-            data = word_point[word_point$feature %in% top_keywords,],
-            color = "#CC8400", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +
-  geom_text(aes(beta, psi, label = phrases_bi, fontface = "bold"), 
-            data = word_point[word_point$feature %in% top_keywords_phrases,],
-            color = "#cc1e00", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5 , alpha = 0.8) +  
+estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
+  geom_text(data = word_point[!word_point$feature %in% upper_phrase & !word_point$beta %in% lower_phrase & !word_point$beta %in% less_effects,],
+            colour = "grey70",family = "STHeiti", alpha = 0.8, size = 0.5) +
+  geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
+            data = word_point[word_point$feature %in% less_effects,],
+            color = "red", family = "STHeiti", position=position_jitter(width = 0.2, height = 2), size = 1 , alpha = 0.8) +
+  geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
+            data = word_point[word_point$feature %in% upper_phrase,],
+            color = "blue", family = "STHeiti", position=position_jitter(width = 0.1, height = 1), size = 1 , alpha = 0.8) +
+  geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
+            data = word_point[word_point$feature %in% lower_phrase,],
+            color = "blue", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1 , alpha = 0.8) + 
+  xlim(-50,50)+
+  coord_flip() +
+  scale_y_reverse() +
   theme_bw() +
-  facet_zoom(xlim = c(x_max, x_min), ylim = c(y_min,y_max)) +
-  annotate("text", x = 25, y = 60, label="zoom only") + 
   theme_cowplot(12) +
   theme(panel.grid.major = element_blank(),
         panel.grid.minor = element_blank(),
         plot.title = element_text(hjust = 0.5)) +
   theme(text = element_text(family="STHeiti")) +  
-  xlab("Estimates Positions for Red Guard Participants") +
-  ylab("Each Word Pharase \n Frequency Parameter") +
-  theme(axis.title.x = element_text(size = 12),
-        axis.text.x = element_text(size = 12),
-        axis.title.y = element_text(size = 12)) +
-  theme(axis.title.y = element_text(size = 12),
-        axis.text.y = element_text(size = 12),
-        axis.title.x = element_text(size = 12))  
+  xlab("Discrimination Parameter") +
+  ylab("Frequency Parameter") +
+  theme(axis.title.x = element_text(size = 8),
+        axis.text.x = element_text(size = 8),
+        axis.title.y = element_text(size = 8)) +
+  theme(axis.title.y = element_text(size = 8),
+        axis.text.y = element_text(size = 8),
+        axis.title.x = element_text(size = 8))  
 
-ggsave("replication-figures/estimated_x.png", width = 5, height = 3, 
-       units = "in", dpi = 150)
+ggsave("replication-figures/estimated_x_1.png", width = 5, height = 3,
+       units = "in", dpi = 250)
 
-
+ggsave("images/estimated_x_1.png", width = 5, height = 3,
+       units = "in", dpi = 250)
 
 # Figure 12. Frequency statistics of parts of speech from the Red Guard 
 #            publications (Appendix 2).
@@ -729,6 +803,9 @@ pos_vis <- ggplot(data=stats, aes(x=key, y=freq_pct)) +
   scale_y_continuous(expand = c(0,0)) 
 
 ggsave("replication-figures/pos_vis.png", width = 10, height = 6, 
+       units = "in", dpi = 150)
+
+ggsave("images/pos_vis.png", width = 10, height = 6, 
        units = "in", dpi = 150)
 
 
@@ -769,6 +846,9 @@ relationshipone <- igraph::graph_from_data_frame(edges,
   theme_graph()
 
 ggsave("replication-figures/relationship-a.png", width = 10, height = 8, 
+       units = "in", dpi = 160)
+
+ggsave("images/relationship-a.png", width = 10, height = 8, 
        units = "in", dpi = 160)
 
 
@@ -848,6 +928,8 @@ keywords <- annotate_figure(
 ggsave("replication-figures/keywords.png", width = 27, height = 20, 
        units = "in", dpi = 200)
 
+ggsave("images/keywords.png", width = 27, height = 20, 
+       units = "in", dpi = 200)
 
 # Figure 15. The Estimated Positions of Each Major Historical Incident, 1966-1967
 #            (Appendix 6.)
@@ -859,7 +941,6 @@ incident_full <- ggplot(individual_idea_point,
   facet_grid(rows = vars(incidents)) +
   geom_jitter(shape=16,  size = 1,
               position=position_jitter(seed = 42) ) +
-  xlim(-1,1) +
   scale_color_manual(values = colors) +
   scale_fill_manual(values = colors) +
   #theme(legend.position = c(0.9, 0.9)) +
@@ -874,13 +955,16 @@ incident_full <- ggplot(individual_idea_point,
   xlab("Estimated Ideal Points for Student Participants") +
   ylab(NULL) +
   theme(legend.position = "none")  +
-  xlim(-2,2) +
+  xlim(-1,1) +
   theme(strip.text.y.right = element_text(angle = 0))
 
 ggsave("replication-figures/incident_full.png", width = 10, height = 6, 
        units = "in", 
        dpi = 200)
 
+ggsave("images/incident_full.png", width = 10, height = 6, 
+       units = "in", 
+       dpi = 200)
 
 #====================================END========================================
 

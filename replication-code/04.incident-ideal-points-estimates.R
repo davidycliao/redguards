@@ -1,6 +1,5 @@
 #!/usr/bin/Rscript
 
-
 #===============================================================================
 # File Names       : 04.incidents-ideal-estimates.R 
 # Date             : 31st Oct 2021
@@ -64,27 +63,12 @@ redgaurds_wfm_individual <- map(redgaurds_dfm_individual, dtm_wfm)
 
 # GENERATE STARTS & PRIORS
 #===============================================================================
-p <- list(
-  # x$mu numeric, prior mean for actor ideal points x_i.; 
-  # x$sigma2 numeric, prior variance for actor ideal points x_i.
-  psi = list(mu = 0,  sigma2 = 10000),         
-  # beta$mu numeric, prior mean for β_j
-  # beta$sigma2 numeric, prior variance for β_j.        
-  alpha = list(mu = 0, sigma2 = 10000),    
-  # alpha$mu numeric, prior mean for α_j
-  # alpha$sigma2 numeric, prior variance for α_j        
-  beta = list(mu = 0, sigma2 = 10000),
-  # psi$mu numeric, prior mean for ψ_k
-  # psi$sigma2 numeric, prior variance for ψ_k.
-  x = list(mu = 0, sigma2 = 10000)
-)   
-
-
-s_list <- list()
 set.seed(1234)
+s_list <- list()
 for (i in 1:length(redgaurds_wfm_individual)){
   s_list[[i]] <- create_start(redgaurds_wfm_individual[[i]])
 }
+p <- create_prior()
 
 # RUN GENERALIZED WORDFISH 
 #===============================================================================
@@ -123,6 +107,8 @@ for (i in 1:length(em_poisIRT)){
 
 
 
+
+
 incidents <- list("The First Marxist-Leninist \n  Wall Poster",
                   "Red August",
                   "Zhou Enlai's Declaration",
@@ -158,6 +144,7 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 
 
 
+
 # SAVE OUTPUTS
 #===============================================================================
 # save(individual_idea_point, file = "data/pooled_outcome.RData")
@@ -179,3 +166,18 @@ cat(" ====================\n",
     names(timer_task04[2]), " :",  timer_task04[[2]], "\n",
     names(timer_task04[3]), "  :", timer_task04[[3]], "\n",
     "====================\n")
+
+
+# 
+# while (isTRUE(exists("timer_task04")))
+# {
+#   for (i in 1:length(myVec)) {
+#     
+#     setTxtProgressBar(bar, i)
+#     
+#     Sys.sleep(0.1)  
+#     
+#   } 
+# }
+# 
+# rm(timer_task04)

@@ -2,7 +2,7 @@
 % Please edit documentation in R/functions.R
 \name{annotate_splits}
 \alias{annotate_splits}
-\title{split the text document to run the model parallelly}
+\title{split the text document to run the model in parallel}
 \usage{
 annotate_splits(x, file, individuals = TRUE)
 }
@@ -12,7 +12,7 @@ annotate_splits(x, file, individuals = TRUE)
 \item{file}{provide the directory path to udpipe model}
 }
 \description{
-split the text document to run the model parallelly
+split the text document to run the model in parallel
 }
 \examples{
 annotate_splits()

@@ -22,7 +22,7 @@ bootstrap_poisIRT <- function(emIRT.out,
       # austin-wordfish: theta document positions
       # emIRT-poisIRT:x An (NI x 1) matrix of point estimates for the actor ideal points x  
       # lout$means$x
-      idealpts <- emIRT.out$means$x
+      idealpts = emIRT.out$means$x
       # austin-wordfish: psi word fixed effects
       # beta A (J x 1) matrix of point estimates for the word discrimination parameter β.
       # lout$means$beta

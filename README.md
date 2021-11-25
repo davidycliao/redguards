@@ -78,7 +78,7 @@ For citing this work, you can refer to the present GitHub project. For example, 
 @misc{redgaurds,
       howpublished = {\url{https://github.com/davidycliao/redgaurds}},
       title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
-      author = {David Yen-Chieh Liao, Dechun Zhang, and Yi-Nung Tsai},
+      author = {David Yen-Chieh Liao, Yi-Nung Tsai, and Dechun Zhang},
       publisher = {GitHub},
       year = {2021}
 }

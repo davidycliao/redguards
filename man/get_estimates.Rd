@@ -4,10 +4,10 @@
 \alias{get_estimates}
 \title{retrieve estimates from poisIRT class}
 \usage{
-get_estimates(df)
+get_estimates(emIRT.out)
 }
 \arguments{
-\item{df}{the estimate object from poisIR}
+\item{emIRT.out}{the estimate object from poisIR}
 }
 \description{
 retrieve estimates from poisIRT class

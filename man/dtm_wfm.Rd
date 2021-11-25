@@ -4,10 +4,10 @@
 \alias{dtm_wfm}
 \title{Turning DTM to WFM}
 \usage{
-dtm_wfm(dtm_object)
+dtm_wfm(x)
 }
 \arguments{
-\item{dtm_object}{input requires dtm object from Quanteda}
+\item{x}{input requires dtm object from quanteda or tm pacakge}
 }
 \description{
 Turning DTM to WFM

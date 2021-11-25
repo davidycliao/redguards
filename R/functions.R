@@ -98,39 +98,45 @@ get_dictionary <- function(df) {
 
 #' @export dtm_wfm
 #' @rdname dtm_wfm
-#' @param dtm_object input requires dtm object from Quanteda
+#' @param x input requires dtm object from quanteda or tm pacakge
 #' @importFrom austin wfm 
 #' @importFrom quanteda convert
 #' @examples dtm_wfm(dtm)
 #' @title  Turning DTM to WFM
-dtm_wfm <- function(dtm_object){
-  # transpose & rename of row and colnames
-  dataframe = quanteda::convert(dtm_object, to = "data.frame")
-  transposed_df = transpose(dataframe)
-  transposed_df = transposed_df[-1, ]
-  # get row and colnames in order
-  colnames(transposed_df) = dataframe$doc_id
-  rownames(transposed_df) = colnames(dataframe[-1])
-  # transform WTM-formated dataframe from character to numeric form 
-  transposed_df[colnames(transposed_df)] = sapply(transposed_df[colnames(transposed_df)], as.numeric)
-  # transform into word-frequency-matrix
-  output = austin::wfm(transposed_df)
+dtm_wfm <- function(x){
+  if (class(x)[1] == "dtm") {
+    # transpose & rename of row and colnames
+    dataframe = quanteda::convert(x, to = "data.frame")
+    transposed_df = transpose(dataframe)
+    transposed_df = transposed_df[-1, ]
+    # get row and colnames in order
+    colnames(transposed_df) = dataframe$doc_id
+    rownames(transposed_df) = colnames(dataframe[-1])
+    # transform WTM-formated dataframe from character to numeric form 
+    transposed_df[colnames(transposed_df)] = sapply(transposed_df[colnames(transposed_df)], as.numeric)
+    # transform into word-frequency-matrix
+    output = austin::wfm(transposed_df)}
+    else{stop("This is not dtm object, please make sure you put document term matrix in dtm_wfm()" )}
+  class(output) = "wfm"
   return(output)
 }
 
 
 #' @export create_start
 #' @rdname create_start
-#' @param wfm_matrix wfm object
+#' @param x wfm object
 #' @examples create_start(wfm)
 #' @title  create start point for poisIRT() 
-create_start <- function(wfm_matrix){
-  J = nrow(wfm_matrix)
-  K = ncol(wfm_matrix)
-  s = list(alpha = matrix(runif(K, -1, 1)),
-           x =  matrix(runif(K, -1, 1)),
-           psi = matrix(runif(J, 0, 1)),
-           beta = matrix(runif(J, 0, 1)))
+create_start <- function(x, set.seed = 1234){
+  if (class(x)[1] == "dtm"){
+    set.seed(set.seed)
+    J = nrow(x)
+    K = ncol(x)
+    s = list(alpha = matrix(runif(K, -1, 1)),
+             x =  matrix(runif(K, -1, 1)),
+             psi = matrix(runif(J, 0, 1)),
+             beta = matrix(runif(J, 0, 1)))}
+  else{stop("This is not wfm object, please make sure you put document term matrix in create_start()" )}
   return(s)
   }
 
@@ -174,9 +180,9 @@ create_prior <- function(mu = 0, sigma2 = 100,...){
 #' @title  retrieve estimates from poisIRT class
 get_estimates <- function(df){
   if (class(df)[1] =="poisIRT"){
-    df <- data.frame(x = df$means$x,
-                     sd = sqrt(df$vars$x),
-                     id_doc = as.numeric(rownames(df$means$psi)))  %>%
+    df = data.frame(x = df$means$x,
+                    sd = sqrt(df$vars$x),
+                    id_doc = as.numeric(rownames(df$means$psi)))  %>%
     mutate(lower = x - 1.96*sd, upper = x + 1.96*sd)}
   else{
     stop("David's reminder: This is not poisIRT object, please check it again!!!" ) 

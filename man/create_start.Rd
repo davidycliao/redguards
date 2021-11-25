@@ -4,10 +4,10 @@
 \alias{create_start}
 \title{create start point for poisIRT()}
 \usage{
-create_start(wfm_matrix)
+create_start(x, set.seed = 1234)
 }
 \arguments{
-\item{wfm_matrix}{wfm object}
+\item{x}{wfm object}
 }
 \description{
 create start point for poisIRT()

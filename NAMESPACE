@@ -2,6 +2,7 @@
 
 export(.onAttach)
 export(annotate_splits)
+export(bootstrap_poisIRT)
 export(create_prior)
 export(create_start)
 export(dtm_wfm)

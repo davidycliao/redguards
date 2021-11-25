@@ -24,7 +24,7 @@
 #' @examples annotate_splits()
 #' @importFrom udpipe udpipe_annotate udpipe_load_model
 #' @importFrom data.table as.data.table
-#' @title  split the text document to run the model parallelly 
+#' @title  split the text document to run the model in parallel 
 annotate_splits <- function(x, file, individuals = TRUE) {
   ud_model <- udpipe_load_model(file)
   if (isTRUE(individuals)) {
@@ -104,7 +104,7 @@ get_dictionary <- function(df) {
 #' @examples dtm_wfm(dtm)
 #' @title  Turning DTM to WFM
 dtm_wfm <- function(x){
-  if (class(x)[1] == "dtm") {
+  if (class(x)[1] == "dfm") {
     # transpose & rename of row and colnames
     dataframe = quanteda::convert(x, to = "data.frame")
     transposed_df = transpose(dataframe)
@@ -116,8 +116,8 @@ dtm_wfm <- function(x){
     transposed_df[colnames(transposed_df)] = sapply(transposed_df[colnames(transposed_df)], as.numeric)
     # transform into word-frequency-matrix
     output = austin::wfm(transposed_df)}
-    else{stop("This is not dtm object, please make sure you put document term matrix in dtm_wfm()" )}
-  class(output) = "wfm"
+  else{stop("This is not dtm object made by quanteda, make sure you put document term matrix in dtm_wfm()" )}
+  class(output) = c("wfm", "redguards")
   return(output)
 }
 
@@ -128,14 +128,15 @@ dtm_wfm <- function(x){
 #' @examples create_start(wfm)
 #' @title  create start point for poisIRT() 
 create_start <- function(x, set.seed = 1234){
-  if (class(x)[1] == "dtm"){
+  if (class(x)[1] == "wfm"){
     set.seed(set.seed)
     J = nrow(x)
     K = ncol(x)
     s = list(alpha = matrix(runif(K, -1, 1)),
              x =  matrix(runif(K, -1, 1)),
              psi = matrix(runif(J, 0, 1)),
-             beta = matrix(runif(J, 0, 1)))}
+             beta = matrix(runif(J, 0, 1)))
+    cat("seed is set to", set.seed )}
   else{stop("This is not wfm object, please make sure you put document term matrix in create_start()" )}
   return(s)
   }
@@ -155,7 +156,7 @@ create_start <- function(x, set.seed = 1234){
 #' @export create_prior
 #' @rdname create_prior
 #' @param  mu prior mean for x_i, β_j, ψ_k and ψ_k. 
-#' @param sigma2 prior variance for x_i, β_j, ψ_k and ψ_k.
+#' @param sigma2 prior variance for x_i, β_j, ψ_k and ψ_k. 
 #' @examples create_prior(mu = 0, sigma2 = 100)
 #' @title  create prior variance and meean  for poisIRT
 create_prior <- function(mu = 0, sigma2 = 100,...){
@@ -175,20 +176,21 @@ create_prior <- function(mu = 0, sigma2 = 100,...){
 
 #' @export get_estimates
 #' @rdname get_estimates
-#' @param df the estimate object from poisIR 
+#' @param emIRT.out the estimate object from poisIR 
 #' @examples get_estimates(poisIRT_object)
 #' @title  retrieve estimates from poisIRT class
-get_estimates <- function(df){
-  if (class(df)[1] =="poisIRT"){
-    df = data.frame(x = df$means$x,
-                    sd = sqrt(df$vars$x),
-                    id_doc = as.numeric(rownames(df$means$psi)))  %>%
-    mutate(lower = x - 1.96*sd, upper = x + 1.96*sd)}
+get_estimates <- function(emIRT.out){
+  if (class(emIRT.out)[1] =="poisIRT"){
+    df = data.frame(x = emIRT.out$means$x,
+                    sd = sqrt(emIRT.out$vars$x),
+                    id_doc = as.numeric(rownames(emIRT.out$means$psi)))  %>%
+    mutate(lower = x - 1.96*sd, upper = x + 1.96*sd)
+    cat("Estimated object is", class(emIRT.out)[1], "\n\t")
+    }
   else{
-    stop("David's reminder: This is not poisIRT object, please check it again!!!" ) 
+    stop("This is not poisIRT, please check it again!!!" ) 
     }
   return(df)
-  cat("Estimation from", class(df)[2])
 }
 
 
@@ -204,7 +206,7 @@ get_wordfeatures <- function(df,...){
                       beta = df$means$beta,
                       alpha = df$means$alpha) }
   else{
-    stop("David's reminder: This is not poisIRT object, please check it again!!!" ) 
+    stop("This is not poisIRT object, please check it again!!!" ) 
   }
   return(df)
   cat("Estimation from", class(df)[2], "via emIRT.")

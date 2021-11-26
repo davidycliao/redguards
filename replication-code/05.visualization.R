@@ -310,18 +310,18 @@ for (i in 1:4) {
   dev.off()
 }
 
-plot_names <- c("first_incident_p.png", "third_incident_p.png", "fourth_incident_p.png", "fifth_incident_p.png")
-for (i in 1:4) {
-  file_name <- paste("images/", plot_names[i] , ".png", sep="")
-  print(incidents_cooc[[i]])
-  ggsave(file_name, 
-         width = 30, 
-         height = 28, 
-         units = "in",
-         dpi = 150)
-  
-  dev.off()
-}
+# plot_names <- c("first_incident_p.png", "third_incident_p.png", "fourth_incident_p.png", "fifth_incident_p.png")
+# for (i in 1:4) {
+#   file_name <- paste("images/", plot_names[i] , ".png", sep="")
+#   print(incidents_cooc[[i]])
+#   ggsave(file_name, 
+#          width = 30, 
+#          height = 28, 
+#          units = "in",
+#          dpi = 150)
+#   
+#   dev.off()
+# }
 
 
 # Figure 7. Four examples of the top 10 keyword phrases identified by TextRank 
@@ -433,17 +433,17 @@ for (i in 1:4) {
   dev.off()
 }
 
-plot_names <- c("incident_1st", "incident_3rd", "incident_4th", "incident_5th")
-for (i in 1:4) {
-  file_name <- paste("images/", plot_names[i] , ".png", sep="")
-  print(key_major_incidents[[i]])
-  ggsave(file_name, 
-         width = 16,
-         height = 14, 
-         units = "in",
-         dpi = 150)
-  dev.off()
-}
+# plot_names <- c("incident_1st", "incident_3rd", "incident_4th", "incident_5th")
+# for (i in 1:4) {
+#   file_name <- paste("images/", plot_names[i] , ".png", sep="")
+#   print(key_major_incidents[[i]])
+#   ggsave(file_name, 
+#          width = 16,
+#          height = 14, 
+#          units = "in",
+#          dpi = 150)
+#   dev.off()
+# }
 
 # Figure 8 Smoothed density distributions of estimated positions for the Red 
 #          Guard participants
@@ -478,8 +478,8 @@ density <- ggplot(redguard_estimates,
 ggsave("replication-figures/density.png", width = 8, height = 4, 
        units = "in", dpi = 150)
 
-ggsave("images/density.png", width = 8, height = 4, 
-       units = "in", dpi = 150)
+# ggsave("images/density.png", width = 8, height = 4, 
+#        units = "in", dpi = 150)
 
 
 
@@ -575,8 +575,8 @@ ideal_point <- ggplot(redguard_estimates, aes(x = english_unit, y = x, colour = 
 ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7, 
        units = "in", dpi = 200)
 
-ggsave("images/ideal_point.png", width = 8.5, height = 7, 
-       units = "in", dpi = 200)
+# ggsave("images/ideal_point.png", width = 8.5, height = 7, 
+#        units = "in", dpi = 200)
 
 
 # Figure 10. The estimated positions of the Red Guard participants by four major
@@ -610,8 +610,8 @@ incident_selects <- ggplot(individual_idea_point[individual_idea_point$incidents
 ggsave("replication-figures/incident_selects.png", width = 10, height = 6, 
        units = "in", dpi = 200)
 
-ggsave("images/incident_selects.png", width = 10, height = 6, 
-       units = "in", dpi = 200)
+# ggsave("images/incident_selects.png", width = 10, height = 6, 
+#        units = "in", dpi = 200)
 
 
 # Figure 11. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
@@ -784,8 +784,8 @@ estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feat
 ggsave("replication-figures/estimated_x_1.png", width = 5, height = 3,
        units = "in", dpi = 250)
 
-ggsave("images/estimated_x_1.png", width = 5, height = 3,
-       units = "in", dpi = 250)
+# ggsave("images/estimated_x_1.png", width = 5, height = 3,
+#        units = "in", dpi = 250)
 
 # Figure 12. Frequency statistics of parts of speech from the Red Guard 
 #            publications (Appendix 2).
@@ -805,8 +805,8 @@ pos_vis <- ggplot(data=stats, aes(x=key, y=freq_pct)) +
 ggsave("replication-figures/pos_vis.png", width = 10, height = 6, 
        units = "in", dpi = 150)
 
-ggsave("images/pos_vis.png", width = 10, height = 6, 
-       units = "in", dpi = 150)
+# ggsave("images/pos_vis.png", width = 10, height = 6, 
+#        units = "in", dpi = 150)
 
 
 # Figure  13. An  example  of  complete  grammar  annotation  on  Universal 
@@ -848,8 +848,8 @@ relationshipone <- igraph::graph_from_data_frame(edges,
 ggsave("replication-figures/relationship-a.png", width = 10, height = 8, 
        units = "in", dpi = 160)
 
-ggsave("images/relationship-a.png", width = 10, height = 8, 
-       units = "in", dpi = 160)
+# ggsave("images/relationship-a.png", width = 10, height = 8, 
+#        units = "in", dpi = 160)
 
 
 # Figure 14. Most frequent key phrases in top 10 identified by TextRank from 
@@ -955,16 +955,16 @@ incident_full <- ggplot(individual_idea_point,
   xlab("Estimated Ideal Points for Student Participants") +
   ylab(NULL) +
   theme(legend.position = "none")  +
-  xlim(-1,1) +
+  xlim(-1.5,1.5) +
   theme(strip.text.y.right = element_text(angle = 0))
 
-ggsave("replication-figures/incident_full.png", width = 10, height = 6, 
+ggsave("replication-figures/incident_full.png", width = 12, height = 8, 
        units = "in", 
        dpi = 200)
 
-ggsave("images/incident_full.png", width = 10, height = 6, 
-       units = "in", 
-       dpi = 200)
+# ggsave("images/incident_full.png", width = 10, height = 6, 
+#        units = "in", 
+#        dpi = 200)
 
 #====================================END========================================
 

@@ -59,12 +59,12 @@ parallel::stopCluster(parallel::makeCluster(detectCores()-1))
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
 redgaurds_wfm_individual <- map(redgaurds_dfm_individual, dtm_wfm)
-
+redgaurds_wfm_individual[[10]]
 
 # GENERATE STARTS & PRIORS
 #===============================================================================
-set.seed(1234)
-s_list <- list()
+# set.seed(1234)
+s_list <- vector("list")
 for (i in 1:length(redgaurds_wfm_individual)){
   s_list[[i]] <- create_start(redgaurds_wfm_individual[[i]])
 }

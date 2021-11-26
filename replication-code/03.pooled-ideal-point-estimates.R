@@ -64,7 +64,19 @@ p <- create_prior()
 
 # RUN GENERALIZED WORDFISH & CREATE A TIDY DATAFRAME
 #===============================================================================
-control <- list(threads = parallel::detectCores()-1, verbose = TRUE, 
+# poisIRT: approximate Bayesian inference for textual data
+# 
+# Iteration: 50
+# Iteration: 100
+# Iteration: 150
+# Iteration: 200
+# Iteration: 250
+# Iteration: 300
+# Iteration: 350
+# Iteration: 400
+# Done in 440 iterations, using 0 threads.
+
+control <- list(threads = parallel::detectCores()-1, verbose = FALSE, 
                 thresh = 1e-6, maxit = 5000)
 pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm, 
                                  i = 0:(ncol(redgaurds_wfm)-1), 

@@ -9,10 +9,7 @@
 #' @description bootstrap_poisIRT take an poisIRT() object (from emIRT package) and implements a parametric bootstrap of the standard errors for the ideal points. 
 #' It assumes you have already run the Poisson IRT estimation via EM , and takes the output from that estimate, 
 #' along with the original dataset, word frequency matrix. This function will conduct a bootstrap by running the estimates from sub-sampled observations based on the a poisson distribution.
-bootstrap_poisIRT <- function(emIRT.out, 
-                              .data, 
-                              .starts,
-                              .priors,
+bootstrap_poisIRT <- function(emIRT.out, .data, .starts, .priors,
                               .control = {list(threads = 1, verbose = TRUE, thresh = 1e-6, maxit = 5000)},
                               set.seed = 1234,
                               Ntrials = 5){
@@ -27,7 +24,7 @@ bootstrap_poisIRT <- function(emIRT.out,
       # beta A (J x 1) matrix of point estimates for the word discrimination parameter β.
       # lout$means$beta
       beta.poisIRT = emIRT.out$means$beta    
-      lambda = exp(outer(as.vector(emIRT.out$vars$beta),idealpts))    
+      lambda = exp(outer(as.vector(emIRT.out$vars$beta), idealpts))    
       poisIRT.trials = matrix(NA, nrow = length(idealpts), ncol = Ntrials)
       for (trial in 1:Ntrials) {
         # task is to draw random integers from the Poisson distribution with given λ
@@ -53,7 +50,7 @@ bootstrap_poisIRT <- function(emIRT.out,
       }
     }
       emIRT.out$bse$xtrial = poisIRT.trials
-        emIRT.out$bse$x = apply(poisIRT.trials, 1, sd)
+      emIRT.out$bse$x = apply(poisIRT.trials, 1, sd)
     }else
           {stop("This is not poisIRT() object, please check it")}
     }else {

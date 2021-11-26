@@ -55,6 +55,7 @@ parallel::stopCluster(parallel::makeCluster(detectCores()-1))
 #===============================================================================
 redgaurds_wfm <- dtm_wfm(redgaurds_dfm)
 
+
 # GENERATE START & PRIOR
 #===============================================================================
 set.seed(1234)
@@ -74,8 +75,6 @@ pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm,
 
 redguard_estimates <- get_estimates(pooled_outcome) %>%
   left_join(incident[,c("id_doc", "activist", "fact_eng")], by = "id_doc")  
-
-
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
 rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
@@ -90,7 +89,6 @@ rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object",
 # save(redguard_estimates, file="data/redguard_estimates.RData")
 
 #====================================END========================================
-
 
 })
 

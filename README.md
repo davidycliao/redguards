@@ -29,7 +29,7 @@ Replicating the comparable estimates for this paper is easy. Simply follow the d
 
 
 <p align="center">
-  <img width="700" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/incident_full.png" >
+  <img width="700" height="480" src="https://github.com/davidycliao/redguards/blob/master/images/incident_full.png" >
 </p>
 
 

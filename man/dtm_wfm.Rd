@@ -13,5 +13,5 @@ dtm_wfm(x)
 Turning DTM to WFM
 }
 \examples{
-dtm_wfm(dtm)
+dtm_wfm(data)
 }

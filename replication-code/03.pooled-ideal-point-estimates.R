@@ -24,10 +24,15 @@ timer_task03 <- system.time({
 
 # REQUIRED DATASET 
 #===============================================================================
-load("data/dfm_list.RData")
-load("data/incident_list.RData")
-load("data/dict.Rdata")
+# load("data/dfm_list.RData")
+# load("data/incident_list.RData")
+# load("data/dict.Rdata")
 
+data(dfm_list)  
+data(incident_list)  
+data(dict)  
+
+  
 # BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
 #===============================================================================
 # Tokenize the document based on individual participant

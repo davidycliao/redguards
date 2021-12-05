@@ -25,9 +25,11 @@ timer_task02 <- system.time({
 
 # REQUIRED DATASET 
 #===============================================================================
-load("data/incident.RData")
-load("data/conll.RData")
-
+# load("data/incident.RData")
+# load("data/conll.RData")
+data(incident)
+data(conll)
+  
 # EXTRACTIGN KEYWORD FEATURES
 #===============================================================================
 

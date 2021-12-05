@@ -81,7 +81,7 @@ get_dictionary <- function(df) {
 #' @param x input requires dtm object from quanteda or tm pacakge
 #' @importFrom austin wfm 
 #' @importFrom quanteda convert
-#' @examples dtm_wfm(dtm)
+#' @examples dtm_wfm(data)
 #' @importFrom data.table transpose
 #' @title  Turning DTM to WFM
 dtm_wfm <- function(x){
@@ -108,7 +108,7 @@ dtm_wfm <- function(x){
 #' @param x wfm object
 #' @param set.seed default is 1234 
 #' @param verbose default is FALSE
-#' @examples create_start(wfm)
+#' @examples create_start(data)
 #' @title  create start point for poisIRT() 
 #' @importFrom stats runif
 
@@ -259,6 +259,14 @@ to_integer <- function(x, n = 5) {
 #' @keywords CoNLL 
 #' @name conll
 #' @usage data(conll)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
+#' @docType data
+#' @keywords incident  
+#' @name incident
+#' @usage data(incident)
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
 

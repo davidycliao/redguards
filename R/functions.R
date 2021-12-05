@@ -17,29 +17,6 @@
 }
 
 
-#' @export annotate_splits
-#' @rdname annotate_splits
-#' @param x  text variable
-#' @param file provide the directory path to udpipe model
-#' @examples annotate_splits()
-#' @importFrom udpipe udpipe_annotate udpipe_load_model
-#' @importFrom data.table as.data.table
-#' @importFrom future.apply future_lapply
-#' @title  split the text document to run the model in parallel 
-annotate_splits <- function(x, file = "chinese-gsdsimp-ud-2.5-191206.udpipe" , individuals = TRUE) {
-  ud_model <- udpipe_load_model(file)
-  if (isTRUE(individuals)) {
-    x = as.data.table(udpipe_annotate(ud_model,
-                                      x = x$content,
-                                      doc_id = x$id_doc))}
-  else if (isFALSE(individuals)) {
-    x = as.data.table(udpipe_annotate(ud_model, x = x$content,
-                                      doc_id = x$incident_index))}
-  else{ stop("Tokenization breaks due to wrong replication data")  }
-  return(x)
-} 
-
-
 #' @export pos_tagging
 #' @rdname pos_tagging
 #' @param df text document object

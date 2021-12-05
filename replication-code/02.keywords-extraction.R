@@ -94,28 +94,24 @@ parallel::stopCluster(parallel::makeCluster(parallel::detectCores()-1))
 
 # SAVE OUTPUTS
 #===============================================================================
-save(kyw_object, file="data/kyw_object.RData")
-save(keyw_list, file="data/keyw_list.RData")
-save(keyword, file="data/keyword.RData")
-save(dict, file="data/dict.RData")
+# save(kyw_object, file="data/kyw_object.RData")
+# save(keyw_list, file="data/keyw_list.RData")
+# save(keyword, file="data/keyword.RData")
+# save(dict, file="data/dict.RData")
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
 rm(list = setdiff(ls(), c("kyw_object","conll", "incident", "incident_list",
                           "dict", "keyword", "keyw_list" )))
 
+})
 
 #====================================END========================================
 
 
-})
-
-
 cat(" ============================================================================================================\n",
-    "=",
     "Replication Task 02 is done!", "|",  
     names(timer_task02[1]), ":", timer_task02[[1]],  "|",
     names(timer_task02[2]), ":", timer_task02[[2]],  "|",
     names(timer_task02[3]), ":", timer_task02[[3]],  "|",
-    "Core used :",parallel::detectCores(), " =", "\n", 
-    "============================================================================================================")
+    "Core used :",parallel::detectCores())

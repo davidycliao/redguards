@@ -65,13 +65,15 @@ redgaurds_wfm_individual[[10]]
 #===============================================================================
 # set.seed(1234)
 s_list <- vector("list")
+
 for (i in 1:length(redgaurds_wfm_individual)){
-  s_list[[i]] <- create_start(redgaurds_wfm_individual[[i]])
+  s_list[[i]] <- create_start(redgaurds_wfm_individual[[i]], verbose = FALSE)
 }
 p <- create_prior()
 
 # RUN GENERALIZED WORDFISH 
 #===============================================================================
+capture.output({
 em_poisIRT <- list()
 control <- {list(threads = parallel::detectCores()-1, verbose = FALSE, thresh = 1e-6, maxit = 20000)}
 for (i in 1:length(redgaurds_wfm_individual)) {
@@ -83,6 +85,7 @@ for (i in 1:length(redgaurds_wfm_individual)) {
                              .control = control)
 }
 
+}, file='misc/poisIRT-log-incidents')
 
 
 # CREATE A TIDY DATAFRAME FOR VISUALIZATION
@@ -107,8 +110,6 @@ for (i in 1:length(em_poisIRT)){
 
 
 
-
-
 incidents <- list("The First Marxist-Leninist \n  Wall Poster",
                   "Red August",
                   "Zhou Enlai's Declaration",
@@ -129,7 +130,7 @@ for (i in 1:length(poisIRT_dataframe)){
 
 individual_idea_point <- do.call(rbind.data.frame, poisIRT_dataframe)
 
-individual_idea_point$incidents <- factor(rbind_idealpoint$incidents, 
+individual_idea_point$incidents <- factor(individual_idea_point$incidents, 
                                           levels=c("The First Marxist-Leninist \n  Wall Poster",
                                                     "Red August",
                                                     "Zhou Enlai's Declaration",
@@ -159,13 +160,11 @@ individual_idea_point$incidents <- factor(rbind_idealpoint$incidents,
 
 
 cat(" ============================================================================================================\n",
-    "=",
-    "Replication Task 04 is done!", "|",  
+    "Replication Task 04 is done.", "|",  
     names(timer_task04[1]), ":", timer_task04[[1]],  "|",
     names(timer_task04[2]), ":", timer_task04[[2]],  "|",
     names(timer_task04[3]), ":", timer_task04[[3]],  "|",
-    "Core used :",parallel::detectCores(), "              =", "\n", 
-    "============================================================================================================")
+    "Core used :",parallel::detectCores() )
 
 # 
 # while (isTRUE(exists("timer_task04")))

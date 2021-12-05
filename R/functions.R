@@ -108,14 +108,14 @@ dtm_wfm <- function(x){
 #' @param x wfm object
 #' @param set.seed default is 1234 
 #' @param verbose default is FALSE
-#' @examples create_start(data)
+#' @examples create_start(redgaurds_wfm)
 #' @title  create start point for poisIRT() 
 #' @importFrom stats runif
 
 create_start <- function(x, set.seed = 1234, verbose = FALSE){
   set.seed(set.seed)
   if(isTRUE(verbose)) {
-    cat("seed is set to", set.seed )}
+    cat("seed is set to", set.seed, "\n")}
   if (class(x)[1] == "wfm"){
     set.seed(set.seed)
     J = nrow(x)
@@ -293,5 +293,13 @@ NULL
 #' @usage data(dict)
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
+
+#' @docType data
+#' @keywords redgaurds_dfm  
+#' @name redgaurds_dfm
+#' @usage data(redgaurds_dfm)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
 
 

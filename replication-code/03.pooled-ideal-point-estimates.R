@@ -81,21 +81,24 @@ p <- create_prior()
 # Iteration: 400
 # Done in 440 iterations, using 0 threads.
 
+capture.output({
 control <- list(threads = parallel::detectCores()-1, verbose = FALSE, 
                 thresh = 1e-6, maxit = 5000)
+
 pooled_outcome <- emIRT::poisIRT(.rc = redgaurds_wfm, 
                                  i = 0:(ncol(redgaurds_wfm)-1), 
                                  NI = ncol(redgaurds_wfm), 
                                  .starts = s,
                                  .priors = p,
                                  .control = control)
+}, file='misc/poisIRT-log-full')
 
 redguard_estimates <- get_estimates(pooled_outcome) %>%
   left_join(incident[,c("id_doc", "activist", "fact_eng")], by = "id_doc")  
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES
 #===============================================================================
-rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
-                        "redguard_estimates", "pooled_outcome", "conll")))
+# rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object", 
+#                         "redguard_estimates", "pooled_outcome", "conll")))
 
 
 # SAVE OUTPUTS
@@ -112,10 +115,8 @@ rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object",
 
 
 cat(" ============================================================================================================\n",
-    "=",
-    "Replication Task 03 is done!", "|",  
+    "Replication Task 03 is done.", "|",  
     names(timer_task03[1]), ":", timer_task03[[1]],  "|",
     names(timer_task03[2]), ":", timer_task03[[2]],  "|",
     names(timer_task03[3]), ":", timer_task03[[3]],  "|",
-    "Core used :",parallel::detectCores(), "              =", "\n", 
-    "============================================================================================================")
+    "Core used :",parallel::detectCores(), "\n")

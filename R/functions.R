@@ -24,8 +24,9 @@
 #' @examples annotate_splits()
 #' @importFrom udpipe udpipe_annotate udpipe_load_model
 #' @importFrom data.table as.data.table
+#' @importFrom future.apply future_lapply
 #' @title  split the text document to run the model in parallel 
-annotate_splits <- function(x, file, individuals = TRUE) {
+annotate_splits <- function(x, file = "chinese-gsdsimp-ud-2.5-191206.udpipe" , individuals = TRUE) {
   ud_model <- udpipe_load_model(file)
   if (isTRUE(individuals)) {
     x = as.data.table(udpipe_annotate(ud_model,
@@ -44,6 +45,7 @@ annotate_splits <- function(x, file, individuals = TRUE) {
 #' @param df text document object
 #' @importFrom doFuture registerDoFuture
 #' @importFrom data.table rbindlist 
+#' @importFrom future.apply future_lapply  
 #' @examples pos_tagging(incindent)
 #' @title  Part-of-speech at individual level or incident level
 #' @details This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) which can be downloaded at Pre-trained models: chinese-gsdsimp-ud-2.5-191206.udpipe. 
@@ -87,11 +89,12 @@ pos_tagging <- function(df, individuals = TRUE) {
 #' @rdname get_dictionary
 #' @param folder a data frame or matrix
 #' @examples get_dictionary(mat)
+#' @importFrom quanteda dictionary
 #' @title  Generate dictionary object via a matrix or data frame
 get_dictionary <- function(df) {
   dic = as.data.frame(t(colnames(df)))
   colnames(dic) = colnames(df)
-  dic  = dictionary(as.list(dic))
+  dic  = quanteda::dictionary(as.list(dic))
   return(dic)
   }
 
@@ -102,10 +105,11 @@ get_dictionary <- function(df) {
 #' @importFrom austin wfm 
 #' @importFrom quanteda convert
 #' @examples dtm_wfm(dtm)
+#' @importFrom data.table transpose
 #' @title  Turning DTM to WFM
 dtm_wfm <- function(x){
   if (class(x)[1] == "dfm") {
-    # transpose & rename of row and colnames
+    # transpose & rename of row and columns
     dataframe = quanteda::convert(x, to = "data.frame")
     transposed_df = transpose(dataframe)
     transposed_df = transposed_df[-1, ]
@@ -125,19 +129,25 @@ dtm_wfm <- function(x){
 #' @export create_start
 #' @rdname create_start
 #' @param x wfm object
+#' @param set.seed default is 1234 
+#' @param verbose default is FALSE
 #' @examples create_start(wfm)
 #' @title  create start point for poisIRT() 
-create_start <- function(x, set.seed = 1234){
+#' @importFrom stats runif
+
+create_start <- function(x, set.seed = 1234, verbose = FALSE){
+  set.seed(set.seed)
+  if(isTRUE(verbose)) {
+    cat("seed is set to", set.seed )}
   if (class(x)[1] == "wfm"){
     set.seed(set.seed)
     J = nrow(x)
     K = ncol(x)
-    s = list(alpha = matrix(runif(K, -1, 1)),
-             x =  matrix(runif(K, -1, 1)),
-             psi = matrix(runif(J, 0, 1)),
-             beta = matrix(runif(J, 0, 1)))
-    cat("seed is set to", set.seed )}
-  else{stop("This is not wfm object, please make sure you put document term matrix in create_start()" )}
+    s = list(alpha = matrix(stats::runif(K, -1, 1)),
+             x =  matrix(stats::runif(K, -1, 1)),
+             psi = matrix(stats::runif(J, 0, 1)),
+             beta = matrix(stats::runif(J, 0, 1))) }
+  else { stop("This is not wfm object, please make sure you put document term matrix in create_start()" ) }
   return(s)
   }
 
@@ -217,6 +227,8 @@ get_wordfeatures <- function(df,...){
 #' @rdname get_keywords
 #' @param df the estimate object should be textrank_keywords class from textrank  
 #' @examples get_keywords(textrank_keywords,n = 10, head = TRUE )
+#' @importFrom utils head
+#' @importFrom utils tail
 #' @title  retrieve the most/less frequent keywords from textrank_keywords class
 get_keywords <- function(df, n = 10, head = TRUE, ...){
   if (class(df)[1] == "textrank_keywords"){
@@ -235,8 +247,6 @@ get_keywords <- function(df, n = 10, head = TRUE, ...){
 }
 
 
-
-
 #' @export to_integer
 #' @rdname to_integer
 #' @examples scale_y_continuous(breaks = function(x) to_integer(x, n = 10)) 
@@ -246,4 +256,32 @@ to_integer <- function(x, n = 5) {
   l[abs(l %% 1) < .Machine$double.eps ^ 0.5] 
 }
 
+
+#' Pre-processed textual files parsed on CoNLL-U format 
+#'
+#' A dataset containing the prices and other attributes of almost 54,000
+#'  diamonds. The variables are as follows:
+#'
+# \itemize{
+#   \item doc_id. 
+#   \item paragraph_id. 
+#   \item sentence_id.  
+#   \item token_id.
+#   \item token.
+#   \item lemma.
+#   \item upos.
+#   \item xpos.
+#   \item feats. 
+#   \item head_token_id
+#   \item dep_rel
+#   \item misc 
+#   \item keyword_doc_id
+# }
+#'
+#' @docType data
+#' @keywords CoNLL 
+#' @name conll
+#' @usage data(conll)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
 

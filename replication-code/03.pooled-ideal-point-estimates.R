@@ -105,13 +105,12 @@ rm(list=setdiff(ls(), c("redgaurds_dfm", "redgaurds_wfm", "kyw_object",
 })
 
 
-cat(" ====================\n",
+
+cat(" ============================================================================================================\n",
     "=",
-    "Task 03 Is Done!", "=", "\n",
-    "====================",
-    "\n Core used :",  parallel::detectCores(), 
-    "\n Time spent \n", 
-    names(timer_task03[1]), ":",   timer_task03[[1]], "\n",
-    names(timer_task03[2]), " :",  timer_task03[[2]], "\n",
-    names(timer_task03[3]), "  :", timer_task03[[3]], "\n",
-    "====================\n")
+    "Replication Task 03 is done!", "|",  
+    names(timer_task03[1]), ":", timer_task03[[1]],  "|",
+    names(timer_task03[2]), ":", timer_task03[[2]],  "|",
+    names(timer_task03[3]), ":", timer_task03[[3]],  "|",
+    "Core used :",parallel::detectCores(), "              =", "\n", 
+    "============================================================================================================")

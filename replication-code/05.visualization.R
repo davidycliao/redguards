@@ -75,11 +75,11 @@ ggsave("replication-figures/relationship-b.png",
        width = 7, height = 4.5, 
        units = "in", # other options c("in", "cm", "mm"), 
        dpi = 200)
-
-ggsave("images/relationship-b.png", 
-       width = 7, height = 4.5, 
-       units = "in", # other options c("in", "cm", "mm"), 
-       dpi = 200)
+# 
+# ggsave("images/relationship-b.png", 
+#        width = 7, height = 4.5, 
+#        units = "in", # other options c("in", "cm", "mm"), 
+#        dpi = 200)
 
 
 
@@ -401,7 +401,7 @@ color_palette_set <- c("#DBB887", "#1380A1", "#588300",  "#e69138")
 
 key_major_incidents <- NULL
 for (i in  1:length(major_incidents)) {
-  key_major_incidents[[i]] <- ggplot(data= major_incidents[[i]], aes(x=reorder(keyword_bi,freq), y=freq)) +
+  key_major_incidents[[i]] <- ggplot(data = major_incidents[[i]], aes(x=reorder(keyword_bi,freq), y=freq)) +
     geom_bar(stat="identity", fill= color_palette_set[[i]])+
     coord_flip() + 
     theme_bw() +
@@ -451,7 +451,7 @@ for (i in 1:4) {
 colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
 
 density <- ggplot(redguard_estimates, 
-                    aes(x = x, fill = fact_eng, color = fact_eng)) +
+                  aes(x = x, fill = fact_eng, color = fact_eng)) +
   geom_density(alpha = 0.7) +
   scale_color_manual(values = colors) +
   scale_fill_manual(values = colors) +
@@ -578,6 +578,101 @@ ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7,
 # ggsave("images/ideal_point.png", width = 8.5, height = 7, 
 #        units = "in", dpi = 200)
 
+# Figure 10. Major activist and organizations
+#===============================================================================
+
+reps <- c("清华附中红卫兵", "北大附中红旗战斗小组", "西糾",
+          "北航附中红卫兵", "谭力夫","聯動",
+          "聂元梓", "谭厚兰", "蒯大富","首都大专院校红卫兵代表大会", "三司",
+          "首都中学红代会", "清华大学井冈山兵团","新北大公社", "地院東方紅" , "北师大井冈山")
+
+netword_distance <- redguard_estimates[redguard_estimates$activist %in% reps,  c("id_doc", "activist", "x", "fact_eng")]
+
+netword_distance["activist_eng"] <- 
+  c( "聂元梓 Nie Yuanzi", 
+     "北大附中 \n 红旗战斗小组 \n Beijing University High   \n School Red Flag Battle Group",
+     "清华附中 \n 红卫兵 \n Tsinghua University \n High School Red Guards",
+     "蒯大富 Kuai Dafu",
+     "谭力夫 Tan Lifu ",
+     "北航附中红卫兵 \n Aeronautics Institute High School Red Guards",
+     "地院東方紅 \n Geology Institute East Is Red",
+     "西糾 \n Western District Picket Corps",
+     "新北大公社 \n New Beida Commune", 
+     "三司 \n Third Headquarters", 
+     "清华大学井冈山兵团 \n Tsinghua Jinggangshan Regiment",
+     "谭厚兰 Tan Houlan",
+     "首都大专院校 \n 红卫兵代表大会 \n Capital Red Guards Congress", 
+     "首都中学红代会 \n Capital Middle   \n School Red Guards Congress", 
+     "聯動 \n United Action Committee" )    
+
+A <- list()
+X <- list()
+
+for (i in 1:length(D)) {
+  A[[i]] <- rep(netword_distance[i,"activist_eng"] ,length(D))
+  X[[i]] <- rep(netword_distance[i,"x"], length(D))
+}
+
+A <- unlist(A)
+X <- unlist(X)
+DA <- rep(netword_distance$activist_eng ,length(D))
+DX <- rep(netword_distance$x ,length(D))
+
+P <- matrix(nrow = L, ncol = 3)
+
+for (i in 1:length(N)){
+  P[i, 1] <- A[i]
+  P[i, 2] <- DA[i] 
+  P[i, 3] <- abs(X[i] - DX[i])
+}
+
+colnames(P) <- c("from", "to", "Centrality \n in Ideal Points")
+P <- as.data.frame(P) 
+P$`Centrality \n in Ideal Points` <- as.numeric(P$`Centrality \n in Ideal Points`)
+P <- P[!P$from == P$to,]
+P$`Centrality \n in Ideal Points` <- (1-P$`Centrality \n in Ideal Points`)
+
+
+layout <- P[P$`Centrality 
+            in Ideal Points` >0.8,]  %>% 
+  as_tbl_graph() %>% 
+  activate(nodes) %>% 
+  mutate(degree  = centrality_degree()) %>%
+  create_layout(layout = 'igraph', algorithm = 'nicely')
+
+layout["fact_eng"] <- ifelse( layout$name %in% netword_distance$activist_eng, netword_distance$fact_eng, NA)
+
+colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
+layout$fact_eng <- factor(layout$fact_eng,
+                          levels = c("Rebel", "Conservative"))
+
+set.seed(1024)
+network_plot <- ggraph(layout) +
+  geom_edge_link(aes(width = `Centrality \n in Ideal Points`, edge_alpha = `Centrality \n in Ideal Points`), colour= "grey") +  
+  geom_node_text(aes(label = name,size = `Centrality \n in Ideal Points`), 
+                 size = 4, repel = FALSE, family = "STHeiti", col = "black", fontface = "bold") +  
+  geom_node_point(aes(size = 5, color = as.factor(fact_eng), alpha = 0.85), show.legend = F) +
+  scale_color_manual(limits = as.factor(unique(layout$fact_eng)), values = colors,
+                     labels = c("The Conservatives","The Rebels" )) +
+  geom_mark_hull(ggplot2::aes(x, y, group =  as.factor(fact_eng), 
+                              fill =  as.factor(fact_eng),
+                              label = as.factor(fact_eng)), 
+                 concavity = 4, expand = ggplot2::unit(5, "mm"),
+                 alpha = 0.1,
+                 show.legend = F) +
+  theme_graph(base_family = "Arial Narrow") +
+  labs(title = "", subtitle = "") +
+  theme(text = element_text(family = "STHeiti")) +
+  theme_void() +
+  theme(legend.key.size = unit(4.5, "cm"),
+        legend.key.height = unit(4.5, "cm"),
+        legend.key.width = unit(4.5, "cm"),
+        legend.title = element_text(size = 12),
+        legend.text = element_text(size = 12))
+
+
+ggsave("replication-figures/network_plot.png", width = 12, height = 11, 
+       units = "in", dpi = 200)
 
 # Figure 10. The estimated positions of the Red Guard participants by four major
 #            political incident 
@@ -740,7 +835,7 @@ ggsave("replication-figures/incident_selects.png", width = 10, height = 6,
 
 
 
-# Figure 11. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
+# Figure 12. Top 20 most frequent TextRank-Keyword estimated by Wordfish Poisson
 #            model (V2)
 #===============================================================================
 word_point <- get_wordfeatures(pooled_outcome)
@@ -787,7 +882,7 @@ ggsave("replication-figures/estimated_x_1.png", width = 5, height = 3,
 # ggsave("images/estimated_x_1.png", width = 5, height = 3,
 #        units = "in", dpi = 250)
 
-# Figure 12. Frequency statistics of parts of speech from the Red Guard 
+# Figure 13. Frequency statistics of parts of speech from the Red Guard 
 #            publications (Appendix 2).
 #===============================================================================
 stats <- txt_freq(conll$upos)
@@ -809,7 +904,7 @@ ggsave("replication-figures/pos_vis.png", width = 10, height = 6,
 #        units = "in", dpi = 150)
 
 
-# Figure  13. An  example  of  complete  grammar  annotation  on  Universal 
+# Figure  14. An  example  of  complete  grammar  annotation  on  Universal 
 #             Dependencies.   
 #===============================================================================
 udmodel_chinese <- udpipe_load_model(file = "chinese-gsdsimp-ud-2.5-191206.udpipe")
@@ -852,7 +947,7 @@ ggsave("replication-figures/relationship-a.png", width = 10, height = 8,
 #        units = "in", dpi = 160)
 
 
-# Figure 14. Most frequent key phrases in top 10 identified by TextRank from 
+# Figure 15. Most frequent key phrases in top 10 identified by TextRank from 
 #            each incidents
 #===============================================================================
 time <- list("25 May 1966 - 17 Aug 1966",
@@ -931,7 +1026,7 @@ ggsave("replication-figures/keywords.png", width = 27, height = 20,
 ggsave("images/keywords.png", width = 27, height = 20, 
        units = "in", dpi = 200)
 
-# Figure 15. The Estimated Positions of Each Major Historical Incident, 1966-1967
+# Figure 16. The Estimated Positions of Each Major Historical Incident, 1966-1967
 #            (Appendix 6.)
 #===============================================================================
 colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
@@ -970,16 +1065,18 @@ ggsave("replication-figures/incident_full.png", width = 12, height = 8,
 
 })
 
-cat(" ====================\n",
+
+
+
+
+cat(" ============================================================================================================\n",
     "=",
-    "Task 05 Is Done!", "=", "\n",
-    "====================",
-    "\n Core used :",  parallel::detectCores(), 
-    "\n Time spent \n", 
-    names(timer_task05[1]), ":",   timer_task05[[1]], "\n",
-    names(timer_task05[2]), " :",  timer_task05[[2]], "\n",
-    names(timer_task05[3]), "  :", timer_task05[[3]], "\n",
-    "====================\n")
+    "Replication Task 05 is done!", "|",  
+    names(timer_task05[1]), ":", timer_task05[[1]],  "|",
+    names(timer_task05[2]), ":", timer_task05[[2]],  "|",
+    names(timer_task05[3]), ":", timer_task05[[3]],  "|",
+    "Core used :",parallel::detectCores(), "              =", "\n", 
+    "============================================================================================================")
 
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES

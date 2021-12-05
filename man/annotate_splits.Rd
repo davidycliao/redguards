@@ -4,7 +4,11 @@
 \alias{annotate_splits}
 \title{split the text document to run the model in parallel}
 \usage{
-annotate_splits(x, file, individuals = TRUE)
+annotate_splits(
+  x,
+  file = "chinese-gsdsimp-ud-2.5-191206.udpipe",
+  individuals = TRUE
+)
 }
 \arguments{
 \item{x}{text variable}

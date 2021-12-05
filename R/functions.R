@@ -270,3 +270,28 @@ NULL
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
 
+
+#' @docType data
+#' @keywords dfm_list  
+#' @name dfm_list
+#' @usage data(dfm_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
+#' @docType data
+#' @keywords incident_list  
+#' @name incident_list
+#' @usage data(incident_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
+#' @docType data
+#' @keywords dict  
+#' @name dict
+#' @usage data(dict)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+

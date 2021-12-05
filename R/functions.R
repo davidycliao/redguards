@@ -108,7 +108,6 @@ dtm_wfm <- function(x){
 #' @param x wfm object
 #' @param set.seed default is 1234 
 #' @param verbose default is FALSE
-#' @examples create_start(redgaurds_wfm)
 #' @title  create start point for poisIRT() 
 #' @importFrom stats runif
 

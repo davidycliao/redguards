@@ -16,6 +16,3 @@ create_start(x, set.seed = 1234, verbose = FALSE)
 \description{
 create start point for poisIRT()
 }
-\examples{
-create_start(redgaurds_wfm)
-}

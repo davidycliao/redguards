@@ -12,6 +12,3 @@ dtm_wfm(x)
 \description{
 Turning DTM to WFM
 }
-\examples{
-dtm_wfm(data)
-}

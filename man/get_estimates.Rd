@@ -12,6 +12,3 @@ get_estimates(emIRT.out)
 \description{
 retrieve estimates from poisIRT class
 }
-\examples{
-get_estimates(poisIRT_object)
-}

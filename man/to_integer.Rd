@@ -9,6 +9,3 @@ to_integer(x, n = 5)
 \description{
 make float breakpoints to integer
 }
-\examples{
-scale_y_continuous(breaks = function(x) to_integer(x, n = 10)) 
-}

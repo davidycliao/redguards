@@ -12,6 +12,3 @@ get_keywords(df, n = 10, head = TRUE, ...)
 \description{
 retrieve the most/less frequent keywords from textrank_keywords class
 }
-\examples{
-get_keywords(textrank_keywords,n = 10, head = TRUE )
-}

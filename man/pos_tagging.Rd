@@ -18,6 +18,3 @@ This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) 
 \note{
 This is limited to use for specific data frame from replication dataset
 }
-\examples{
-pos_tagging(incindent)
-}

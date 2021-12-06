@@ -12,6 +12,3 @@ get_wordfeatures(df, ...)
 \description{
 retrieve word features from poisIRT class
 }
-\examples{
-get_wordfeatures(poisIRT_object)
-}

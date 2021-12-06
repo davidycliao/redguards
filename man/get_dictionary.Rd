@@ -12,6 +12,3 @@ get_dictionary(df)
 \description{
 Generate dictionary object via a matrix or data frame
 }
-\examples{
-get_dictionary(mat)
-}

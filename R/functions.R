@@ -23,7 +23,6 @@
 #' @importFrom doFuture registerDoFuture
 #' @importFrom data.table rbindlist 
 #' @importFrom future.apply future_lapply  
-#' @examples pos_tagging(incindent)
 #' @title  Part-of-speech at individual level or incident level
 #' @details This function requires pre-trianed model (chinese-gsdsimp-ud-2.5-191206.udpipe) which can be downloaded at Pre-trained models: chinese-gsdsimp-ud-2.5-191206.udpipe. 
 #' @note This is limited to use for specific data frame from replication dataset
@@ -65,7 +64,6 @@ pos_tagging <- function(df, individuals = TRUE) {
 #' @export get_dictionary
 #' @rdname get_dictionary
 #' @param folder a data frame or matrix
-#' @examples get_dictionary(mat)
 #' @importFrom quanteda dictionary
 #' @title  Generate dictionary object via a matrix or data frame
 get_dictionary <- function(df) {
@@ -81,7 +79,6 @@ get_dictionary <- function(df) {
 #' @param x input requires dtm object from quanteda or tm pacakge
 #' @importFrom austin wfm 
 #' @importFrom quanteda convert
-#' @examples dtm_wfm(data)
 #' @importFrom data.table transpose
 #' @title  Turning DTM to WFM
 dtm_wfm <- function(x){
@@ -163,7 +160,6 @@ create_prior <- function(mu = 0, sigma2 = 100,...){
 #' @export get_estimates
 #' @rdname get_estimates
 #' @param emIRT.out the estimate object from poisIR 
-#' @examples get_estimates(poisIRT_object)
 #' @title  retrieve estimates from poisIRT class
 get_estimates <- function(emIRT.out){
   if (class(emIRT.out)[1] =="poisIRT"){
@@ -183,7 +179,6 @@ get_estimates <- function(emIRT.out){
 #' @export get_wordfeatures
 #' @rdname get_wordfeatures
 #' @param df the estimate object from poisIR 
-#' @examples get_wordfeatures(poisIRT_object)
 #' @title  retrieve word features from poisIRT class
 get_wordfeatures <- function(df,...){
   if (class(df)[1] == "poisIRT"){
@@ -202,7 +197,6 @@ get_wordfeatures <- function(df,...){
 #' @export get_keywords
 #' @rdname get_keywords
 #' @param df the estimate object should be textrank_keywords class from textrank  
-#' @examples get_keywords(textrank_keywords,n = 10, head = TRUE )
 #' @importFrom utils head
 #' @importFrom utils tail
 #' @title  retrieve the most/less frequent keywords from textrank_keywords class
@@ -225,7 +219,6 @@ get_keywords <- function(df, n = 10, head = TRUE, ...){
 
 #' @export to_integer
 #' @rdname to_integer
-#' @examples scale_y_continuous(breaks = function(x) to_integer(x, n = 10)) 
 #' @title  make float breakpoints to integer
 to_integer <- function(x, n = 5) {
   l <- pretty(x, n)
@@ -261,6 +254,21 @@ to_integer <- function(x, n = 5) {
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
 
+#' @docType data
+#' @keywords dfm_individual_list  
+#' @name dfm_individual_list
+#' @usage data(dfm_individual_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+#' @docType data
+#' @keywords dfm_list  
+#' @name dfm_list
+#' @usage data(dfm_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
 
 #' @docType data
 #' @keywords incident  
@@ -276,6 +284,44 @@ NULL
 #' @usage data(dfm_list)
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
+
+#' @docType data
+#' @keywords incident_list  
+#' @name incident_list
+#' @usage data(incident_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+#' @docType data
+#' @keywords individual_idea_point  
+#' @name individual_idea_point
+#' @usage data(individual_idea_point)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
+#' @docType data
+#' @keywords individual_list  
+#' @name individual_list
+#' @usage data(individual_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+
+#' @docType data
+#' @keywords keyw_list  
+#' @name keyw_list
+#' @usage data(keyw_list)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+#' @docType data
+#' @keywords keyword  
+#' @name keyword
+#' @usage data(keyword)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
 
 
 #' @docType data
@@ -300,5 +346,18 @@ NULL
 #' @format A data frame with 831,639 rows and 14 variables
 NULL
 
+#' @docType data
+#' @keywords redguard_estimates  
+#' @name redguard_estimates
+#' @usage data(redguard_estimates)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
+
+#' @docType data
+#' @keywords redgaurds_wfm  
+#' @name redgaurds_wfm
+#' @usage data(redgaurds_wfm)
+#' @format A data frame with 831,639 rows and 14 variables
+NULL
 
 

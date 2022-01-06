@@ -9,7 +9,7 @@
   crearted_date <- date()
   x <- regexpr("[0-9]{4}", crearted_date)
   this.year <- substr(crearted_date, x[1], x[1] + attr(x, "match.length") - 1)
-  packageStartupMessage("## David Yen-Chieh Liao, Yi-Nung Tsai, Dechun Zhang")
+  packageStartupMessage("## David Yen-Chieh Liao, Yi-Nung Tsai, Daniel Tene and Dechun Zhang")
   packageStartupMessage("## https://github.com/davidycliao/redguards")
   packageStartupMessage("## 2020 - ", this.year)
   packageStartupMessage("## redgaurds: A package for replicating estimates and findings in the article of")

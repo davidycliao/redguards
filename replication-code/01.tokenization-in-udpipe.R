@@ -1,4 +1,3 @@
-#!/usr/bin/Rscript
 
 #===============================================================================
 # File Names       : 01.pooled-redgaurds-estimates.R 

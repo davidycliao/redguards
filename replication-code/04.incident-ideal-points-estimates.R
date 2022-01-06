@@ -1,4 +1,3 @@
-#!/usr/bin/Rscript
 
 #===============================================================================
 # File Names       : 04.incidents-ideal-estimates.R 

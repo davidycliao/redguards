@@ -38,7 +38,6 @@ Replicating the comparable estimates for this paper is easy. Simply follow the d
 </p>
 
 
-###### Note: The application of this estimation will be written independently as `SWORDFISH` package and released soon. 
 
 <br />
 

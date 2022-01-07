@@ -1,4 +1,5 @@
 
+
 #===============================================================================
 # File Names       : 03.pooled-redgaurds-estimates.R 
 # Date             : 31st Oct 2021
@@ -114,7 +115,7 @@ redguard_estimates <- get_estimates(pooled_outcome) %>%
 
 
 cat(" ============================================================================================================\n",
-    "Replication Task 03 is done.", "|",  
+    " Replication Task 03 is done.", "|",  
     names(timer_task03[1]), ":", timer_task03[[1]],  "|",
     names(timer_task03[2]), ":", timer_task03[[2]],  "|",
     names(timer_task03[3]), ":", timer_task03[[3]],  "|",

@@ -18,7 +18,7 @@ if (!require("pacman")) install.packages("pacman")
 pacman::p_load(
   ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
   cowplot, lattice, ggraph, igraph, ggforce,
-  tidygraph,
+  tidygraph, 
   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
   tidyr, tidyr, readxl, data.table,
   quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
@@ -581,7 +581,7 @@ ggsave("replication-figures/ideal_point.png", width = 8.5, height = 7,
 
 # Figure 10. Major activist and organizations
 #===============================================================================
-eps <- c("清华附中红卫兵", "北大附中红旗战斗小组", "西糾",
+reps <- c("清华附中红卫兵", "北大附中红旗战斗小组", "西糾",
          "北航附中红卫兵", "谭力夫","聯動",
          "聂元梓", "谭厚兰", "蒯大富","首都大专院校红卫兵代表大会", "三司",
          "首都中学红代会", "清华大学井冈山兵团","新北大公社", "地院東方紅" , "北师大井冈山")
@@ -1071,7 +1071,7 @@ ggsave("replication-figures/incident_full.png", width = 12, height = 8,
 
 
 cat(" ============================================================================================================\n",
-    "Replication Task 05 is done.", "|",  
+    " Replication Task 05 is done.", "|",  
     names(timer_task05[1]), ":", timer_task05[[1]],  "|",
     names(timer_task05[2]), ":", timer_task05[[2]],  "|",
     names(timer_task05[3]), ":", timer_task05[[3]],  "|",

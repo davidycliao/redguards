@@ -17,13 +17,29 @@ on:
 env:
     GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
 
-jobs:
-  build:
-    runs-on: macos-latest
-    strategy:
-      matrix:
-        r-version: ['3.6.3', '4.1.1']
+# jobs:
+#   build:
+#     runs-on: macos-latest
+#     strategy:
+#       matrix:
+#         r-version: ['3.6.3', '4.1.1']
 
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: macOS-latest,   r: 'release'}
+          - {os: windows-latest, r: 'release'}
+          - {os: ubuntu-latest,   r: 'devel', http-user-agent: 'release'}
+          - {os: ubuntu-latest,   r: 'release'}
+          - {os: ubuntu-latest,   r: 'oldrel-1'}
+          
     steps:
       - uses: actions/checkout@v2
       - name: Set up R ${{ matrix.r-version }}

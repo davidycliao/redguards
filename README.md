@@ -1,7 +1,6 @@
 ## Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data <img src="https://avatars3.githubusercontent.com/u/77121644?s=400&amp;u=49ca6038b83b629a86d391bb2e4d19f8995918a5&amp;v=4" width="130" height="145" align="right"/> <br /> 
 
-[![Project Status: Abandoned – Initial development has started, but there has not yet been a stable, usable release; the project has been abandoned and the author(s) do not intend on continuing development.](https://www.repostatus.org/badges/latest/abandoned.svg)](https://www.repostatus.org/#abandoned)
- 
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
 [![R](https://github.com/davidycliao/redguards/actions/workflows/r.yml/badge.svg)](https://github.com/davidycliao/redguards/actions/workflows/r.yml)
 [![codecov](https://codecov.io/gh/davidycliao/redguards/branch/master/graph/badge.svg?token=9EWD4E1NCB)](https://codecov.io/gh/davidycliao/redguards)
 

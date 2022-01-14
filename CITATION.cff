@@ -2,54 +2,44 @@ cff-version: 0.0.1
 message: "If you use this software, please cite it as below."
 authors:
   - family-names: "Liao"
-given-names: "David Yen-Chieh"
-orcid: ""
-- family-names: "Tsai"
-given-names: "Yi-Nung"
-orcid: "https://orcid.org/0000-0002-3396-9366"
-- family-names: "Tene"
-given-names: "Daniel"
-orcid: ""
-- family-names: "Zhang"
-given-names: "Dechun"
-orcid: "https://orcid.org/0000-0002-2284-2378"
-
+    given-names: "David Yen-Chieh"
+    orcid: ""
+  - family-names: "Tsai"
+    given-names: "Yi-Nung"
+    orcid: "https://orcid.org/0000-0002-3396-9366"
+  - family-names: "Tene"
+    given-names: "Daniel"
+    orcid: ""
+  - family-names: "Zhang"
+    given-names: "Dechun"
+    orcid: "https://orcid.org/0000-0002-2284-2378"
 version: 0.0.1
 date-released: 2021-03-15
 url: "https://github.com/davidycliao/redguards"
 preferred-citation:
   type: article
-authors:
+  authors:
   - family-names: "Liao"
-given-names: "David Yen-Chieh""
-orcid: ""
-- family-names: "Tsai"
-given-names: "Yi-Nung"
-orcid: "https://orcid.org/0000-0002-3396-9366"
-- family-names: "Tene"
-given-names: "Daniel"
-orcid: ""
-- family-names: "Zhang"
-given-names: "Dechun"
-orcid: "https://orcid.org/0000-0002-2284-2378"
+    given-names: "David Yen-Chieh""
+    orcid: ""
+  - family-names: "Tsai"
+    given-names: "Yi-Nung"
+    orcid: "https://orcid.org/0000-0002-3396-9366"
+  - family-names: "Tene"
+    given-names: "Daniel"
+    orcid: ""
+  - family-names: "Zhang"
+    given-names: "Dechun"
+    orcid: "https://orcid.org/0000-0002-2284-2378"
+  journal: ""
+  month: 
+  start:  # First page number
+  end:  # Last page number
+  title: " Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data"
+  issue: 
+  volume: 
+  year: 2022
+  url: https://github.com/davidycliao/redguards
+  
 
-journal: ""
-month: 
-start:  # First page number
-end:  # Last page number
-title: " Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data"
-issue: 
-volume: 
-year: 2022
-url: https://github.com/davidycliao/redguards
-
-
-
-@article{redgaurds,
-      howpublished = {\url{https://github.com/davidycliao/redgaurds}},
-      title = {Factionalism and the Red Guards under Mao’s China: Ideal Point Estimation Using Text Data},
-      author = {David Yen-Chieh Liao, Yi-Nung Tsai, Daniel Tene, and Dechun Zhang},
-      publisher = {GitHub},
-      year = {2021}
-}
 

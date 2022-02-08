@@ -40,7 +40,7 @@ Imports:
     ggforce,
     Rcpp,
     austin
-Remotes: 
+Remotes:
     kosukeimai/emIRT
     conjugateprior/austin
 Suggests: 

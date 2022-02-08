@@ -42,8 +42,8 @@ Imports:
     emIRT,
     austin
 Remotes:
-    kosukeimai/emIRT,
-    conjugateprior/austin
+    github::kosukeimai/emIRT,
+    github::conjugateprior/austin
 Suggests: 
     covr,
     knitr

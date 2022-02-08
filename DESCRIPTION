@@ -41,8 +41,8 @@ Imports:
     Rcpp,
     austin
 Remotes: 
-    conjugateprior/austin
     kosukeimai/emIRT
+    conjugateprior/austin
 Suggests: 
     covr,
     knitr

@@ -39,6 +39,7 @@ Imports:
     igraph, 
     ggforce,
     Rcpp,
+    emIRT,
     austin
 Remotes:
     kosukeimai/emIRT,

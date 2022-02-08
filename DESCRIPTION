@@ -41,6 +41,7 @@ Imports:
     ggforce,
     Rcpp,
     austin
+    emIRT
 Remotes: conjugateprior/austin
 Suggests: 
     covr,

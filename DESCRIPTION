@@ -29,7 +29,6 @@ Imports:
     tmcn,
     textrank,
     quanteda,
-    emIRT,
     ggplot2, 
     ggpubr, 
     ggrepel, 
@@ -41,7 +40,9 @@ Imports:
     ggforce,
     Rcpp,
     austin
-Remotes: conjugateprior/austin
+Remotes: 
+    conjugateprior/austin
+    kosukeimai/emIRT
 Suggests: 
     covr,
     knitr

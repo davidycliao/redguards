@@ -6,6 +6,19 @@
 
 <br />
 
+
+<div style="text-align: justify">
+
+####  Abstract  
+
+This article estimates student participants' ideal points  during the Cultural Revolution through analyzing expressed political views in propaganda publication. In this paper, we design a new strain of text scaling method as we called Slogan-based Wordfish (Sworfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative major noun phrases, and estimates Bayesian Generalized Wordfish with those extracted text variables. Our findings point to evidence of re(de)alignments within the factions and demonstrate how the students from different areas follow Mao Zedong and Xiaohongshu (Little Red Book) then fall into a fratricidal conflict that divided families, the classes and the society.
+how student participants were dynamically divided into multiple factions that  fought for controls the movement across times. The results estimated by our estimation approach are shown to be consistent with the important works of factionalism emerging in the Cultural Revolution.
+
+**Keywords**：*Text as Data, Textrank, Keyword Extraction,  the Cultural Revolution*
+
+</div>
+
+
 This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redguards/master/slides/slides.pdf). In this paper, we design a new strain of text scaling method as we called `SWORDFISH`  (Slogan-based Features Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (such as noun collocation phrases) and scale those extracted text variables with Bayesian IRT Generalized Wordfish Model implanted by [Imai, Lo, and Olmsted (2016)](https://imai.fas.harvard.edu/research/files/fastideal.pdf) based on the  Slapin and Proksch’s “Wordfish”(2008).
 
 <p align="center">

@@ -9,6 +9,8 @@
 
 <div style="text-align: justify">
 
+<br />
+
 ####  Abstract  
 
 This article estimates student participants' ideal points  during the Cultural Revolution through analyzing expressed political views in propaganda publication. In this paper, we design a new strain of text scaling method as we called Slogan-based Wordfish (Sworfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative major noun phrases, and estimates Bayesian Generalized Wordfish with those extracted text variables. Our findings point to evidence of re(de)alignments within the factions and demonstrate how the students from different areas follow Mao Zedong and Xiaohongshu (Little Red Book) then fall into a fratricidal conflict that divided families, the classes and the society.

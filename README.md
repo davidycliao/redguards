@@ -4,8 +4,6 @@
 [![R](https://github.com/davidycliao/redguards/actions/workflows/r.yml/badge.svg)](https://github.com/davidycliao/redguards/actions/workflows/r.yml)
 [![codecov](https://codecov.io/gh/davidycliao/redguards/branch/master/graph/badge.svg?token=9EWD4E1NCB)](https://codecov.io/gh/davidycliao/redguards)
 
-<br />
-
 
 <div style="text-align: justify">
 

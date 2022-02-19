@@ -93,7 +93,7 @@ Please note that replicating the figures requires installing `STHeiti font` in l
 ## Cite
 ```
 @misc{redguards,
-    howpublished = {\url{https://github.com/davidycliao/legisCrawler}},
+    howpublished = {\url{https://github.com/davidycliao/redguards}},
     title = {Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data },
     author = {David Yen-Chieh Liao and Yi-Nung Tsai and Daniel Tene and Dechun Zhang},
     publisher = {GitHub},

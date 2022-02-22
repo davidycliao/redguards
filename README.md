@@ -23,8 +23,15 @@ how student participants were dynamically divided into multiple factions that  f
 This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redguards/master/slides/slides.pdf). In this paper, we design a new strain of text scaling method as we called `SWORDFISH`  (Slogan-based Features Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (such as noun collocation phrases) and scale those extracted text variables with Bayesian IRT Generalized Wordfish Model implanted by [Imai, Lo, and Olmsted (2016)](https://imai.fas.harvard.edu/research/files/fastideal.pdf) based on the  Slapin and Proksch’s “Wordfish”(2008).
 
 <p align="center">
+  <img width="650" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/network_example.png" >
+</p>
+
+
+
+<p align="center">
   <img width="650" height="440" src="https://github.com/davidycliao/redguards/blob/master/images/ideal_point.png" >
 </p>
+
 
 
 The Red Guard documents analyzed in the paper are archived in [The Databases for The History of Contemporary Chinese Political Movements](http://ccrd.usc.cuhk.edu.hk/Default.aspx?msg=%25u6ca1%25u6709%25u8ba2%25u9605%25uff0c%25u6b22%25u8fce%25u8ba2%25u9605%25uff01) (香港中文大學中國當代運動史數據庫) by The Chinese University of Hong Kong. Please note that replicating the analyses initially requires the access to the original corpus of the textual data. We, as authors and data users, do not fully have the copyright of the sources analyzed in the paper. To comply with the terms of service, we cannot share the textual files publicly. However, we are providing pre-processed textual files parsed on CoNLL-U format and document-term-matrix to replicate the analyses of the last stage. The pre-processed textual materials can be found at [data](https://github.com/davidycliao/redguards/tree/master/data). 

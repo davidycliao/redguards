@@ -21,7 +21,7 @@ This article estimates student participants' ideal points  during the Cultural R
 ### Replication  
 
 
-This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redguards/master/slides/slides.pdf). In this paper, we design a new strain of text scaling method as we called `SWORDFISH`  (Slogan-based Features Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (such as noun collocation phrases) and scale those extracted text variables with Bayesian IRT Generalized Wordfish Model implanted by [Imai, Lo, and Olmsted (2016)](https://imai.fas.harvard.edu/research/files/fastideal.pdf) based on the  Slapin and Proksch’s “Wordfish”(2008).
+This is a designed package for replicating the estimates and findings in the article of [**Factionalism and the Red Guards under Mao's China: Ideal Point Estimation Using Text Data**](https://raw.githack.com/davidycliao/redguards/master/slides/slides.pdf). In this paper, we design a new strain of text scaling method as we called `SWORDFISH`  (Slogan-based Features Wordfish) that takes advantage of the facilitation of the TextRank algorithm to extract the most representative keywords (such as noun collocation phrases) and scale those extracted text variables with Bayesian IRT Generalized Wordfish Model implanted by [Imai, Lo, and Olmsted (2016)](https://imai.fas.harvard.edu/research/files/fastideal.pdf) based on the  [Slapin and Proksch’s “Wordfish”(2008)](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1540-5907.2008.00338.x).
 
 
 
@@ -66,8 +66,6 @@ Then, build the project package by `install()` and load it.
 devtools::install()
 library(redguards)
 ```
-
-
 Last, start replication with `run_replication()`. 
 ```
 run_replication()

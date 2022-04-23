@@ -108,9 +108,11 @@ rm(list = setdiff(ls(), c("kyw_object","conll", "incident", "incident_list",
 #====================================END========================================
 
 
-cat(" ============================================================================================================\n",
-    "Replication Task 02 is done!", "|",  
-    names(timer_task02[1]), ":", timer_task02[[1]],  "|",
-    names(timer_task02[2]), ":", timer_task02[[2]],  "|",
-    names(timer_task02[3]), ":", timer_task02[[3]],  "|",
-    "Core used :",parallel::detectCores())
+cat("\n ----------------------------------------- \n",
+    "Task 02 is done..", "",  
+    "\n", names(timer_task02[1]), ": ", timer_task02[[1]], 
+    "\n", names(timer_task02[2]), " : ", timer_task02[[2]], 
+    "\n", names(timer_task02[3]), "  :", timer_task02[[3]], 
+    "\n", "Core used :",parallel::detectCores())
+
+

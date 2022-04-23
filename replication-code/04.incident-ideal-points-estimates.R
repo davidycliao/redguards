@@ -158,12 +158,13 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 
 
 
-cat(" ============================================================================================================\n",
-    "Replication Task 04 is done.", "|",  
-    names(timer_task04[1]), ":", timer_task04[[1]],  "|",
-    names(timer_task04[2]), ":", timer_task04[[2]],  "|",
-    names(timer_task04[3]), ":", timer_task04[[3]],  "|",
-    "Core used :",parallel::detectCores() )
+
+cat("\n ----------------------------------------- \n",
+    "Task 04 is done..", "",  
+    "\n", names(timer_task04[1]), ": ", timer_task04[[1]], 
+    "\n", names(timer_task04[2]), " : ", timer_task04[[2]], 
+    "\n", names(timer_task04[3]), "  :", timer_task04[[3]], 
+    "\n", "Core used :",parallel::detectCores())
 
 # 
 # while (isTRUE(exists("timer_task04")))

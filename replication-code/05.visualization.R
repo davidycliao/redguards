@@ -1070,12 +1070,15 @@ ggsave("replication-figures/incident_full.png", width = 12, height = 8,
 
 
 
-cat(" ============================================================================================================\n",
-    " Replication Task 05 is done.", "|",  
-    names(timer_task05[1]), ":", timer_task05[[1]],  "|",
-    names(timer_task05[2]), ":", timer_task05[[2]],  "|",
-    names(timer_task05[3]), ":", timer_task05[[3]],  "|",
-    "Core used :",parallel::detectCores())
+
+cat("\n ----------------------------------------- \n",
+    "Task 05 is done..", "",  
+    "\n", names(timer_task05[1]), ": ", timer_task05[[1]], 
+    "\n", names(timer_task05[2]), " : ", timer_task05[[2]], 
+    "\n", names(timer_task05[3]), "  :", timer_task05[[3]], 
+    "\n", "Core used :",parallel::detectCores(), "\n",
+    " ========================================= \n", 
+    "Replication finished")
 
 
 # CLEAN UNUSED OBJECTS TO SAVE MEMORIES

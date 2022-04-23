@@ -40,10 +40,11 @@ timer_task01 <- system.time({
 #====================================END========================================
 
 
-cat(" ============================================================================================================\n",
-    "Replication Task 01 is done", "|",  
-    names(timer_task01[1]), ":", timer_task01[[1]],  "|",
-    names(timer_task01[2]), ":", timer_task01[[2]],  "|",
-    names(timer_task01[3]), ":", timer_task01[[3]],  "|",
-    "Core used :",parallel::detectCores())
+cat(" Replication starts ..... \n",
+    "========================================= \n",
+    "Task 00 is done..", "",  
+    "\n", names(timer_task01[1]), ": ", timer_task01[[1]], 
+    "\n", names(timer_task01[2]), " : ", timer_task01[[2]], 
+    "\n", names(timer_task01[3]), "  : ", timer_task01[[3]], 
+    "\n","Core used :",parallel::detectCores())
 

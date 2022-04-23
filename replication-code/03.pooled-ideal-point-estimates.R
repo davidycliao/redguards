@@ -112,11 +112,11 @@ redguard_estimates <- get_estimates(pooled_outcome) %>%
 
 })
 
+cat("\n ----------------------------------------- \n",
+    "Task 03 is done..", "",  
+    "\n", names(timer_task03[1]), ": ", timer_task03[[1]], 
+    "\n", names(timer_task03[2]), " : ", timer_task03[[2]], 
+    "\n", names(timer_task03[3]), "  :", timer_task03[[3]], 
+    "\n", "Core used :",parallel::detectCores())
 
 
-cat(" ============================================================================================================\n",
-    " Replication Task 03 is done.", "|",  
-    names(timer_task03[1]), ":", timer_task03[[1]],  "|",
-    names(timer_task03[2]), ":", timer_task03[[2]],  "|",
-    names(timer_task03[3]), ":", timer_task03[[3]],  "|",
-    "Core used :",parallel::detectCores(), "\n")

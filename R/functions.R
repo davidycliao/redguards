@@ -30,12 +30,12 @@ pos_tagging <- function(df, individuals = TRUE) {
   # to evaluate whether the data frame is correct
   if (any(sum(colnames(df) %in% c("id_doc","content", "incident_index"))>2)){ 
     if (isTRUE(individuals)) { 
-      msg = "Tokenization is done at individual level"
-      annotate_splits <- function(x, file){ 
-        ud_model =  udpipe::udpipe_load_model(file)
-        x = as.data.table(udpipe_annotate(ud_model, 
-                                          x = x$content,
-                                          doc_id = x$id_doc))}
+    msg = "Tokenization is done at individual level"
+    annotate_splits <- function(x, file){ 
+    ud_model =  udpipe::udpipe_load_model(file)
+    x = as.data.table(udpipe_annotate(ud_model, 
+                                        x = x$content,
+                                        doc_id = x$id_doc))}
       } 
     else if(isFALSE(individuals)) {
       msg = "Tokenization is done at incident level"
@@ -152,22 +152,18 @@ create_prior <- function(mu = 0, sigma2 = 100,...){
 }
 
 
-
-
-
-
-
 #' @export get_estimates
 #' @rdname get_estimates
 #' @param emIRT.out the estimate object from poisIR 
 #' @title  retrieve estimates from poisIRT class
 get_estimates <- function(emIRT.out){
   if (class(emIRT.out)[1] =="poisIRT"){
-    df = data.frame(x = emIRT.out$means$x,
+    df = data.frame(id_doc = as.numeric(row.names(as.data.frame(pooled_outcome$means$x))),
+                    x = emIRT.out$means$x,
                     sd = sqrt(emIRT.out$vars$x),
-                    id_doc = as.numeric(rownames(emIRT.out$means$psi)))  %>%
-    mutate(lower = x - 1.96*sd, upper = x + 1.96*sd)
-    cat("Estimated object is", class(emIRT.out)[1], "\n\t")
+                    lower = emIRT.out$means$x - 1.96*sqrt(emIRT.out$vars$x),
+                    upper = emIRT.out$means$x + 1.96*sqrt(emIRT.out$vars$x) ) 
+    # cat("Estimated object is", class(emIRT.out)[1], "\n\t")
     }
   else{
     stop("This is not poisIRT, please check it again!!!" ) 

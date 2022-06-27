@@ -156,21 +156,20 @@ create_prior <- function(mu = 0, sigma2 = 100,...){
 #' @rdname get_estimates
 #' @param emIRT.out the estimate object from poisIR 
 #' @title  retrieve estimates from poisIRT class
-get_estimates <- function(emIRT.out){
+get_estimates <- function(emIRT.out, id_doc =id_doc ){
   if (class(emIRT.out)[1] =="poisIRT"){
-    df = data.frame(id_doc = as.numeric(row.names(as.data.frame(pooled_outcome$means$x))),
+    df = data.frame(id_doc = as.numeric(id_doc),
                     x = emIRT.out$means$x,
                     sd = sqrt(emIRT.out$vars$x),
                     lower = emIRT.out$means$x - 1.96*sqrt(emIRT.out$vars$x),
                     upper = emIRT.out$means$x + 1.96*sqrt(emIRT.out$vars$x) ) 
     # cat("Estimated object is", class(emIRT.out)[1], "\n\t")
-    }
+  }
   else{
     stop("This is not poisIRT, please check it again!!!" ) 
-    }
+  }
   return(df)
 }
-
 
 #' @export get_wordfeatures
 #' @rdname get_wordfeatures

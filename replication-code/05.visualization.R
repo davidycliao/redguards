@@ -1,4 +1,3 @@
-
 #===============================================================================
 # File Names       : 05.visualization.R 
 # Date             : 31st Oct 2021
@@ -12,22 +11,9 @@
 #===============================================================================
 
 timer_task05 <- system.time({
-# REQUIRED PACKAGES
-#===============================================================================
-if (!require("pacman")) install.packages("pacman")
-pacman::p_load(
-  ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
-  cowplot, lattice, ggraph, igraph, ggforce,
-  tidygraph, 
-  tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit
-  tidyr, tidyr, readxl, data.table,
-  quanteda, tmcn, austin, udpipe, textrank              # NLP toolkit
-)
-
 
 # REQUIRED DATASET 
 #===============================================================================
-
 
   
 # CREATE REPLICATION FOLDER
@@ -489,7 +475,9 @@ ggsave("replication-figures/density.png", width = 8, height = 4,
 # Subset Rebel's position over the mean of the Conservative which includes: 
 # 清華八八派, 清华大学八一一战斗小组, 北京一中少數派, 北京六中少數派, 
 # 北京轻工业学院东方红公社, 北京家庭出身问题第三研究小组
+
 rebel_outlier <- redguard_estimates[(redguard_estimates$x> mean(redguard_estimates[redguard_estimates$fact_eng %in% "Conservative",]$x) & redguard_estimates$fact_eng == "Rebel"),]$activist
+
 
 # Subset Conservative's position over the mean of the Rebel which includes: 贺捷生
 conservative_outlier <- redguard_estimates[(redguard_estimates$x< mean(redguard_estimates[redguard_estimates$fact_eng %in% "Rebel",]$x)& redguard_estimates$fact_eng == "Conservative"),]$activist
@@ -633,9 +621,8 @@ P$`Centrality \n in Ideal Points` <- as.numeric(P$`Centrality \n in Ideal Points
 P <- P[!P$from == P$to,]
 P$`Centrality \n in Ideal Points` <- (1-P$`Centrality \n in Ideal Points`)
 
-
 layout <- P[P$`Centrality 
-            in Ideal Points` >0.8,]  %>% 
+ in Ideal Points` >0.8,]  %>% 
   as_tbl_graph() %>% 
   activate(nodes) %>% 
   mutate(degree  = centrality_degree()) %>%
@@ -647,7 +634,7 @@ colors <- c("Rebel" = "#972D15", "Conservative" = "#81A88D")
 layout$fact_eng <- factor(layout$fact_eng,
                           levels = c("Rebel", "Conservative"))
 
-set.seed(1024)
+set.seed(2022)
 network_plot <- ggraph(layout) +
   geom_edge_link(aes(width = `Centrality \n in Ideal Points`, edge_alpha = `Centrality \n in Ideal Points`), colour= "grey") +  
   geom_node_text(aes(label = name,size = `Centrality \n in Ideal Points`), 
@@ -840,25 +827,24 @@ ggsave("replication-figures/incident_selects.png", width = 10, height = 6,
 #            model (V2)
 #===============================================================================
 word_point <- get_wordfeatures(pooled_outcome)
-less_effects <- word_point[word_point$beta <3 & word_point$beta >-3 & nchar(word_point$feature)>2 & word_point$alpha >8,]$feature
-upper_phrase <- word_point[word_point$beta >= 7 & nchar(word_point$feature)>3 ,]$feature
+# less_effect <- word_point[word_point$beta <3 & word_point$beta >-3 & nchar(word_point$feature)>2 & word_point$psi >8,]$feature
+upper_phrase <- word_point[word_point$beta >= 7 & nchar(word_point$feature)>2,]$feature
+# upper_phrase_phr <- word_point[word_point$beta >= 7 & nchar(word_point$feature)>2,]$feature
 lower_phrase <- word_point[word_point$beta <= -7 & nchar(word_point$feature)>=3,]$feature
+# lower_phrase_phr <- word_point[word_point$beta <= -7 & nchar(word_point$feature)>=2,]$feature
 
-estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
-  geom_text(colour = "grey70",family = "STHeiti", alpha = 0.8, size = 0.5) 
-
-estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feature)) + 
+estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = psi, label = feature)) + 
   geom_text(data = word_point[!word_point$feature %in% upper_phrase & !word_point$beta %in% lower_phrase & !word_point$beta %in% less_effects,],
-            colour = "grey70",family = "STHeiti", alpha = 0.8, size = 0.5) +
-  geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
-            data = word_point[word_point$feature %in% less_effects,],
-            color = "red", family = "STHeiti", position=position_jitter(width = 0.2, height = 2), size = 1 , alpha = 0.8) +
+            colour = "grey70",family = "STHeiti", alpha = 0.9, size = 1) +
+  # geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
+  #           data = word_point[word_point$feature %in% less_effects,],
+  #           color = "red", family = "STHeiti", position=position_jitter(width = 0.2, height = 2), size = 1 , alpha = 0.8) +
   geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
             data = word_point[word_point$feature %in% upper_phrase,],
-            color = "blue", family = "STHeiti", position=position_jitter(width = 0.1, height = 1), size = 1 , alpha = 0.8) +
+            color = "#972D15", family = "STHeiti", position=position_jitter(width = 0.1, height = 1), size = 1.5, alpha = 0.9) +
   geom_text(aes(beta, psi, label = feature, fontface = "bold"), 
             data = word_point[word_point$feature %in% lower_phrase,],
-            color = "blue", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1 , alpha = 0.8) + 
+            color = "#3b5543", family = "STHeiti", position=position_jitter(width = 0.9, height = 1), size = 1.5,  alpha = 0.9) + 
   xlim(-50,50)+
   coord_flip() +
   scale_y_reverse() +
@@ -877,8 +863,8 @@ estimated_x_1 <- ggplot(data = word_point, aes(x = beta, y = alpha, label = feat
         axis.text.y = element_text(size = 8),
         axis.title.x = element_text(size = 8))  
 
-ggsave("replication-figures/estimated_x_1.png", width = 5, height = 3,
-       units = "in", dpi = 250)
+ggsave("replication-figures/estimated_x_1.png", width = 5, height = 4,
+       units = "in", dpi = 350)
 
 # ggsave("images/estimated_x_1.png", width = 5, height = 3,
 #        units = "in", dpi = 250)
@@ -1024,8 +1010,8 @@ keywords <- annotate_figure(
 ggsave("replication-figures/keywords.png", width = 27, height = 20, 
        units = "in", dpi = 200)
 
-ggsave("images/keywords.png", width = 27, height = 20, 
-       units = "in", dpi = 200)
+# ggsave("images/keywords.png", width = 27, height = 20, 
+#        units = "in", dpi = 200)
 
 # Figure 16. The Estimated Positions of Each Major Historical Incident, 1966-1967
 #            (Appendix 6.)
@@ -1062,27 +1048,17 @@ ggsave("replication-figures/incident_full.png", width = 12, height = 8,
 #        units = "in", 
 #        dpi = 200)
 
-#====================================END========================================
-
 })
 
-
-
-
-
+#====================================END========================================
 
 cat("\n ----------------------------------------- \n",
     "Task 05 is done..", "",  
-    "\n", names(timer_task05[1]), ": ", timer_task05[[1]], 
+    "\n", names(timer_task05[1]), ": ",  timer_task05[[1]], 
     "\n", names(timer_task05[2]), " : ", timer_task05[[2]], 
     "\n", names(timer_task05[3]), "  :", timer_task05[[3]], 
     "\n", "Core used :",parallel::detectCores(), "\n",
     " ========================================= \n", 
     "Replication finished")
-
-
-# CLEAN UNUSED OBJECTS TO SAVE MEMORIES
-#===============================================================================
-# rm(list=ls())
 
 

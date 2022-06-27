@@ -1,6 +1,5 @@
-
 #===============================================================================
-# File Names       : keywords-extraction.R 
+# File Names       : 02.keywords-extraction.R 
 # Date             : 31st Oct 2021
 # Authors          : David Yen-Cheih Liao
 # Purpose          : extract keywords feature and generate dictionary object
@@ -43,7 +42,6 @@ for (i in 1:length(incident_list)){
   conll$keyword_doc_id[ifelse(conll$keyword_doc_id %in% incident_list[[i]]$incident_index, TRUE, FALSE)]  <- i  
 }
 
-
 # number of incidents
 num = length(unique(conll$keyword_doc_id))
 
@@ -81,7 +79,7 @@ for (i in 1:num){
 } 
 
 
-# BUILDING  DICTIONARY OBJECT IN QUANTEDA
+# BUILDING  DICTIONARY OBJECT USING QUANTEDA
 #===============================================================================
 
 doParallel::registerDoParallel(parallel::makeCluster(parallel::detectCores()-1))   
@@ -89,7 +87,6 @@ dict <- foreach::foreach(i = 1:length(keyword), .combine =  list,
                          .multicombine = TRUE) %dopar% 
   {quanteda::dictionary(keyword[[i]])}
 parallel::stopCluster(parallel::makeCluster(parallel::detectCores()-1))                  
-
 
 # SAVE OUTPUTS
 #===============================================================================
@@ -106,7 +103,6 @@ rm(list = setdiff(ls(), c("kyw_object","conll", "incident", "incident_list",
 })
 
 #====================================END========================================
-
 
 cat("\n ----------------------------------------- \n",
     "Task 02 is done..", "",  

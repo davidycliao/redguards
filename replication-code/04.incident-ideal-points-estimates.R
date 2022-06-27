@@ -9,25 +9,12 @@
 #===============================================================================
 
 timer_task04 <- system.time({
-# REQUIRED PACKAGES
-#===============================================================================
-# if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse
-#   tidyr, tidyr, readxl, data.table,                     # Data Pre-processings
-#   parallel, future, furrr, future.apply,                # Parallel Computing
-#   doParallel, foreach, doFuture,
-#   quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
-#   emIRT                                                 # Generalized Wordfish
-# )
-
 
 # REQUIRED DATASET 
 #===============================================================================
 load("data/individual_list.RData")
 load("data/dfm_individual_list.RData")
 load("data/dict.RData")
-
 
 # BUILDING A DICTIONARY OBJECT IN QUANTEDA
 #===============================================================================
@@ -44,7 +31,7 @@ load("data/dict.RData")
 # 
 # save(dfm_individual_list, file= "data/dfm_individual_list.RData")
 # save(individual_list, file= "data/individual_list.RData")
-
+# 
 
 doParallel::registerDoParallel(parallel::makeCluster(detectCores()-1))   
 
@@ -55,10 +42,10 @@ redgaurds_dfm_individual <- foreach::foreach(i = 1:length(dfm_individual_list),
 parallel::stopCluster(parallel::makeCluster(detectCores()-1))                  
 
 
-# BUILDING DOCUNEBTS-TERM-MATRIX IN QUANTEDA & AUSTIN
+# BUILDING DOCUNEBTS-TERM-MATRIX USING QUANTEDA & AUSTIN
 #===============================================================================
 redgaurds_wfm_individual <- map(redgaurds_dfm_individual, dtm_wfm)
-redgaurds_wfm_individual[[10]]
+
 
 # GENERATE STARTS & PRIORS
 #===============================================================================
@@ -89,24 +76,19 @@ for (i in 1:length(redgaurds_wfm_individual)) {
 
 # CREATE A TIDY DATAFRAME FOR VISUALIZATION
 #===============================================================================
-# poisIRT_dataframe <- list()
-# for (i in 1:length(em_poisIRT)){
-#   poisIRT_dataframe[[i]]  <- data.frame(x = em_poisIRT[[i]]$means$x,
-#                                         sd = sqrt(em_poisIRT[[i]]$vars$x),
-#                                         lower = em_poisIRT[[i]]$means$x - 1.96*sqrt(em_poisIRT[[i]]$vars$x),
-#                                         upper = em_poisIRT[[i]]$means$x + 1.96*sqrt(em_poisIRT[[i]]$vars$x),
-#                                         id_doc = as.double(rownames(em_poisIRT[[i]]$means$psi))) %>%
-#     left_join(individual_list[[i]][,c("id_doc", "unit_id", "fact_eng")], by = "id_doc")
-# }
-# 
+colname_list <- list()
+for (i in 1:length(redgaurds_wfm_individual)) {
+  colname_list[[i]] <-colnames(redgaurds_wfm_individual[[i]])
+}
 
 poisIRT_dataframe <- NULL
-poisIRT_dataframe <- map(em_poisIRT, get_estimates)
+for (k in 1:length(redgaurds_wfm_individual)) 
+  {poisIRT_dataframe[[k]] <- get_estimates(em_poisIRT[[k]], colname_list[[k]])}
+
 for (i in 1:length(em_poisIRT)){
   poisIRT_dataframe[[i]] <- poisIRT_dataframe[[i]] %>%
     left_join(individual_list[[i]][,c("id_doc", "fact_eng")], by = "id_doc")
 }
-
 
 
 incidents <- list("The First Marxist-Leninist \n  Wall Poster",
@@ -155,16 +137,42 @@ individual_idea_point$incidents <- factor(individual_idea_point$incidents,
 
 })
 
-
-
-
+#====================================END========================================
 
 cat("\n ----------------------------------------- \n",
     "Task 04 is done..", "",  
-    "\n", names(timer_task04[1]), ": ", timer_task04[[1]], 
+    "\n", names(timer_task04[1]), ": ",  timer_task04[[1]], 
     "\n", names(timer_task04[2]), " : ", timer_task04[[2]], 
     "\n", names(timer_task04[3]), "  :", timer_task04[[3]], 
     "\n", "Core used :",parallel::detectCores())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # 
 # while (isTRUE(exists("timer_task04")))

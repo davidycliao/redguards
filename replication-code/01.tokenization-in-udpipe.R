@@ -1,4 +1,3 @@
-
 #===============================================================================
 # File Names       : 01.pooled-redgaurds-estimates.R 
 # Date             : 31st Oct 2021
@@ -9,21 +8,10 @@
 #===============================================================================
 
 timer_task01 <- system.time({
-# PACKAGES 
-#===============================================================================
-# if (!require("pacman")) install.packages("pacman")
-# pacman::p_load(
-#   tidyverse, lubridate, dplyr, purrr, tibble,          # Tidyverse
-#   data.table,
-#   parallel, future, furrr, future.apply, parallelMap,  # Parallel Computing
-#   doParallel, foreach, doFuture,
-#   quanteda, tmcn, austin, udpipe, textrank             # NLP toolkit
-# )
-#   
-  
+
 # REQUIRED DATASET 
 #===============================================================================
-# incident <- read_csv("data/incident-group.csv", show_col_types = TRUE)
+# incident <- read_csv("data/incident-group.csv", show_col_types = FALSE)
 
 # TOKENIZATION ON UNIVERSAL DEPENDENCIES
 #===============================================================================
@@ -40,8 +28,7 @@ timer_task01 <- system.time({
 #====================================END========================================
 
 
-cat(" Replication starts ..... \n",
-    "========================================= \n",
+cat("========================================= \n",
     "Task 00 is done..", "",  
     "\n", names(timer_task01[1]), ": ", timer_task01[[1]], 
     "\n", names(timer_task01[2]), " : ", timer_task01[[2]], 

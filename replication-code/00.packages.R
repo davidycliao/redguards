@@ -17,9 +17,15 @@ pacman::p_load(
   parallel, future, furrr, future.apply,                # Parallel Computing
   doParallel, foreach, doFuture,
   ggplot2, ggpubr, ggrepel, wesanderson, ggraph,        # Visualization Toolkit
-  cowplot, lattice, ggraph, igraph, ggforce,
+  cowplot, lattice, igraph, ggforce, tidygraph,
   tidyverse, lubridate, dplyr, purrr, tibble,           # Tidyverse Toolkit  
   quanteda, tmcn, austin, udpipe, textrank,             # NLP toolkit
-  emIRT                                                 # Generalized Wordfish
+  emIRT,                                                # Generalized Wordfish
+  redguards
 )
+
+
+#====================================END========================================
+
+cat(" Replication starts ..... \n")
 

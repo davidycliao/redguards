@@ -4,7 +4,7 @@
 \alias{get_estimates}
 \title{retrieve estimates from poisIRT class}
 \usage{
-get_estimates(emIRT.out)
+get_estimates(emIRT.out, id_doc = id_doc)
 }
 \arguments{
 \item{emIRT.out}{the estimate object from poisIR}

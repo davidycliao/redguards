@@ -60,10 +60,11 @@ usethis::use_course(create_download_url("https://github.com/davidycliao/redguard
 Then, build the project package by `install()` and load it. 
 ```
 devtools::install()
-library(redguards)
 ```
 Last, start replication with `run_replication()`. 
+
 ```
+library(redguards)
 run_replication()
 ```
 
